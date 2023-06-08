@@ -1,0 +1,131 @@
+@import 'shared-icon-button-styles.css';
+
+.icon-button-shared.icon-button--outlined {
+  --_container-shape: 9999px;
+  --_container-size: 40px;
+  --_disabled-icon-color: rgb(var(--sys-on-surface-rgb), 0.38);
+  --_disabled-selected-container-color:  rgb(var(--sys-on-surface-rgb), 0.12);
+  --_disabled-unselected-outline-color: var(--sys-on-surface);
+  --_disabled-unselected-outline-opacity: 0.12;
+  --_focus-state-layer-opacity: 0.08;
+  --_hover-state-layer-opacity: 0.08;
+  --_icon-size: 24px;
+  --_pressed-state-layer-opacity: 0.12;
+  --_selected-container-color: var(--sys-inverse-surface);
+  --_selected-focus-icon-color: var(--sys-inverse-on-surface);
+  --_selected-focus-state-layer-color: var(--sys-inverse-on-surface);
+  --_selected-hover-icon-color: var(--sys-inverse-on-surface);
+  --_selected-hover-state-layer-color: var(--sys-inverse-on-surface);
+  --_selected-icon-color: var(--sys-inverse-on-surface);
+  --_selected-pressed-icon-color: var(--sys-inverse-on-surface);
+  --_selected-pressed-state-layer-color: var(--sys-inverse-on-surface);
+  --_unselected-focus-icon-color: var(--sys-on-surface-variant);
+  --_unselected-focus-state-layer-color: var(--sys-on-surface-variant);
+  --_unselected-hover-icon-color: var(--sys-on-surface-variant);
+  --_unselected-hover-state-layer-color: var(--sys-on-surface-variant);
+  --_unselected-icon-color: var(--sys-on-surface-variant);
+  --_unselected-outline-color: var(--sys-outline);
+  --_unselected-outline-width: 1px;
+  --_unselected-pressed-icon-color: var(--sys-on-surface);
+  --_unselected-pressed-state-layer-color: var(--sys-on-surface);
+  --_container-shape-start-start: var(--_container-shape);
+  --_container-shape-start-end: var(--_container-shape);
+  --_container-shape-end-end: var(--_container-shape);
+  --_container-shape-end-start: var(--_container-shape);
+}
+
+.icon-button--outlined {
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--_unselected-icon-color);
+  --ripple-focus-color: var(--_unselected-focus-state-layer-color);
+  --ripple-focus-opacity: var(--_focus-state-layer-opacity);
+  --ripple-hover-color: var(--_unselected-hover-state-layer-color);
+  --ripple-hover-opacity: var(--_hover-state-layer-opacity);
+  --ripple-pressed-color: var(--_unselected-pressed-state-layer-color);
+  --ripple-pressed-opacity: var(--_pressed-state-layer-opacity)
+}
+
+.icon-button--outlined::before {
+  border-color: var(--_unselected-outline-color);
+  border-width: var(--_unselected-outline-width);
+  block-size: 100%;
+  border-style: solid;
+  border-radius: inherit;
+  box-sizing: border-box;
+  content: "";
+  inline-size: 100%;
+  inset: 0;
+  pointer-events: none;
+  position: absolute
+
+}
+
+.icon-button--outlined:hover {
+  color: var(--_unselected-hover-icon-color)
+}
+
+.icon-button--outlined:focus {
+  color: var(--_unselected-focus-icon-color)
+}
+
+.icon-button--outlined:active {
+  color: var(--_unselected-pressed-icon-color)
+}
+
+.icon-button--outlined:disabled {
+  color: var(--_disabled-icon-color)
+}
+
+.icon-button--outlined:disabled::before {
+  border-color: var(--_disabled-outline-color)
+}
+
+.icon-button--outlined .icon-button--selected::before {
+  border-width: 0
+}
+
+.icon-button--outlined .icon-button--selected::before {
+  border-width: 0
+}
+
+.icon-button--outlined.icon-button--selected {
+  --ripple-focus-color: var(--_selected-focus-state-layer-color);
+  --ripple-focus-opacity: var(--_focus-state-layer-opacity);
+  --ripple-hover-color: var(--_selected-hover-state-layer-color);
+  --ripple-hover-opacity: var(--_hover-state-layer-opacity);
+  --ripple-pressed-color: var(--_selected-pressed-state-layer-color);
+  --ripple-pressed-opacity: var(--_pressed-state-layer-opacity)
+}
+
+.icon-button--outlined.icon-button--selected:not(:disabled) {
+  background-color: var(--_selected-container-color);
+  color: var(--_selected-icon-color)
+}
+
+.icon-button--outlined.icon-button--selected:not(:disabled):hover {
+  color: var(--_selected-hover-icon-color)
+}
+
+.icon-button--outlined.icon-button--selected:not(:disabled):focus {
+  color: var(--_selected-focus-icon-color)
+}
+
+.icon-button--outlined.icon-button--selected:not(:disabled):active {
+  color: var(--_selected-pressed-icon-color)
+}
+
+.icon-button--outlined.icon-button--selected:disabled {
+  background-color: var(--_disabled-selected-container-color)
+}
+
+@media (forced-colors: active) {
+  .icon-button--outlined.icon-button--selected::before {
+    border-color: var(--_unselected-outline-color);
+    border-width: var(--_unselected-outline-width)
+  }
+
+  .icon-button--outlined.icon-button--selected:disabled::before {
+    border-color: var(--_disabled-unselected-outline-color);
+    opacity: var(--_disabled-unselected-outline-opacity)
+  }
+}

@@ -4,5 +4,8 @@ SolidJS port of: [Material design-system Web is Google’s UI toolkit for buildi
 
 ## Open tasks:
 
+- [ ] Setup Storybook
+- [ ] Setup CI/CD
+- [ ] Implement components
 - [ ] Setup test infrastructure
 - [ ] Test components

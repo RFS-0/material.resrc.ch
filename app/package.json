@@ -4,8 +4,12 @@
   "description": "A SolidJS Port of Material 3",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "main": "node ./dist/main.js",
+    "clean": "rm -rf dist",
+    "type-check": "tsc",
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
     "test": "jest"
   },
   "repository": {
@@ -24,10 +28,12 @@
   },
   "homepage": "https://github.com/RFS-0/material.resrc.ch#readme",
   "dependencies": {
-    "material.resrc.ch": "0.0.1-alpha.1"
+    "material.resrc.ch": "0.0.1-alpha.10"
   },
   "devDependencies": {
     "tslint": "^6.1.3",
-    "typescript": "^5.1.3"
+    "typescript": "^5.1.3",
+    "vite": "^4.1.1",
+    "vite-plugin-solid": "^2.5.0"
   }
 }
