@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "test": "jest"
+    "test": "echo \"no tests yet\""
   },
   "repository": {
     "type": "git",

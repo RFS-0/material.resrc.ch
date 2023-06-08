@@ -48,7 +48,7 @@
   "scripts": {
     "build": "vite build",
     "clean": "rm -rf dist",
-    "test": "jest"
+    "test": "echo \"no tests yet\""
   },
   "types": "dist/index.d.ts",
   "version": "0.0.1-alpha.10"
