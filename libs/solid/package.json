@@ -41,7 +41,7 @@
   "main": "dist/index.js",
   "style": "dist/style.css",
   "module": "dist/index.mjs",
-  "name": "material.resrc.ch-root",
+  "name": "material.resrc.ch",
   "peerDependencies": {
   },
   "repository": {
@@ -49,14 +49,10 @@
     "url": "git+https://github.com/RFS-0/material.resrc.ch.git"
   },
   "scripts": {
-    "build": "turbo run build",
-    "clean": "turbo run clean",
-    "test": "turbo run test"
+    "build": "vite build",
+    "clean": "rm -rf dist",
+    "test": "jest"
   },
   "types": "dist/index.d.ts",
-  "version": "0.0.1-alpha.10",
-  "workspaces": [
-    "apps/*",
-    "libs/*"
-  ]
+  "version": "0.0.1-alpha.10"
 }
