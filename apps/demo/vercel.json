@@ -1,0 +1,12 @@
+{
+  "buildCommand": "",
+  "framework": "solidstart",
+  "installCommand": "",
+  "ignoreCommand": "bash ./check-branch.sh",
+  "github": {
+    "enabled": false
+  },
+  "name": "demo-material-resrc-ch",
+  "public": false,
+  "outputDirectory": "output/static"
+}
