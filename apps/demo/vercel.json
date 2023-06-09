@@ -1,11 +1,12 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "",
   "framework": "solidstart",
-  "installCommand": "",
-  "ignoreCommand": "bash ./check-branch.sh",
   "github": {
     "enabled": false
   },
-  "public": false,
-  "outputDirectory": "output/static"
+  "ignoreCommand": "bash ./check-branch.sh",
+  "installCommand": "",
+  "outputDirectory": "output/static",
+  "public": false
 }
