@@ -6,7 +6,6 @@
   "github": {
     "enabled": false
   },
-  "name": "demo-material-resrc-ch",
   "public": false,
   "outputDirectory": "output/static"
 }

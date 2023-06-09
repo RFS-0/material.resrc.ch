@@ -1,41 +1,53 @@
 {
-  "name": "demo.material.resrc.ch",
-  "version": "0.0.1",
+  "author": "RFS-0",
+  "bugs": {
+    "url": "https://github.com/RFS-0/material.resrc.ch/issues"
+  },
+  "dependencies": {
+    "@solid-primitives/context": "^0.2.1",
+    "@solid-primitives/event-bus": "^1.0.5",
+    "@solidjs/meta": "^0.28.2",
+    "@solidjs/router": "^0.8.2",
+    "material.resrc.ch": "0.0.1-alpha.10",
+    "solid-js": "^1.7.5",
+    "solid-start": "^0.2.26",
+    "undici": "^5.22.1"
+  },
   "description": "A SolidJS Port of Material 3",
-  "main": "dist/index.js",
-  "scripts": {
-    "clean": "rm -rf dist",
-    "type-check": "tsc",
-    "start": "vite",
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
-    "test": "echo \"no tests yet\""
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "solid-devtools": "^0.26.0",
+    "solid-start-node": "^0.2.19",
+    "solid-start-vercel": "^0.2.26",
+    "typescript": "^5.1.3",
+    "vite": "^4.3.8",
+    "vite-plugin-solid": "^2.5.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RFS-0/material.resrc.ch.git"
+  "engines": {
+    "node": ">=18.x"
   },
+  "homepage": "https://github.com/RFS-0/material.resrc.ch#readme",
   "keywords": [
     "SolidJS",
     "Material 3",
     "TypeScript"
   ],
-  "author": "RFS-0",
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/RFS-0/material.resrc.ch/issues"
+  "name": "demo.material.resrc.ch",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RFS-0/material.resrc.ch.git"
   },
-  "homepage": "https://github.com/RFS-0/material.resrc.ch#readme",
-  "dependencies": {
-    "material.resrc.ch": "0.0.1-alpha.10",
-    "@solid-primitives/event-bus": "^1.0.5",
-    "solid-js": "^1.7.2"
+  "scripts": {
+    "build": "solid-start build",
+    "clean": "rm -rf dist",
+    "dev": "solid-start dev",
+    "serve": "vite preview",
+    "start": "solid-start start",
+    "test": "echo \"no tests yet\"",
+    "type-check": "tsc"
   },
-  "devDependencies": {
-    "tslint": "^6.1.3",
-    "typescript": "^5.1.3",
-    "vite": "^4.1.1",
-    "vite-plugin-solid": "^2.5.0"
-  }
+  "type": "module",
+  "version": "0.0.1"
 }
