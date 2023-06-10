@@ -1,0 +1,72 @@
+@import 'shared-button-styles.css';
+
+.button-shared.button--outlined {
+    --_container-height: 40px;
+    --_container-shape: 9999px;
+    --_disabled-label-text-color: var(--sys-on-surface);
+    --_disabled-label-text-opacity: 0.38;
+    --_disabled-outline-color: var(--sys-on-surface);
+    --_disabled-outline-opacity: 0.12;
+    --_focus-label-text-color: var(--sys-primary);
+    --_focus-outline-color: var(--sys-primary);
+    --_focus-state-layer-color: var(--sys-primary);
+    --_focus-state-layer-opacity: 0.12;
+    --_hover-label-text-color: var(--sys-primary);
+    --_hover-outline-color: var(--sys-outline);
+    --_hover-state-layer-color: var(--sys-primary);
+    --_hover-state-layer-opacity: 0.08;
+    --_label-text-color: var(--sys-primary);
+    --_label-text-type: var(--sys-font-family);
+    --_outline-color: var(--sys-outline);
+    --_outline-width: 1px;
+    --_pressed-label-text-color: var(--sys-primary);
+    --_pressed-outline-color: var(--sys-outline);
+    --_pressed-state-layer-color: var(--sys-primary);
+    --_pressed-state-layer-opacity: 0.12;
+    --_with-icon-disabled-icon-color: var(--sys-on-surface);
+    --_with-icon-disabled-icon-opacity: 0.38;
+    --_with-icon-focus-icon-color: var(--sys-primary);
+    --_with-icon-hover-icon-color: var(--sys-primary);
+    --_with-icon-icon-color: var(--sys-primary);
+    --_with-icon-icon-size: 18px;
+    --_with-icon-pressed-icon-color: var(--sys-primary);
+    --_spacing-leading: 24px;
+    --_spacing-trailing: 24px;
+    --_with-icon-spacing-leading: 16px;
+    --_with-icon-spacing-trailing: 24px;
+    --_with-trailing-icon-spacing-leading: 24px;
+    --_with-trailing-icon-spacing-trailing: 16px;
+    --_container-shape-start-start: var(--_container-shape);
+    --_container-shape-start-end: var(--_container-shape);
+    --_container-shape-end-end: var(--_container-shape);
+    --_container-shape-end-start: var(--_container-shape);
+}
+
+.button__outline {
+    inset: 0;
+    border-style: solid;
+    position: absolute;
+    box-sizing: border-box;
+    border-color: var(--_outline-color);
+    border-radius: var(--_container-shape)
+}
+
+.button:active .button__outline {
+    border-color: var(--_pressed-outline-color)
+}
+
+.button:disabled .button__outline {
+    border-color: var(--_disabled-outline-color)
+}
+
+.button__outline,
+.button__ripple {
+    border-width: var(--_outline-width)
+}
+
+.button__ripple {
+    inline-size: calc(100% - 2*var(--_outline-width));
+    block-size: calc(100% - 2*var(--_outline-width));
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0)
+}
