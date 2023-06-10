@@ -43,7 +43,6 @@
     "build": "solid-start build",
     "clean": "rm -rf dist",
     "dev": "solid-start dev",
-    "publish": "npm publish",
     "serve": "vite preview",
     "start": "solid-start start",
     "test": "echo \"no tests yet\"",

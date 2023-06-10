@@ -47,7 +47,6 @@
   "scripts": {
     "build": "vite build",
     "clean": "rm -rf dist",
-    "publish": "npm publish",
     "test": "echo \"no tests yet\""
   },
   "types": "dist/index.d.ts",
