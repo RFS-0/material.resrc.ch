@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.6
+
+### Patch Changes
+
+- 3b73193: limit scope
+
 ## 0.0.5
 
 ### Patch Changes
