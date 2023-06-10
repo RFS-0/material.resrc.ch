@@ -47,7 +47,8 @@
   "scripts": {
     "build": "vite build",
     "clean": "rm -rf dist",
-    "release": "pnpm run build && changeset publish",
+    "publish": "npm publish",
+    "release": "changeset publish",
     "test": "echo \"no tests yet\""
   },
   "types": "dist/index.d.ts",
