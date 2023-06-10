@@ -11,6 +11,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Setup Storybook
 - [x] Setup CI/CD
 - [x] Implement pipeline to release to NPM
+- [x] Add example to Demo and Storybook
 - [ ] Change name of temp-demo back to demo
 - [ ] Implement button
 - [ ] Implement badge
