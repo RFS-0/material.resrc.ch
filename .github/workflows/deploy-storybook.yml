@@ -77,4 +77,4 @@ jobs:
 
       - name: Deploy Project Artifacts to Vercel
         working-directory: ./apps/storybook
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_MATERIAL_STORYBOOK_TOKEN }}
+        run: vercel deploy --prod --token=${{ secrets.VERCEL_MATERIAL_STORYBOOK_TOKEN }}
