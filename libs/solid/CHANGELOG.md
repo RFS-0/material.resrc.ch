@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.7
+
+### Patch Changes
+
+- cd5f86b: mark as private
+
 ## 0.0.6
 
 ### Patch Changes
