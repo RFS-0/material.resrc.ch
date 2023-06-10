@@ -28,14 +28,6 @@
     },
     "clean": {
       "cache": false
-    },
-    "publish": {
-      "dependsOn": [
-        "test"
-      ],
-      "outputs": [
-        "dist/**"
-      ]
     }
   }
 }
