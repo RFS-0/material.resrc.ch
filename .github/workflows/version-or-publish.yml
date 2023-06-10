@@ -1,4 +1,4 @@
-name: Release
+name: Version or Publish
 on:
   workflow_run:
     workflows: [Build]
@@ -54,7 +54,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Create Release Pull Request for changeset
+      - name: Version or publish changesets
         id: changesets
         uses: changesets/action@v1
         env:
@@ -62,7 +62,4 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           version: pnpm run version
-
-      - name: Publish
-        if: steps.changesets.outputs.hasChangesets == 'true'
-        run: pnpm run release
+          publish: pnpm run release

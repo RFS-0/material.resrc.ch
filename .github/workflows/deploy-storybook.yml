@@ -4,7 +4,7 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_MATERIAL_STORYBOOK_PROJECT_ID }}
 on:
   workflow_run:
-    workflows: ["Release"]
+    workflows: ["Version or Publish"]
     types:
       - completed
 
