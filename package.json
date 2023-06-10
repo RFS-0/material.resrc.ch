@@ -10,6 +10,7 @@
   },
   "description": "A SolidJS Port of Material 3",
   "devDependencies": {
+    "@changesets/cli": "^2.26.1",
     "@solid-primitives/event-bus": "^1.0.5",
     "@types/node": "^20.2.5",
     "fs-extra": "^11.1.1",
@@ -52,6 +53,7 @@
   },
   "scripts": {
     "build": "turbo run build",
+    "changeset": "changeset",
     "dev": "turbo run dev",
     "clean": "turbo run clean",
     "release": "turbo run release",
