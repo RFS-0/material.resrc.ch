@@ -1,5 +1,12 @@
 # material.resrc.ch
 
+## 0.0.3
+
+### Patch Changes
+
+- fb97785: Export Elevation
+- 81343d7: test ci
+
 ## 0.0.2
 
 ### Patch Changes
