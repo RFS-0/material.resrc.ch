@@ -58,7 +58,8 @@
     "clean": "turbo run clean",
     "publish": "turbo run publish",
     "release": "turbo run release",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "version": "changeset version && pnpm i --lockfile-only"
   },
   "types": "dist/index.d.ts",
   "version": "0.0.1-alpha.10",

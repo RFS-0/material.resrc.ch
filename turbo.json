@@ -44,6 +44,14 @@
       "outputs": [
         "dist/**"
       ]
+    },
+    "version": {
+      "dependsOn": [
+        "test"
+      ],
+      "outputs": [
+        "pnpm-lock.yaml"
+      ]
     }
   }
 }
