@@ -35,6 +35,7 @@
   ],
   "license": "Apache-2.0",
   "name": "demo.material.resrc.ch",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RFS-0/material.resrc.ch.git"
