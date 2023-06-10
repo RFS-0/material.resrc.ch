@@ -1,5 +1,13 @@
 # storybook.material.resrc.ch
 
+## 0.0.11
+
+### Patch Changes
+
+- 3e164b4: fix pipeline
+- Updated dependencies [3e164b4]
+  - material.resrc.ch@0.0.11
+
 ## 0.0.10
 
 ### Patch Changes
