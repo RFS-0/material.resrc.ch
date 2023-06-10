@@ -1,10 +1,15 @@
 name: Release
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: [Build]
+    branches: [main]
+    types: [completed]
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   release:
