@@ -34,8 +34,7 @@
     "TypeScript"
   ],
   "license": "Apache-2.0",
-  "name": "demo.material.resrc.ch",
-  "private": true,
+  "name": "temp-demo.material.resrc.ch",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RFS-0/material.resrc.ch.git"
@@ -44,6 +43,7 @@
     "build": "solid-start build",
     "clean": "rm -rf dist",
     "dev": "solid-start dev",
+    "publish": "npm publish",
     "serve": "vite preview",
     "start": "solid-start start",
     "test": "echo \"no tests yet\"",

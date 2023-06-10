@@ -31,7 +31,6 @@
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "name": "storybook.material.resrc.ch",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RFS-0/material.resrc.ch.git"
@@ -40,6 +39,7 @@
     "build": "storybook build -o ./dist/static",
     "clean": "rm -rf dist",
     "dev": "storybook dev -p 6006",
+    "publish": "npm publish",
     "test": "echo \"no tests yet\""
   },
   "version": "0.0.7"

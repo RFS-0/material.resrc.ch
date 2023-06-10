@@ -12,7 +12,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  release:
+  version-or-publish:
     defaults:
       run:
         shell: bash
