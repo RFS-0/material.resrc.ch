@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.5
+
+### Patch Changes
+
+- b715798: fix release
+
 ## 0.0.3
 
 ### Patch Changes
