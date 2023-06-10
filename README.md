@@ -10,6 +10,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Setup turbo repo
 - [x] Setup Storybook
 - [x] Setup CI/CD
+- [ ] Implement pipeline to release to NPM
 - [ ] Implement components
 - [ ] Setup test infrastructure
 - [ ] Test components

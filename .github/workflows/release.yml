@@ -1,7 +1,4 @@
-name: Deploy Storybook
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_MATERIAL_STORYBOOK_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_MATERIAL_STORYBOOK_PROJECT_ID }}
+name: Release NPM Package
 on:
   push:
     branches:
@@ -10,7 +7,7 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  deploy-storybook:
+  release:
     defaults:
       run:
         shell: bash
@@ -52,21 +49,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run build
-        run: pnpm build
-
-      - name: Run tests
-        run: pnpm test
-
-      - name: Install Vercel CLI
-        if: success()
-        working-directory: ./apps/storybook
-        run: pnpm install --global vercel@latest
-
-      - name: Pull Vercel Environment Information
-        working-directory: ./apps/storybook
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_MATERIAL_STORYBOOK_TOKEN }}
-
-      - name: Deploy Project Artifacts to Vercel
-        working-directory: ./apps/storybook
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_MATERIAL_STORYBOOK_TOKEN }}
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

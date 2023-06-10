@@ -1,27 +1,19 @@
-name: Deploy Storybook
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_MATERIAL_STORYBOOK_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_MATERIAL_STORYBOOK_PROJECT_ID }}
+name: Build material.resrc.ch
 on:
   push:
     branches:
-      - main
-
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+      - "**"
 
 jobs:
-  deploy-storybook:
+  build:
     defaults:
       run:
         shell: bash
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout main
+      - name: Checkout branch
         uses: actions/checkout@v3
-        with:
-          ref: main
-          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -57,16 +49,3 @@ jobs:
 
       - name: Run tests
         run: pnpm test
-
-      - name: Install Vercel CLI
-        if: success()
-        working-directory: ./apps/storybook
-        run: pnpm install --global vercel@latest
-
-      - name: Pull Vercel Environment Information
-        working-directory: ./apps/storybook
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_MATERIAL_STORYBOOK_TOKEN }}
-
-      - name: Deploy Project Artifacts to Vercel
-        working-directory: ./apps/storybook
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_MATERIAL_STORYBOOK_TOKEN }}

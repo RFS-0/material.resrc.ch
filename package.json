@@ -52,7 +52,9 @@
   },
   "scripts": {
     "build": "turbo run build",
+    "dev": "turbo run dev",
     "clean": "turbo run clean",
+    "release": "turbo run release",
     "test": "turbo run test"
   },
   "types": "dist/index.d.ts",
