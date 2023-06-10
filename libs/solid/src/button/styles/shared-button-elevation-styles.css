@@ -1,0 +1,24 @@
+.elevation {
+    transition-duration: 280ms
+}
+
+.button {
+    --md-elevation-level: var(--_container-elevation);
+    --md-elevation-shadow-color: var(--_container-shadow-color)
+}
+
+.button:focus {
+    --md-elevation-level: var(--_focus-container-elevation)
+}
+
+.button:hover {
+    --md-elevation-level: var(--_hover-container-elevation)
+}
+
+.button:active {
+    --md-elevation-level: var(--_pressed-container-elevation)
+}
+
+.button:disabled {
+    --md-elevation-level: var(--_disabled-container-elevation)
+}

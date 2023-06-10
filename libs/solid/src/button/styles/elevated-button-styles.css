@@ -1,0 +1,44 @@
+@import 'shared-button-elevation-styles.css';
+
+.button-elevation-shared.button--elevated {
+    --_container-color: var(--sys-surface);
+    --_container-elevation: 1;
+    --_container-height: 40px;
+    --_container-shadow-color: var(--sys-shadow);
+    --_container-shape: 9999px;
+    --_container-surface-tint-layer-color: var(--sys-primary);
+    --_disabled-container-color: rgb(var(--sys-on-surface-rgb), 0.12);
+    --_disabled-container-elevation: 0;
+    --_disabled-label-text-color: rgb(var(--sys-on-surface-rgb), 0.38);
+    --_focus-container-elevation: 1;
+    --_focus-label-text-color: var(--sys-primary);
+    --_focus-state-layer-color: var(--sys-primary);
+    --_focus-state-layer-opacity: 0.12;
+    --_hover-container-elevation: 2;
+    --_hover-label-text-color: var(--sys-primary);
+    --_hover-state-layer-color: var(--sys-primary);
+    --_hover-state-layer-opacity: 0.08;
+    --_label-text-color: var(--sys-primary);
+    --_label-text-font: var(--sys-font-family);
+    --_label-text-line-height: 1.25rem;
+    --_label-text-size: 0.875rem;
+    --_label-text-tracking: 0.006rem;
+    --_label-text-type: var(--sys-font-family);
+    --_label-text-weight: 500;
+    --_pressed-container-elevation: 1;
+    --_pressed-label-text-color: var(--sys-primary);
+    --_pressed-state-layer-color: var(--sys-primary);
+    --_pressed-state-layer-opacity: 0.12;
+    --_with-icon-disabled-icon-color: rgb(var(--sys-on-surface-rgb), 0.38);
+    --_with-icon-focus-icon-color: var(--sys-primary);
+    --_with-icon-hover-icon-color: var(--sys-primary);
+    --_with-icon-icon-color: var(--sys-primary);
+    --_with-icon-icon-size: 18px;
+    --_with-icon-pressed-icon-color: var(--sys-primary);
+    --_spacing-leading: 24px;
+    --_spacing-trailing: 24px;
+    --_with-icon-spacing-leading: 16px;
+    --_with-icon-spacing-trailing: 24px;
+    --_with-trailing-icon-spacing-leading: 24px;
+    --_with-trailing-icon-spacing-trailing: 16px
+}

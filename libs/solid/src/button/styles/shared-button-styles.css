@@ -1,0 +1,174 @@
+@import "../../styles/baseline.css";
+
+:root {
+    --md-filled-button-container-shape-start-start: 12px;
+    --md-filled-button-container-shape: 8px;
+}
+
+.button-shared {
+    display: inline-flex;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    vertical-align: top;
+    --ripple-hover-color: var(--_hover-state-layer-color);
+    --ripple-focus-color: var(--_focus-state-layer-color);
+    --ripple-pressed-color: var(--_pressed-state-layer-color);
+    --ripple-hover-opacity: var(--_hover-state-layer-opacity);
+    --ripple-focus-opacity: var(--_focus-state-layer-opacity);
+    --ripple-pressed-opacity: var(--_pressed-state-layer-opacity);
+    --md-focus-ring-shape-start-start: var(--_container-shape-start-start);
+    --md-focus-ring-shape-start-end: var(--_container-shape-start-end);
+    --md-focus-ring-shape-end-end: var(--_container-shape-end-end);
+    --md-focus-ring-shape-end-start: var(--_container-shape-end-start);
+}
+
+.button-shared[disabled] {
+    cursor: default;
+    pointer-events: none;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-inline-size: 64px;
+    border: none;
+    outline: none;
+    user-select: none;
+    -webkit-appearance: none;
+    vertical-align: middle;
+    background: rgba(0, 0, 0, 0);
+    text-decoration: none;
+    /*inline-size: 100%;*/
+    position: relative;
+    z-index: 0;
+    block-size: var(--_container-height);
+    font: var(--_label-text-type);
+    color: var(--_label-text-color);
+    padding-inline-start: var(--_spacing-leading);
+    padding-inline-end: var(--_spacing-trailing);
+    gap: 8px;
+}
+
+.button::before {
+    background-color: var(--_container-color);
+    border-radius: inherit;
+    content: "";
+    inset: 0;
+    position: absolute;
+}
+
+.button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+.button:hover {
+    color: var(--_hover-label-text-color);
+    cursor: pointer;
+}
+
+.button:focus {
+    color: var(--_focus-label-text-color);
+}
+
+.button:active {
+    color: var(--_pressed-label-text-color);
+    outline: none
+}
+
+.button__label {
+    display: inline-flex;
+}
+
+.button:disabled .button__label {
+    color: var(--_disabled-label-text-color);
+    opacity: var(--_disabled-label-text-opacity);
+}
+
+.button:disabled::before {
+    background-color: var(--_disabled-container-color);
+    opacity: var(--_disabled-container-opacity);
+}
+
+@media (forced-colors: active) {
+    .button::before {
+        position: absolute;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border: 1px solid rgba(0, 0, 0, 0);
+        border-radius: inherit;
+        content: "";
+        pointer-events: none;
+    }
+}
+
+.button, .button__ripple {
+    border-start-start-radius: var(--_container-shape-start-start);
+    border-start-end-radius: var(--_container-shape-start-end);
+    border-end-start-radius: var(--_container-shape-end-start);
+    border-end-end-radius: var(--_container-shape-end-end);
+}
+
+.button::after, .button::before, .elevation, .button__ripple {
+    z-index: -1;
+}
+
+.button__icon-container {
+    display: inline-flex;
+}
+
+.button--icon-leading {
+    padding-inline-start: var(--_with-icon-spacing-leading);
+    padding-inline-end: var(--_with-icon-spacing-trailing);
+}
+
+.button--icon-trailing {
+    padding-inline-start: var(--_with-trailing-icon-spacing-leading);
+    padding-inline-end: var(--_with-trailing-icon-spacing-trailing);
+}
+
+.link-button-wrapper {
+    inline-size: 100%;
+}
+
+.button ::slotted([slot=icon]) {
+    display: inline-flex;
+    position: relative;
+    writing-mode: horizontal-tb;
+    fill: currentColor;
+    color: var(--_with-icon-icon-color);
+    font-size: var(--_with-icon-icon-size);
+    inline-size: var(--_with-icon-icon-size);
+    block-size: var(--_with-icon-icon-size);
+}
+
+.button:hover ::slotted([slot=icon]) {
+    color: var(--_with-icon-hover-icon-color);
+}
+
+.button:focus ::slotted([slot=icon]) {
+    color: var(--_with-icon-focus-icon-color);
+}
+
+.button:active ::slotted([slot=icon]) {
+    color: var(--_with-icon-pressed-icon-color);
+}
+
+.button:disabled ::slotted([slot=icon]) {
+    color: var(--_with-icon-disabled-icon-color);
+    opacity: var(--_with-icon-disabled-icon-opacity);
+}
+
+.button__touch {
+    position: absolute;
+    top: 50%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+}
