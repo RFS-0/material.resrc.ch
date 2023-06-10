@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.8
+
+### Patch Changes
+
+- c24244e: fix pipeline
+
 ## 0.0.7
 
 ### Patch Changes
