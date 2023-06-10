@@ -1,5 +1,13 @@
 # demo.material.resrc.ch
 
+## 0.0.12
+
+### Patch Changes
+
+- fe2ab4c: remove publish script
+- Updated dependencies [fe2ab4c]
+  - material.resrc.ch@0.0.12
+
 ## 0.0.11
 
 ### Patch Changes

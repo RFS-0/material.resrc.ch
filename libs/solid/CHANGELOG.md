@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.12
+
+### Patch Changes
+
+- fe2ab4c: remove publish script
+
 ## 0.0.11
 
 ### Patch Changes
