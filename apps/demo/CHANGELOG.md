@@ -1,5 +1,13 @@
 # demo.material.resrc.ch
 
+## 0.0.9
+
+### Patch Changes
+
+- 5b0c2d0: set access to public
+- Updated dependencies [5b0c2d0]
+  - material.resrc.ch@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes

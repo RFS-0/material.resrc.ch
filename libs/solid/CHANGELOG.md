@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.9
+
+### Patch Changes
+
+- 5b0c2d0: set access to public
+
 ## 0.0.8
 
 ### Patch Changes
