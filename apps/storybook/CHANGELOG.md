@@ -1,5 +1,13 @@
 # storybook.material.resrc.ch
 
+## 0.0.7
+
+### Patch Changes
+
+- cd5f86b: mark as private
+- Updated dependencies [cd5f86b]
+  - material.resrc.ch@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes

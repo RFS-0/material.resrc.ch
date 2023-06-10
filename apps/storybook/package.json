@@ -4,7 +4,7 @@
     "url": "https://github.com/RFS-0/material.resrc.ch/issues"
   },
   "dependencies": {
-    "material.resrc.ch": "0.0.6"
+    "material.resrc.ch": "0.0.7"
   },
   "description": "A SolidJS Port of Material 3",
   "devDependencies": {
@@ -42,5 +42,5 @@
     "dev": "storybook dev -p 6006",
     "test": "echo \"no tests yet\""
   },
-  "version": "0.0.6"
+  "version": "0.0.7"
 }
