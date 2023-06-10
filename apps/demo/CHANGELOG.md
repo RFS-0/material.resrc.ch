@@ -1,5 +1,11 @@
 # demo.material.resrc.ch
 
+## 0.0.13
+
+### Patch Changes
+
+- b2411d0: Add an example on how to consume the lib in the demo and the storybook project
+
 ## 0.0.12
 
 ### Patch Changes
