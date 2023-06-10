@@ -1,5 +1,13 @@
 # demo.material.resrc.ch
 
+## 0.0.10
+
+### Patch Changes
+
+- ade5187: add todo
+- Updated dependencies [ade5187]
+  - material.resrc.ch@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes
