@@ -40,6 +40,8 @@
   "style": "dist/style.css",
   "module": "dist/index.mjs",
   "name": "material.resrc.ch",
+  "peerDependencies": {
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RFS-0/material.resrc.ch.git"
