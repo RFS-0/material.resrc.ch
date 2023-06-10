@@ -34,7 +34,7 @@ importers:
       '@solidjs/meta': ^0.28.2
       '@solidjs/router': ^0.8.2
       autoprefixer: ^10.4.13
-      material.resrc.ch: 0.0.7
+      material.resrc.ch: 0.0.8
       postcss: ^8.4.21
       solid-devtools: ^0.26.0
       solid-js: ^1.7.5
@@ -71,7 +71,7 @@ importers:
       '@storybook/addon-links': ^7.0.20
       '@storybook/blocks': ^7.0.20
       '@storybook/testing-library': ^0.0.14-next.2
-      material.resrc.ch: 0.0.7
+      material.resrc.ch: 0.0.8
       react: ^18.2.0
       react-dom: ^18.2.0
       storybook: ^7.0.20

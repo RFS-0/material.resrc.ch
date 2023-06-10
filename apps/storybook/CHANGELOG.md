@@ -1,5 +1,13 @@
 # storybook.material.resrc.ch
 
+## 0.0.8
+
+### Patch Changes
+
+- c24244e: fix pipeline
+- Updated dependencies [c24244e]
+  - material.resrc.ch@0.0.8
+
 ## 0.0.7
 
 ### Patch Changes
