@@ -48,9 +48,8 @@
     "build": "vite build",
     "clean": "rm -rf dist",
     "publish": "npm publish",
-    "release": "changeset publish",
     "test": "echo \"no tests yet\""
   },
   "types": "dist/index.d.ts",
-  "version": "0.0.3"
+  "version": "0.0.4"
 }

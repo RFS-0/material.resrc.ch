@@ -29,28 +29,12 @@
     "clean": {
       "cache": false
     },
-    "release": {
-      "dependsOn": [
-        "test"
-      ],
-      "outputs": [
-        "dist/**"
-      ]
-    },
     "publish": {
       "dependsOn": [
         "test"
       ],
       "outputs": [
         "dist/**"
-      ]
-    },
-    "version": {
-      "dependsOn": [
-        "test"
-      ],
-      "outputs": [
-        "pnpm-lock.yaml"
       ]
     }
   }
