@@ -57,9 +57,9 @@
     "dev": "turbo run dev",
     "clean": "turbo run clean",
     "publish": "turbo run publish",
-    "release": "changeset publish",
+    "release": "changeset publish --scope material.resrc.ch",
     "test": "turbo run test",
-    "version": "changeset version && pnpm i --lockfile-only"
+    "version": "changeset version --scope material.resrc.ch && pnpm i --lockfile-only"
   },
   "types": "dist/index.d.ts",
   "version": "0.0.1-alpha.10",
