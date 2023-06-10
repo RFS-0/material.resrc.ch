@@ -244,4 +244,6 @@ atlassian-ide-plugin.xml
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Project specific ignores
 .solid

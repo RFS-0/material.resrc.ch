@@ -10,7 +10,12 @@
       ]
     },
     "test": {
-      "outputs": [],
+      "dependsOn": [
+        "build"
+      ],
+      "outputs": [
+        "dist/**"
+      ],
       "inputs": [
         "src/**/*.tsx",
         "src/**/*.ts",
