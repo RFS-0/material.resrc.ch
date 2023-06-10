@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.11
+
+### Patch Changes
+
+- 3e164b4: fix pipeline
+
 ## 0.0.10
 
 ### Patch Changes
