@@ -1,5 +1,35 @@
 # material.resrc.ch
 
+## 0.0.19
+
+### Patch Changes
+
+- Add stories for checkbox
+
+## 0.0.18
+
+### Patch Changes
+
+- Handle click
+
+## 0.0.17
+
+### Patch Changes
+
+- Update state of checkbox on props changes
+
+## 0.0.16
+
+### Patch Changes
+
+- Export checkbox
+
+## 0.0.15
+
+### Patch Changes
+
+- Implement checkbox
+
 ## 0.0.13
 
 ### Patch Changes
