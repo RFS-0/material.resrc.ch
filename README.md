@@ -14,8 +14,8 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Add example to Demo and Storybook
 - [ ] Change name of temp-demo back to demo
 - [x] Implement button
-- [ ] Implement checkbox
-- [ ] Implement chips
+- [x] Implement checkbox
+- [x] Implement chips
 - [ ] Implement circular-progress
 - [ ] Implement dialog
 - [ ] Implement divider

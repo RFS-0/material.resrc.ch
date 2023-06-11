@@ -27,7 +27,6 @@ export const FilledLinkIconButton: Component<FilledLinkIconButtonProps> = (props
 
   return (
       <div
-
           {...rippleHandlers}
           onFocus={composeEventHandlers([linkProps?.onfocus, activateFocus])}
           onBlur={composeEventHandlers([linkProps?.onblur, deactivateFocus])}

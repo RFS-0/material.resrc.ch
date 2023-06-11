@@ -4,8 +4,8 @@
     --_level: 1;
     --_shadow-color: var(--sys-shadow);
     --_surface-tint-color: var(--sys-primary);
-    --_container-shape: 9999px;
-    border-radius: var(--_container-shape);
+    --_elevation_shape: var(--elevation-shape, 9999px);
+    border-radius: var(--_elevation_shape);
     display: flex;
     position: absolute;
     inset: 0;
