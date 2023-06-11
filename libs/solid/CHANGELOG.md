@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.13
+
+### Patch Changes
+
+- Make focus ring configurable
+
 ## 0.0.12
 
 ### Patch Changes
