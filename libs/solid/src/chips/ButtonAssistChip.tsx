@@ -8,10 +8,10 @@ import {Elevation} from '../elevation';
 export type ButtonAssistChipProps = {
     ariaHasPopup?: boolean;
     ariaLabel?: string
-    disableRipple?: boolean;
     disabled?: boolean;
+    disableRipple?: boolean;
     elevated?: boolean;
-    icon: JSX.Element
+    icon?: JSX.Element
     label: string;
     showFocusRing?: boolean;
 } & JSX.HTMLAttributes<HTMLButtonElement>
@@ -86,7 +86,9 @@ export const ButtonAssistChip = (props: ButtonAssistChipProps) => {
                 class='primary action'
                 type='button'
             >
-                <span class="leading icon">{componentProps.icon}</span>
+                <Show when={componentProps.icon}>
+                    <span class="leading icon">{componentProps.icon}</span>
+                </Show>
                 <span class="label">{componentProps.label}</span>
                 <span class="touch"></span>
             </button>
