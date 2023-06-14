@@ -1,51 +1,51 @@
-.selected {
+.chip-selected {
     --md-ripple-hover-color: var(--_selected-hover-state-layer-color);
     --md-ripple-hover-opacity: var(--_selected-hover-state-layer-opacity);
     --md-ripple-pressed-color: var(--_selected-pressed-state-layer-color);
     --md-ripple-pressed-opacity: var(--_selected-pressed-state-layer-opacity);
 }
 
-.selected::before {
+.chip-selected::before {
     background: var(--_selected-container-color);
 }
 
-.selected .outline {
+.chip-selected .chip-outline {
     border-width: var(--_selected-outline-width);
 }
 
-.selected.disabled::before {
+.chip-selected.chip-disabled::before {
     background: var(--_disabled-selected-container-color);
     opacity: var(--_disabled-selected-container-opacity);
 }
 
-.selected .label {
+.chip-selected .chip-label {
     color: var(--_selected-label-text-color);
 }
 
-.selected:hover .label {
+.chip-selected:hover .chip-label {
     color: var(--_selected-hover-label-text-color);
 }
 
-.selected:focus .label {
+.chip-selected:focus .chip-label {
     color: var(--_selected-focus-label-text-color);
 }
 
-.selected:active .label {
+.chip-selected:active .chip-label {
     color: var(--_selected-pressed-label-text-color);
 }
 
-.selected .leading.icon {
+.chip-selected .chip-leading.chip-icon {
     color: var(--_selected-leading-icon-color);
 }
 
-.selected:hover .leading.icon {
+.chip-selected:hover .chip-leading.chip-icon {
     color: var(--_selected-hover-leading-icon-color);
 }
 
-.selected:focus .leading.icon {
+.chip-selected:focus .chip-leading.chip-icon {
     color: var(--_selected-focus-leading-icon-color);
 }
 
-.selected:active .leading.icon {
+.chip-selected:active .chip-leading.chip-icon {
     color: var(--_selected-pressed-leading-icon-color);
 }

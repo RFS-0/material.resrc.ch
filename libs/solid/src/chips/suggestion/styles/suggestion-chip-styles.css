@@ -42,7 +42,7 @@
     --_container-shape-end-start: var(--_container-shape);
 }
 
-.suggestion-chip .primary.action {
+.suggestion-chip .chip-primary.chip-action {
     padding-inline-start: 8px;
     padding-inline-end: 8px;
 }

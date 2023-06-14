@@ -137,13 +137,13 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
 
     return (
         <div
-            class={'chip-shared input-chip container'}
+            class={'chip-shared input-chip chip-container'}
             classList={{
-                'avatar': componentProps.avatar,
-                'disabled': componentProps.disabled,
+                'chip-avatar': componentProps.avatar,
+                'chip-disabled': componentProps.disabled,
             }}
         >
-            <span class="outline"></span>
+            <span class="chip-outline"></span>
             <FocusRing visible={focus()}></FocusRing>
             <Ripple
                 disabled={rippleDisabled()}
@@ -153,13 +153,13 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
             <Show when={!componentProps.removeOnly}
                   fallback={
                       <span
-                          class={'primary action'}
+                          class={'chip-primary chip-action'}
                           aria-label={componentProps?.ariaLabel || ''}
                           aria-haspopup={componentProps?.ariaHasPopup || false}
                       >
-                          <span class={'leading icon'}>{componentProps.icon}</span>
-                          <span class="label">{componentProps.label}</span>
-                          <span class="touch"></span>
+                          <span class={'chip-leading chip-icon'}>{componentProps.icon}</span>
+                          <span class="chip-label">{componentProps.label}</span>
+                          <span class="chip-touch"></span>
                       </span>
                   }
             >
@@ -176,19 +176,19 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
                     disabled={componentProps.disabled}
                     aria-label={componentProps?.ariaLabel || ''}
                     aria-haspopup={componentProps?.ariaHasPopup || false}
-                    class='primary action'
+                    class='chip-primary chip-action'
                     type='button'
                     role={'option'}
                 >
-                    <span class={'leading icon'}>{componentProps.icon}</span>
-                    <span class="label">{componentProps.label}</span>
-                    <span class="touch"></span>
+                    <span class={'chip-leading chip-icon'}>{componentProps.icon}</span>
+                    <span class="chip-label">{componentProps.label}</span>
+                    <span class="chip-touch"></span>
                 </button>
 
             </Show>
             <button
                 {...trailingRippleHandlers}
-                class="trailing action"
+                class="chip-trailing chip-action"
                 disabled={componentProps.disabled}
                 onClick={handleRemoveClick}
             >
@@ -198,11 +198,11 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
                     listen={secondaryRippleHandler.listen}
                     unbounded={true}
                 />
-                <svg class="trailing icon" viewBox="0 96 960 960">
+                <svg class="chip-trailing chip-icon" viewBox="0 96 960 960">
                     <path
                         d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/>
                 </svg>
-                <span class="touch"></span>
+                <span class="chip-touch"></span>
             </button>
         </div>
     )

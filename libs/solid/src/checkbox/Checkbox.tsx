@@ -117,26 +117,26 @@ export const Checkbox = (props: CheckboxProps) => {
     return (
         <div class='base-checkbox'>
             <div
-                class={'container'}
+                class={'checkbox-container'}
                 classList={{
-                    'selected': state.checkBox.isChecked || state.checkBox.isIndeterminate,
-                    'unselected': !state.checkBox.isChecked && !state.checkBox.isIndeterminate,
-                    'checked': state.checkBox.isChecked,
-                    'indeterminate': state.checkBox.isIndeterminate,
-                    'error': state.checkBox.isError && !props?.disabled,
-                    'prev-unselected': !state.checkBox.wasChecked && !state.checkBox.wasIndeterminate,
-                    'prev-checked': state.checkBox.wasChecked && !state.checkBox.wasIndeterminate,
-                    'prev-indeterminate': state.checkBox.wasIndeterminate,
-                    'prev-disabled': state.checkBox.wasDisabled,
+                    'checkbox-selected': state.checkBox.isChecked || state.checkBox.isIndeterminate,
+                    'checkbox-unselected': !state.checkBox.isChecked && !state.checkBox.isIndeterminate,
+                    'checkbox-checked': state.checkBox.isChecked,
+                    'checkbox-indeterminate': state.checkBox.isIndeterminate,
+                    'checkbox-error': state.checkBox.isError && !props?.disabled,
+                    'checkbox-prev-unselected': !state.checkBox.wasChecked && !state.checkBox.wasIndeterminate,
+                    'checkbox-prev-checked': state.checkBox.wasChecked && !state.checkBox.wasIndeterminate,
+                    'checkbox-prev-indeterminate': state.checkBox.wasIndeterminate,
+                    'checkbox-prev-disabled': state.checkBox.wasDisabled,
                 }}
             >
-                <div class="outline"></div>
-                <div class="background"></div>
+                <div class="checkbox-outline"></div>
+                <div class="checkbox-background"></div>
                 <FocusRing visible={focus()}></FocusRing>
                 <Ripple listen={listen} unbounded={true}></Ripple>
-                <svg class="icon" viewBox="0 0 18 18">
-                    <rect class="mark short"/>
-                    <rect class="mark long"/>
+                <svg class="checkbox-icon" viewBox="0 0 18 18">
+                    <rect class="checkbox-mark checkbox-short"/>
+                    <rect class="checkbox-mark checkbox-long"/>
                 </svg>
             </div>
             <input
@@ -148,9 +148,17 @@ export const Checkbox = (props: CheckboxProps) => {
                 disabled={state.checkBox.isDisabled}
                 onBlur={composeEventHandlers([checkBoxProps?.onblur, deactivateFocus])}
                 onChange={composeEventHandlers([checkBoxProps?.onchange, handleChange])}
-                onClick={composeEventHandlers([checkBoxProps?.onclick, handleClick])}
+                onClick={composeEventHandlers([
+                    checkBoxProps?.onclick,
+                    rippleHandlers.onClick,
+                    handleClick
+                ])}
                 onFocus={composeEventHandlers([checkBoxProps?.onfocus, activateFocus])}
-                onPointerDown={composeEventHandlers([checkBoxProps?.onpointerdown, handlePointerDown])}
+                onPointerDown={composeEventHandlers([
+                    checkBoxProps?.onpointerdown,
+                    rippleHandlers.onPointerDown,
+                    handlePointerDown
+                ])}
                 ref={checkbox!}
                 type="checkbox"
             ></input>

@@ -53,16 +53,16 @@ export const ButtonAssistChip = (props: ButtonAssistChipProps) => {
 
     return (
         <div
-            class={'chip-shared suggestion-chip container'}
+            class={'chip-shared suggestion-chip chip-container'}
             classList={{
-                'disabled': componentProps.disabled,
-                'elevated': componentProps.elevated
+                'chip-disabled': componentProps.disabled,
+                'chip-elevated': componentProps.elevated
             }}
         >
             <Show
                 when={componentProps.elevated}
                 fallback={
-                    <span class="outline"></span>
+                    <span class="chip-outline"></span>
                 }
             >
                 <Elevation/>
@@ -86,16 +86,16 @@ export const ButtonAssistChip = (props: ButtonAssistChipProps) => {
                 disabled={componentProps.disabled}
                 aria-label={componentProps?.ariaLabel || ''}
                 aria-haspopup={componentProps?.ariaHasPopup || false}
-                class='primary action'
+                class='chip-primary chip-action'
                 type='button'
             >
                 <Show when={componentProps.icon}
                       fallback={<span></span>}
                 >
-                    <span class="leading icon">{componentProps.icon}</span>
+                    <span class="chip-leading chip-icon">{componentProps.icon}</span>
                 </Show>
-                <span class="label">{componentProps.label}</span>
-                <span class="touch"></span>
+                <span class="chip-label">{componentProps.label}</span>
+                <span class="chip-touch"></span>
             </button>
         </div>
     )

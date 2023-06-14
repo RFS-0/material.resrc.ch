@@ -56,7 +56,7 @@ export const ButtonSuggestionChip = (props: ButtonSuggestionChipProps) => {
             onFocus={composeEventHandlers([buttonProps?.onfocus, activateFocus])}
             onBlur={composeEventHandlers([buttonProps?.onblur, deactivateFocus])}
             onPointerDown={composeEventHandlers([buttonProps?.onPointerDown, deactivateFocus])}
-            class={'chip-shared suggestion-chip container'}
+            class={'chip-shared suggestion-chip chip-container'}
             classList={{
                 'disabled': componentProps.disabled,
                 'elevated': componentProps.elevated
@@ -65,7 +65,7 @@ export const ButtonSuggestionChip = (props: ButtonSuggestionChipProps) => {
             <Show
                 when={componentProps.elevated}
                 fallback={
-                    <span class="outline"></span>
+                    <span class="chip-outline"></span>
                 }
             >
                 <Elevation/>
@@ -81,11 +81,11 @@ export const ButtonSuggestionChip = (props: ButtonSuggestionChipProps) => {
                 disabled={componentProps.disabled}
                 aria-label={componentProps?.ariaLabel || ''}
                 aria-haspopup={componentProps?.ariaHasPopup || false}
-                class='primary action'
+                class='chip-primary chip-action'
                 type='button'
             >
-                <span class="label">{componentProps.label}</span>
-                <span class="touch"></span>
+                <span class="chip-label">{componentProps.label}</span>
+                <span class="chip-touch"></span>
             </button>
         </div>
     )

@@ -1,4 +1,4 @@
-.trailing.action {
+.chip-trailing.chip-action {
     position: relative;
     align-self: center;
     justify-content: center;
@@ -10,7 +10,7 @@
     --focus-ring-outward-offset: -2px;
 }
 
-.trailing.action .ripple-container{
+.chip-trailing.chip-action .ripple-container {
     border-radius: 50%;
     height: calc(1.3333333333 * var(--_icon-size));
     width: calc(1.3333333333 * var(--_icon-size));
@@ -20,45 +20,45 @@
     transform: translate(-50%, -50%);
 }
 
-:has(.trailing.action) .primary.action {
+:has(.chip-trailing.chip-action) .chip-primary.chip-action {
     padding-inline-end: 0;
 }
 
-.trailing.icon {
+.chip-trailing.chip-icon {
     color: var(--_trailing-icon-color);
     height: var(--_icon-size);
     width: var(--_icon-size);
 }
 
-:hover .trailing.icon {
+:hover .chip-trailing.chip-icon {
     color: var(--_hover-trailing-icon-color);
 }
 
-:focus .trailing.icon {
+:focus .chip-trailing.chip-icon {
     color: var(--_focus-trailing-icon-color);
 }
 
-:active .trailing.icon {
+:active .chip-trailing.chip-icon {
     color: var(--_pressed-trailing-icon-color);
 }
 
-.disabled .trailing.icon {
+.chip-disabled .chip-trailing.chip-icon {
     color: var(--_disabled-trailing-icon-color);
     opacity: var(--_disabled-trailing-icon-opacity);
 }
 
-.selected .trailing.icon {
+.chip-selected .chip-trailing.chip-icon {
     color: var(--_selected-trailing-icon-color);
 }
 
-.selected:hover .trailing.icon {
+.chip-selected:hover .chip-trailing.chip-icon {
     color: var(--_selected-hover-trailing-icon-color);
 }
 
-.selected:focus .trailing.icon {
+.chip-selected:focus .chip-trailing.chip-icon {
     color: var(--_selected-focus-trailing-icon-color);
 }
 
-.selected:active .trailing.icon {
+.chip-selected:active .chip-trailing.chip-icon {
     color: var(--_selected-pressed-trailing-icon-color);
 }

@@ -71,15 +71,15 @@
     --_trailing-icon-color: var(--sys-on-surface-variant);
 }
 
-.selected.elevated::before {
+.chip-selected.chip-elevated::before {
     background: var(--_elevated-selected-container-color)
 }
 
-.checkmark {
+.chip-checkmark {
     height: var(--_icon-size);
     width: var(--_icon-size)
 }
 
-.disabled .checkmark {
+.chip-disabled .chip-checkmark {
     opacity: var(--_disabled-leading-icon-opacity)
 }

@@ -73,16 +73,16 @@
     --_trailing-icon-color: var(--sys-on-surface-variant);
 }
 
-.avatar .primary.action {
+.avatar .chip-primary.chip-action {
     padding-inline-start: 4px
 }
 
-.avatar .leading.icon span:first-child {
+.avatar .chip-leading.chip-icon span:first-child {
     border-radius: var(--_avatar-shape);
     height: var(--_avatar-size);
     width: var(--_avatar-size)
 }
 
-.disabled.avatar .leading.icon {
+.chip-disabled.avatar .chip-leading.chip-icon {
     opacity: var(--_disabled-avatar-opacity)
 }

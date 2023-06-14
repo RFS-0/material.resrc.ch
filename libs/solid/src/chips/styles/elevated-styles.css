@@ -1,29 +1,29 @@
-.elevated {
+.chip-elevated {
     --elevation-level: var(--_elevated-container-elevation);
     --elevation-shadow-color: var(--_elevated-container-shadow-color);
 }
 
-.elevated::before {
+.chip-elevated::before {
     background: var(--_elevated-container-color);
 }
 
-.elevated:hover {
+.chip-elevated:hover {
     --elevation-level: var(--_elevated-hover-container-elevation);
 }
 
-.elevated:focus-within {
+.chip-elevated:focus-within {
     --elevation-level: var(--_elevated-focus-container-elevation);
 }
 
-.elevated:active {
+.chip-elevated:active {
     --elevation-level: var(--_elevated-pressed-container-elevation);
 }
 
-.elevated.disabled {
+.chip-elevated.chip-disabled {
     --elevation-level: var(--_elevated-disabled-container-elevation);
 }
 
-.elevated.disabled::before {
+.chip-elevated.chip-disabled::before {
     background: var(--_elevated-disabled-container-color);
     opacity: var(--_elevated-disabled-container-opacity);
 }

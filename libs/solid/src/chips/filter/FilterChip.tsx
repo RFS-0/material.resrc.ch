@@ -148,17 +148,17 @@ export const FilterChip = (props: FilterChipProps) => {
 
     return (
         <div
-            class={'chip-shared filter-chip container'}
+            class={'chip-shared filter-chip chip-container'}
             classList={{
-                'disabled': componentProps.disabled,
-                'elevated': componentProps.elevated,
-                'selected': selected(),
+                'chip-disabled': componentProps.disabled,
+                'chip-elevated': componentProps.elevated,
+                'chip-selected': selected(),
             }}
         >
             <Show
                 when={componentProps.elevated}
                 fallback={
-                    <span class="outline"></span>
+                    <span class="chip-outline"></span>
                 }
             >
                 <Elevation/>
@@ -182,24 +182,24 @@ export const FilterChip = (props: FilterChipProps) => {
                 disabled={componentProps.disabled}
                 aria-label={componentProps?.ariaLabel || ''}
                 aria-haspopup={componentProps?.ariaHasPopup || false}
-                class='primary action'
+                class='chip-primary chip-action'
                 type='button'
                 role={'option'}
             >
-                <span class={'leading icon'}>
+                <span class={'chip-leading chip-icon'}>
                     <Show when={selected()}
                           fallback={componentProps.icon}
                     >
                         <span class="material-symbols-outlined">check</span>
                     </Show>
                 </span>
-                <span class="label">{componentProps.label}</span>
-                <span class="touch"></span>
+                <span class="chip-label">{componentProps.label}</span>
+                <span class="chip-touch"></span>
             </button>
             <Show when={componentProps.removable}>
                 <button
                     {...trailingRippleHandlers}
-                    class="trailing action"
+                    class="chip-trailing chip-action"
                     disabled={componentProps.disabled}
                     onClick={handleRemoveClick}
                 >
@@ -209,11 +209,11 @@ export const FilterChip = (props: FilterChipProps) => {
                         listen={secondaryRippleHandler.listen}
                         unbounded={true}
                     />
-                    <svg class="trailing icon" viewBox="0 96 960 960">
+                    <svg class="chip-trailing chip-icon" viewBox="0 96 960 960">
                         <path
                             d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/>
                     </svg>
-                    <span class="touch"></span>
+                    <span class="chip-touch"></span>
                 </button>
             </Show>
         </div>
