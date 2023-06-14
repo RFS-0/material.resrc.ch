@@ -3,7 +3,7 @@ import {LinkAssistChip} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof LinkAssistChip> = {
-    title: 'Design System/Atoms/Chips/Assist/Link',
+    title: 'Design System/Components/Chips/Assist/Link',
     component: LinkAssistChip,
 };
 

@@ -1,27 +1,28 @@
 import type {Meta, StoryObj} from 'storybook-solidjs';
-import {ButtonInputChip} from 'material.resrc.ch';
+import {LinkInputChip} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
-const meta: Meta<typeof ButtonInputChip> = {
-    title: 'Design System/Components/Chips/Input/Button',
-    component: ButtonInputChip,
+const meta: Meta<typeof LinkInputChip> = {
+    title: 'Design System/Components/Chips/Input/Link',
+    component: LinkInputChip,
 };
 
 export default meta;
-type Story = StoryObj<typeof ButtonInputChip>;
+type Story = StoryObj<typeof LinkInputChip>;
 
 export const Standalone: Story = {
     args: {
         disabled: false,
         disableRipple: false,
         label: 'My Input Chip',
+        href: 'https://www.blog.resrc.ch',
         onRemoved: () => console.log('InputChip removed!'),
         showFocusRing: false,
     },
-    render: (args) => <ButtonInputChip
+    render: (args) => <LinkInputChip
         data-testid="input-chip"
         {...args}
-        icon={<span class="material-symbols-outlined">add</span>}
+        icon={<span class="material-symbols-outlined">link</span>}
     />,
 };
 
@@ -29,12 +30,13 @@ export const RemoveOnly: Story = {
     args: {
         disabled: false,
         disableRipple: false,
+        href: 'https://www.blog.resrc.ch',
         label: 'My Input Chip',
         showFocusRing: false,
         onRemoved: () => console.log('InputChip removed!'),
         removeOnly: true,
     },
-    render: (args) => <ButtonInputChip
+    render: (args) => <LinkInputChip
         data-testid="input-chip"
         {...args}
     />,
@@ -43,13 +45,14 @@ export const RemoveOnly: Story = {
 export const Disabled: Story = {
     args: {
         disabled: true,
+        href: 'https://www.blog.resrc.ch',
         label: 'My Input Chip',
         onRemoved: () => console.log('InputChip removed!'),
     },
-    render: (args) => <ButtonInputChip
+    render: (args) => <LinkInputChip
         data-testid="input-chip"
         {...args}
-        icon={<span class="material-symbols-outlined">add</span>}
+        icon={<span class="material-symbols-outlined">link</span>}
     />,
 };
 
@@ -59,9 +62,9 @@ export const WithFocusRing: Story = {
         showFocusRing: true,
         onRemoved: () => console.log('InputChip removed!'),
     },
-    render: (args) => <ButtonInputChip
+    render: (args) => <LinkInputChip
         data-testid="input-chip"
         {...args}
-        icon={<span class="material-symbols-outlined">add</span>}
+        icon={<span class="material-symbols-outlined">link</span>}
     />,
 };

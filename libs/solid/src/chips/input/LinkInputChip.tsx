@@ -1,26 +1,27 @@
 import {createSignal, JSX, onMount, Show, splitProps} from 'solid-js';
 import {FocusRing} from '../../focus';
 import {createHandlers, createRippleEventEmitter, Ripple} from '../../ripple';
-import {composeEventHandlers} from '../../controller';
 import {createEventDispatcher} from '@solid-primitives/event-dispatcher';
 import './styles/input-chip-styles.css';
 
-export type ButtonInputChipProps = {
+export type LinkInputChipProps = {
     ariaHasPopup?: boolean;
     ariaLabel?: string
     avatar?: boolean;
     disabled?: boolean;
     disableRipple?: boolean;
+    href: string;
     icon?: JSX.Element
     label: string;
     onRemoved?: (evt: CustomEvent<void>) => void;
     removeOnly?: boolean;
     showFocusRing?: boolean;
-} & JSX.HTMLAttributes<HTMLButtonElement>
+    target: '_blank' | '_parent' | '_self' | '_top' | '';
+} & JSX.HTMLAttributes<HTMLAnchorElement>
 
-export const ButtonInputChip = (props: ButtonInputChipProps) => {
+export const LinkInputChip = (props: LinkInputChipProps) => {
     const dispatch = createEventDispatcher(props);
-    const [componentProps, buttonProps] = splitProps(props, [
+    const [componentProps, linkProps] = splitProps(props, [
         'ariaHasPopup',
         'ariaLabel',
         'avatar',
@@ -163,28 +164,20 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
                       </span>
                   }
             >
-                <button
-                    {...primaryRippleHandlers}
-                    {...buttonProps}
-                    onClick={composeEventHandlers([primaryRippleHandlers.onClick, handleClick])}
-                    onFocusIn={composeEventHandlers([updateTabIndices])}
-                    onFocus={composeEventHandlers([handleFocus])}
-                    onFocusOut={composeEventHandlers([updateTabIndices])}
-                    onBlur={composeEventHandlers([deactivateFocus])}
-                    onPointerDown={composeEventHandlers([primaryRippleHandlers.onPointerDown, deactivateFocus])}
-                    onKeyDown={composeEventHandlers([handleKeyDown])}
-                    disabled={componentProps.disabled}
+                <a
+                    {...linkProps}
                     aria-label={componentProps?.ariaLabel || ''}
                     aria-haspopup={componentProps?.ariaHasPopup || false}
                     class='primary action'
-                    type='button'
-                    role={'option'}
                 >
-                    <span class={'leading icon'}>{componentProps.icon}</span>
+                    <Show when={componentProps.icon}
+                          fallback={<span></span>}
+                    >
+                        <span class="leading icon">{componentProps.icon}</span>
+                    </Show>
                     <span class="label">{componentProps.label}</span>
                     <span class="touch"></span>
-                </button>
-
+                </a>
             </Show>
             <button
                 {...trailingRippleHandlers}

@@ -3,4 +3,4 @@
 "material.resrc.ch": patch
 ---
 
-Add filter chip
+Implement chips

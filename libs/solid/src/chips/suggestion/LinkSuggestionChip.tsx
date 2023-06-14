@@ -1,31 +1,29 @@
 import {createSignal, JSX, Show, splitProps} from 'solid-js';
 import {FocusRing} from '../../focus';
 import {createHandlers, createRippleEventEmitter, Ripple} from '../../ripple';
-import './styles/assist-chip-styles.css';
+import './styles/suggestion-chip-styles.css';
 import {composeEventHandlers} from '../../controller';
 import {Elevation} from '../../elevation';
 
-export type LinkAssistChipProps = {
+export type LinkSuggestionChipProps = {
     ariaHasPopup?: boolean;
     ariaLabel?: string
     disabled?: boolean;
     disableRipple?: boolean;
     elevated?: boolean;
     href: string;
-    icon: JSX.Element
     label: string;
     showFocusRing?: boolean;
     target: '_blank' | '_parent' | '_self' | '_top' | '';
 } & JSX.HTMLAttributes<HTMLAnchorElement>
 
-export const LinkAssistChip = (props: LinkAssistChipProps) => {
+export const LinkSuggestionChip = (props: LinkSuggestionChipProps) => {
     const [componentProps, linkProps] = splitProps(props, [
         'ariaHasPopup',
         'ariaLabel',
         'disabled',
         'disableRipple',
         'elevated',
-        'icon',
         'label',
         'showFocusRing',
     ]);
@@ -76,8 +74,9 @@ export const LinkAssistChip = (props: LinkAssistChipProps) => {
                 unbounded={true}
             />
             <a
-                {...linkProps}
                 {...rippleHandlers}
+                {...linkProps}
+
                 onFocus={composeEventHandlers([linkProps?.onfocus, activateFocus])}
                 onBlur={composeEventHandlers([linkProps?.onblur, deactivateFocus])}
                 onPointerDown={composeEventHandlers([
@@ -89,11 +88,6 @@ export const LinkAssistChip = (props: LinkAssistChipProps) => {
                 aria-haspopup={componentProps?.ariaHasPopup || false}
                 class='primary action'
             >
-                <Show when={componentProps.icon}
-                      fallback={<span></span>}
-                >
-                    <span class="leading icon">{componentProps.icon}</span>
-                </Show>
                 <span class="label">{componentProps.label}</span>
                 <span class="touch"></span>
             </a>

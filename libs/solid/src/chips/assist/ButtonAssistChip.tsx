@@ -53,12 +53,7 @@ export const ButtonAssistChip = (props: ButtonAssistChipProps) => {
 
     return (
         <div
-            {...rippleHandlers}
-            onClick={composeEventHandlers([buttonProps?.onClick, rippleHandlers.onClick])}
-            onFocus={composeEventHandlers([buttonProps?.onfocus, activateFocus])}
-            onBlur={composeEventHandlers([buttonProps?.onblur, deactivateFocus])}
-            onPointerDown={composeEventHandlers([buttonProps?.onPointerDown, deactivateFocus])}
-            class={'chip-shared assist-chip container'}
+            class={'chip-shared suggestion-chip container'}
             classList={{
                 'disabled': componentProps.disabled,
                 'elevated': componentProps.elevated
@@ -79,7 +74,15 @@ export const ButtonAssistChip = (props: ButtonAssistChipProps) => {
                 unbounded={true}
             />
             <button
+                {...rippleHandlers}
                 {...buttonProps}
+                onFocus={composeEventHandlers([buttonProps?.onfocus, activateFocus])}
+                onBlur={composeEventHandlers([buttonProps?.onblur, deactivateFocus])}
+                onPointerDown={composeEventHandlers([
+                    buttonProps?.onPointerDown,
+                    rippleHandlers.onPointerDown,
+                    deactivateFocus
+                ])}
                 disabled={componentProps.disabled}
                 aria-label={componentProps?.ariaLabel || ''}
                 aria-haspopup={componentProps?.ariaHasPopup || false}

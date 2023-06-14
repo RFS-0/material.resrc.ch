@@ -3,7 +3,7 @@ import {ButtonAssistChip} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof ButtonAssistChip> = {
-    title: 'Design System/Atoms/Chips/Assist/Button',
+    title: 'Design System/Components/Chips/Assist/Button',
     component: ButtonAssistChip,
 };
 

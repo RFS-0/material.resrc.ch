@@ -3,7 +3,7 @@ import {FilterChip} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof FilterChip> = {
-    title: 'Design System/Atoms/Chips/Filter',
+    title: 'Design System/Components/Chips/Filter',
     component: FilterChip,
 };
 

@@ -1,31 +1,27 @@
 import {createSignal, JSX, Show, splitProps} from 'solid-js';
 import {FocusRing} from '../../focus';
 import {createHandlers, createRippleEventEmitter, Ripple} from '../../ripple';
-import './styles/assist-chip-styles.css';
+import './styles/suggestion-chip-styles.css';
 import {composeEventHandlers} from '../../controller';
 import {Elevation} from '../../elevation';
 
-export type LinkAssistChipProps = {
+export type ButtonSuggestionChipProps = {
     ariaHasPopup?: boolean;
     ariaLabel?: string
     disabled?: boolean;
     disableRipple?: boolean;
     elevated?: boolean;
-    href: string;
-    icon: JSX.Element
     label: string;
     showFocusRing?: boolean;
-    target: '_blank' | '_parent' | '_self' | '_top' | '';
-} & JSX.HTMLAttributes<HTMLAnchorElement>
+} & JSX.HTMLAttributes<HTMLButtonElement>
 
-export const LinkAssistChip = (props: LinkAssistChipProps) => {
-    const [componentProps, linkProps] = splitProps(props, [
+export const ButtonSuggestionChip = (props: ButtonSuggestionChipProps) => {
+    const [componentProps, buttonProps] = splitProps(props, [
         'ariaHasPopup',
         'ariaLabel',
         'disabled',
         'disableRipple',
         'elevated',
-        'icon',
         'label',
         'showFocusRing',
     ]);
@@ -55,6 +51,11 @@ export const LinkAssistChip = (props: LinkAssistChipProps) => {
 
     return (
         <div
+            {...rippleHandlers}
+            onClick={composeEventHandlers([buttonProps?.onClick, rippleHandlers.onClick])}
+            onFocus={composeEventHandlers([buttonProps?.onfocus, activateFocus])}
+            onBlur={composeEventHandlers([buttonProps?.onblur, deactivateFocus])}
+            onPointerDown={composeEventHandlers([buttonProps?.onPointerDown, deactivateFocus])}
             class={'chip-shared suggestion-chip container'}
             classList={{
                 'disabled': componentProps.disabled,
@@ -75,28 +76,17 @@ export const LinkAssistChip = (props: LinkAssistChipProps) => {
                 listen={listen}
                 unbounded={true}
             />
-            <a
-                {...linkProps}
-                {...rippleHandlers}
-                onFocus={composeEventHandlers([linkProps?.onfocus, activateFocus])}
-                onBlur={composeEventHandlers([linkProps?.onblur, deactivateFocus])}
-                onPointerDown={composeEventHandlers([
-                    linkProps?.onPointerDown,
-                    rippleHandlers.onPointerDown,
-                    deactivateFocus
-                ])}
+            <button
+                {...buttonProps}
+                disabled={componentProps.disabled}
                 aria-label={componentProps?.ariaLabel || ''}
                 aria-haspopup={componentProps?.ariaHasPopup || false}
                 class='primary action'
+                type='button'
             >
-                <Show when={componentProps.icon}
-                      fallback={<span></span>}
-                >
-                    <span class="leading icon">{componentProps.icon}</span>
-                </Show>
                 <span class="label">{componentProps.label}</span>
                 <span class="touch"></span>
-            </a>
+            </button>
         </div>
     )
 }
