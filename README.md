@@ -16,7 +16,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Implement button
 - [x] Implement checkbox
 - [x] Implement chips
-- [ ] Implement circular-progress
+- [x] Implement circular-progress
 - [ ] Implement dialog
 - [ ] Implement divider
 - [ ] Implement elevation
