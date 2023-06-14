@@ -5,7 +5,7 @@
   "github": {
     "enabled": false
   },
-  "installCommand": null,
+  "installCommand": "echo 'Skip install'",
   "outputDirectory": "dist/static",
   "public": false,
   "rewrites": [
