@@ -1,15 +1,17 @@
 @import "../../styles/shared-chip-styles.css";
-@import "../../styles/elevated-styles.css";
 @import "../../styles/trailing-icon-styles.css";
 @import "../../styles/selectable-styles.css";
 
-.chip-shared.filter-chip {
+.chip-shared.input-chip {
+    --_avatar-shape: 9999px;
+    --_avatar-size:  24px;
     --_container-height: 32px;
     --_container-shape-end-end: var(--_container-shape);
     --_container-shape-end-start: var(--_container-shape);
     --_container-shape-start-end: var(--_container-shape);
     --_container-shape-start-start: var(--_container-shape);
     --_container-shape: 8px;
+    --_disabled-avatar-opacity: 0.38;
     --_disabled-label-text-color: var(--sys-on-surface);
     --_disabled-label-text-opacity: 0.38;
     --_disabled-leading-icon-color: var(--sys-on-surface);
@@ -71,15 +73,16 @@
     --_trailing-icon-color: var(--sys-on-surface-variant);
 }
 
-.selected.elevated::before {
-    background: var(--_elevated-selected-container-color)
+.avatar .primary.action {
+    padding-inline-start: 4px
 }
 
-.checkmark {
-    height: var(--_icon-size);
-    width: var(--_icon-size)
+.avatar .leading.icon span:first-child {
+    border-radius: var(--_avatar-shape);
+    height: var(--_avatar-size);
+    width: var(--_avatar-size)
 }
 
-.disabled .checkmark {
-    opacity: var(--_disabled-leading-icon-opacity)
+.disabled.avatar .leading.icon {
+    opacity: var(--_disabled-avatar-opacity)
 }

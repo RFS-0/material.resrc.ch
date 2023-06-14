@@ -1,7 +1,7 @@
 .base-elevation {
     --_duration: 0s;
     --_easing: cubic-bezier(0.2, 0, 0, 1);
-    --_level: 1;
+    --_level: var(--elevation-level, 1);
     --_shadow-color: var(--sys-shadow);
     --_surface-tint-color: var(--sys-primary);
     --_elevation_shape: var(--elevation-shape, 9999px);

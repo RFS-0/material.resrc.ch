@@ -27,6 +27,24 @@ export const Standalone: Story = {
     />,
 };
 
+export const Selected: Story = {
+    args: {
+        disabled: false,
+        disableRipple: false,
+        elevated: false,
+        selected: true,
+        showFocusRing: false,
+        removable: false,
+    },
+    render: (args) => <FilterChip
+        data-testid="filter-chip"
+        {...args}
+        label="My Filter Chip"
+        onSelected={() => console.log('FilterChip selected!')}
+        icon={<span class="material-symbols-outlined">add</span>}
+    />,
+};
+
 export const WithoutIcon: Story = {
     args: {
         disabled: false,
