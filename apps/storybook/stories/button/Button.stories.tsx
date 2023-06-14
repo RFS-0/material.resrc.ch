@@ -5,6 +5,7 @@ import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof Button> = {
     title: 'Button',
+    title: 'Design System/Atoms/Button',
     component: Button,
 };
 

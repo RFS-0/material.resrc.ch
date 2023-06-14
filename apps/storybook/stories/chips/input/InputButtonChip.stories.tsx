@@ -3,7 +3,7 @@ import {ButtonInputChip} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof ButtonInputChip> = {
-    title: 'Input Chip',
+    title: 'Design System/Atoms/Chips/Input/Button',
     component: ButtonInputChip,
 };
 

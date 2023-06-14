@@ -3,7 +3,7 @@ import {Checkbox} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof Checkbox> = {
-    title: 'Checkbox',
+    title: 'Design System/Atoms/Checkbox',
     component: Checkbox,
 };
 
