@@ -1,0 +1,64 @@
+.trailing.action {
+    position: relative;
+    align-self: center;
+    justify-content: center;
+    padding: 0 8px;
+    --focus-ring-shape-start-start: var(--_container-shape-start-end);
+    --focus-ring-shape-end-start: var(--_container-shape-end-end);
+    --focus-ring-shape-end-end: var(--_container-shape-end-end);
+    --focus-ring-shape-start-end: var(--_container-shape-start-end);
+    --focus-ring-outward-offset: -2px;
+}
+
+.trailing.action .ripple-container{
+    border-radius: 50%;
+    height: calc(1.3333333333 * var(--_icon-size));
+    width: calc(1.3333333333 * var(--_icon-size));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+:has(.trailing.action) .primary.action {
+    padding-inline-end: 0;
+}
+
+.trailing.icon {
+    color: var(--_trailing-icon-color);
+    height: var(--_icon-size);
+    width: var(--_icon-size);
+}
+
+:hover .trailing.icon {
+    color: var(--_hover-trailing-icon-color);
+}
+
+:focus .trailing.icon {
+    color: var(--_focus-trailing-icon-color);
+}
+
+:active .trailing.icon {
+    color: var(--_pressed-trailing-icon-color);
+}
+
+.disabled .trailing.icon {
+    color: var(--_disabled-trailing-icon-color);
+    opacity: var(--_disabled-trailing-icon-opacity);
+}
+
+.selected .trailing.icon {
+    color: var(--_selected-trailing-icon-color);
+}
+
+.selected:hover .trailing.icon {
+    color: var(--_selected-hover-trailing-icon-color);
+}
+
+.selected:focus .trailing.icon {
+    color: var(--_selected-focus-trailing-icon-color);
+}
+
+.selected:active .trailing.icon {
+    color: var(--_selected-pressed-trailing-icon-color);
+}

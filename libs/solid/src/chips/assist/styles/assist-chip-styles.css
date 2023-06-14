@@ -1,4 +1,5 @@
-@import "shared-chip-styles.css";
+@import "../../styles/shared-chip-styles.css";
+@import "../../styles/elevated-styles.css";
 
 .chip-shared.assist-chip {
     --_container-height: 32px;

@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "@solid-primitives/event-bus": "^1.0.5",
+    "@solid-primitives/event-dispatcher": "^0.0.105",
     "solid-js": "^1.7.2"
   },
   "description": "A SolidJS Port of Material 3",
