@@ -25,6 +25,20 @@ export const Standalone: Story = {
     />,
 };
 
+export const WithoutIcon: Story = {
+    args: {
+        disabled: false,
+        disableRipple: false,
+        elevated: false,
+        showFocusRing: false,
+    },
+    render: (args) => <ButtonAssistChip
+        data-testid="button-assist-chip"
+        {...args}
+        label="My Button Assist Chip"
+    />,
+};
+
 export const Disabled: Story = {
     args: {
         disabled: true,
