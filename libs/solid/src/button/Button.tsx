@@ -71,10 +71,18 @@ export const Button = (props: ButtonProps) => {
         <button
             {...buttonProps}
             {...rippleHandlers}
-            onClick={composeEventHandlers([buttonProps?.onClick, rippleHandlers.onClick, handleClick])}
+            onClick={composeEventHandlers([
+                buttonProps?.onClick,
+                rippleHandlers.onClick,
+                handleClick])
+            }
             onFocus={composeEventHandlers([buttonProps?.onfocus, activateFocus])}
             onBlur={composeEventHandlers([buttonProps?.onblur, deactivateFocus])}
-            onPointerDown={composeEventHandlers([buttonProps?.onPointerDown, deactivateFocus])}
+            onPointerDown={composeEventHandlers([
+                buttonProps?.onPointerDown,
+                rippleHandlers.onPointerDown,
+                deactivateFocus
+            ])}
             class={'button-shared button'}
             classList={{
                 'button-elevation-shared': variantProps.variant === 'elevated' || props.variant === 'filled' || props.variant === 'tonal',
