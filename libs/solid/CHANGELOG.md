@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.20
+
+### Patch Changes
+
+- d55129b: Implement chips
+
 ## 0.0.19
 
 ### Patch Changes
