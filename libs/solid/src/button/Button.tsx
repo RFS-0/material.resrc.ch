@@ -48,7 +48,7 @@ export const Button = (props: ButtonProps) => {
 
     const activateFocus = () => {
         if (!variantProps?.showFocusRing) {
-           return;
+            return;
         }
         setFocus(true);
     };
@@ -101,24 +101,16 @@ export const Button = (props: ButtonProps) => {
             </Show>
             <span class="button__touch"></span>
             <Show when={!!variantProps?.leadingIcon}>
-        <span class="button__icon-container button__icon--leading">
-          {variantProps.leadingIcon}
-        </span>
+                <span class="button__icon-container button__icon--leading">{variantProps.leadingIcon}</span>
             </Show>
             <Show when={!!variantProps?.label}>
-        <span class="button__label">
-          {props.label}
-        </span>
+                <span class="button__label">{props.label}</span>
             </Show>
             <Show when={!!variantProps?.labelElement}>
-        <span class="button__label">
-          {props.labelElement}
-        </span>
+                <span class="button__label">{props.labelElement}</span>
             </Show>
             <Show when={!!variantProps?.trailingIcon}>
-        <span class="button__icon-container button__icon--trailing">
-          {variantProps.trailingIcon}
-        </span>
+                <span class="button__icon-container button__icon--trailing">{variantProps.trailingIcon}</span>
             </Show>
         </button>
     );

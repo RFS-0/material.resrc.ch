@@ -1,0 +1,88 @@
+@import "../../styles/shared-chip-styles.css";
+@import "../../styles/trailing-icon-styles.css";
+@import "../../styles/selectable-styles.css";
+
+.chip-shared.input-chip {
+    --_avatar-shape: 9999px;
+    --_avatar-size:  24px;
+    --_container-height: 32px;
+    --_container-shape-end-end: var(--_container-shape);
+    --_container-shape-end-start: var(--_container-shape);
+    --_container-shape-start-end: var(--_container-shape);
+    --_container-shape-start-start: var(--_container-shape);
+    --_container-shape: 8px;
+    --_disabled-avatar-opacity: 0.38;
+    --_disabled-label-text-color: var(--sys-on-surface);
+    --_disabled-label-text-opacity: 0.38;
+    --_disabled-leading-icon-color: var(--sys-on-surface);
+    --_disabled-leading-icon-opacity: 0.38;
+    --_disabled-outline-color: var(--sys-on-surface);
+    --_disabled-outline-opacity: 0.12;
+    --_disabled-selected-container-color: var(--sys-on-surface);
+    --_disabled-selected-container-opacity: 0.12;
+    --_disabled-trailing-icon-color: var(--sys-on-surface);
+    --_disabled-trailing-icon-opacity: 0.38;
+    --_elevated-container-color: var(--sys-surface-container-low);
+    --_elevated-container-elevation: 1;
+    --_elevated-container-shadow-color: var(--sys-shadow);
+    --_elevated-disabled-container-color: var(--sys-on-surface);
+    --_elevated-disabled-container-elevation: 0;
+    --_elevated-disabled-container-opacity: 0.12;
+    --_elevated-focus-container-elevation: 1;
+    --_elevated-hover-container-elevation: 2;
+    --_elevated-pressed-container-elevation: 1;
+    --_elevated-selected-container-color: --sys-secondary-container;
+    --_focus-label-text-color: var(--sys-on-surface);
+    --_focus-leading-icon-color: var(--sys-primary);
+    --_focus-outline-color: var(--sys-on-surface);
+    --_focus-trailing-icon-color: var(--sys-on-surface-variant);
+    --_hover-label-text-color: var(--sys-on-surface);
+    --_hover-leading-icon-color: var(--sys-primary);
+    --_hover-state-layer-color: var(--sys-on-surface);
+    --_hover-state-layer-opacity: 0.08;
+    --_hover-trailing-icon-color: var(--sys-on-surface-variant);
+    --_icon-size: 18px;
+    --_label-text-color: var(--sys-on-surface);
+    --_label-text-type: var(--sys-label-medium--font-weight) var(--sys-label-medium--font-size) var(--sys-font-family);
+    --_leading-icon-color: var(--sys-primary);
+    --_outline-color: var(--sys-outline);
+    --_outline-width: 1px;
+    --_pressed-label-text-color: var(--sys-on-surface);
+    --_pressed-leading-icon-color: var(--sys-primary);
+    --_pressed-state-layer-color: var(--sys-on-surface);
+    --_pressed-state-layer-opacity: 0.12;
+    --_pressed-trailing-icon-color: var(--sys-on-surface-variant);
+    --_selected-container-color: var(--sys-secondary-container);
+    --_selected-focus-label-text-color: var(--sys-on-secondary-container);
+    --_selected-focus-leading-icon-color: var(--sys-on-secondary-container);
+    --_selected-focus-trailing-icon-color: var(--sys-on-secondary-container);
+    --_selected-hover-label-text-color: var(--sys-on-secondary-container);
+    --_selected-hover-leading-icon-color: var(--sys-on-secondary-container);
+    --_selected-hover-state-layer-color: var(--sys-on-secondary-container);
+    --_selected-hover-state-layer-opacity: 0.08;
+    --_selected-hover-trailing-icon-color: var(--sys-on-secondary-container);
+    --_selected-label-text-color: var(--sys-on-secondary-container);
+    --_selected-leading-icon-color: var(--sys-on-secondary-container);
+    --_selected-outline-width: 0px;
+    --_selected-pressed-label-text-color: var(--sys-on-secondary-container);
+    --_selected-pressed-leading-icon-color: var(--sys-on-secondary-container);
+    --_selected-pressed-state-layer-color: var(--sys-on-surface-variant);
+    --_selected-pressed-state-layer-opacity: 0.12;
+    --_selected-pressed-trailing-icon-color: var(--sys-on-secondary-container);
+    --_selected-trailing-icon-color: var(--sys-on-secondary-container);
+    --_trailing-icon-color: var(--sys-on-surface-variant);
+}
+
+.avatar .primary.action {
+    padding-inline-start: 4px
+}
+
+.avatar .leading.icon span:first-child {
+    border-radius: var(--_avatar-shape);
+    height: var(--_avatar-size);
+    width: var(--_avatar-size)
+}
+
+.disabled.avatar .leading.icon {
+    opacity: var(--_disabled-avatar-opacity)
+}

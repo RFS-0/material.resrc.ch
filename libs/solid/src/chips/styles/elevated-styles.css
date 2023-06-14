@@ -1,0 +1,29 @@
+.elevated {
+    --elevation-level: var(--_elevated-container-elevation);
+    --elevation-shadow-color: var(--_elevated-container-shadow-color);
+}
+
+.elevated::before {
+    background: var(--_elevated-container-color);
+}
+
+.elevated:hover {
+    --elevation-level: var(--_elevated-hover-container-elevation);
+}
+
+.elevated:focus-within {
+    --elevation-level: var(--_elevated-focus-container-elevation);
+}
+
+.elevated:active {
+    --elevation-level: var(--_elevated-pressed-container-elevation);
+}
+
+.elevated.disabled {
+    --elevation-level: var(--_elevated-disabled-container-elevation);
+}
+
+.elevated.disabled::before {
+    background: var(--_elevated-disabled-container-color);
+    opacity: var(--_elevated-disabled-container-opacity);
+}

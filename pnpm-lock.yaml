@@ -100,6 +100,7 @@ importers:
   libs/solid:
     specifiers:
       '@solid-primitives/event-bus': ^1.0.5
+      '@solid-primitives/event-dispatcher': ^0.0.105
       '@types/node': ^20.2.5
       solid-js: ^1.7.2
       typescript: ^5.1.3
@@ -108,6 +109,7 @@ importers:
       vite-plugin-solid: ^2.7.0
     dependencies:
       '@solid-primitives/event-bus': 1.0.7_solid-js@1.7.6
+      '@solid-primitives/event-dispatcher': 0.0.105_solid-js@1.7.6
       solid-js: 1.7.6
     devDependencies:
       '@types/node': 20.2.5
@@ -3199,6 +3201,14 @@ packages:
     dependencies:
       '@solid-primitives/utils': 6.2.0_solid-js@1.7.6
       solid-js: 1.7.6
+
+  /@solid-primitives/event-dispatcher/0.0.105_solid-js@1.7.6:
+    resolution: {integrity: sha512-VWHULLNKc4kuuhIY9UcmgacUun+RQXMRx3dLXv+T1a2YjB1RJQ5mrygJvqx+rX8tIUIYPX12XNSJoTX2g36Djw==}
+    peerDependencies:
+      solid-js: ^1.6.12
+    dependencies:
+      solid-js: 1.7.6
+    dev: false
 
   /@solid-primitives/event-listener/2.2.13_solid-js@1.7.6:
     resolution: {integrity: sha512-8GtVEq0ECZoa5Klo1jjfGPfwg0zVJ8TNnNkWu8FqRkh0CkhbhCVJAKwjleem9K/qL6zUDfJihLjhqGBTBbb+8w==}

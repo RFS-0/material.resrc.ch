@@ -1,8 +1,8 @@
 .base-focus-ring {
-  --_shape-start-start: var(--md-focus-ring-shape-start-start, 9999px);
-  --_shape-start-end: var(--md-focus-ring-shape-start-end, 9999px);
-  --_shape-end-end: var(--md-focus-ring-shape-end-end, 9999px);
-  --_shape-end-start: var(--md-focus-ring-shape-end-start, 9999px);
+  --_shape-start-start: var(--focus-ring-shape-start-start, 9999px);
+  --_shape-start-end: var(--focus-ring-shape-start-end, 9999px);
+  --_shape-end-end: var(--focus-ring-shape-end-end, 9999px);
+  --_shape-end-start: var(--focus-ring-shape-end-start, 9999px);
   --_offset-vertical:  2px;
   --_offset-horizontal:  2px;
   --_width:  3px;
