@@ -8,7 +8,7 @@ import {createEventDispatcher} from '@solid-primitives/event-dispatcher';
 
 export type FilterChipProps = {
     ariaHasPopup?: boolean;
-    ariaLabel?: string
+    ariaLabel?: string;
     disabled?: boolean;
     disableRipple?: boolean;
     elevated?: boolean;
@@ -148,10 +148,11 @@ export const FilterChip = (props: FilterChipProps) => {
 
     return (
         <div
-            class={'chip-shared assist-chip container'}
+            class={'chip-shared filter-chip container'}
             classList={{
                 'disabled': componentProps.disabled,
-                'elevated': componentProps.elevated
+                'elevated': componentProps.elevated,
+                'selected': selected(),
             }}
         >
             <Show
