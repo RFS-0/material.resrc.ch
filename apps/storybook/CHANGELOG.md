@@ -1,5 +1,13 @@
 # storybook.material.resrc.ch
 
+## 0.0.20
+
+### Patch Changes
+
+- d55129b: Implement chips
+- Updated dependencies [d55129b]
+  - material.resrc.ch@0.0.20
+
 ## 0.0.19
 
 ### Patch Changes
