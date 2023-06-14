@@ -14,22 +14,22 @@
     align-items: center;
     justify-content: center;
     contain: strict;
-    content-visibility: auto
+    content-visibility: auto;
 }
 
 .circular-progress {
     flex: 1;
     align-self: stretch;
-    margin: 4px
+    margin: 4px;
 }
 
-.circular-progress, .spinner, .left, .right, .circle, svg, .track, .progress {
+.circular-progress, .circular-progress-spinner, .circular-progress-left, .circular-progress-right, .circular-progress-circle, svg, .circular-progress-track, .circular-progress-progress {
     position: absolute;
-    inset: 0
+    inset: 0;
 }
 
 svg {
-    transform: rotate(-90deg)
+    transform: rotate(-90deg);
 }
 
 circle {
@@ -38,42 +38,42 @@ circle {
     r: calc(50% * (1 - var(--_active-indicator-width) / 100));
     stroke-width: calc(var(--_active-indicator-width) * 1%);
     stroke-dasharray: 100;
-    fill: rgba(0, 0, 0, 0)
+    fill: rgba(0, 0, 0, 0);
 }
 
-.progress {
+.circular-progress-progress {
     transition: stroke-dashoffset 500ms cubic-bezier(0, 0, 0.2, 1);
-    stroke: var(--_active-indicator-color)
+    stroke: var(--_active-indicator-color);
 }
 
-.track {
-    stroke: rgba(0, 0, 0, 0)
+.circular-progress-track {
+    stroke: rgba(0, 0, 0, 0);
 }
 
-.circular-progress.indeterminate {
+.circular-progress.circular-progress-indeterminate {
     will-change: transform;
     animation: linear infinite linear-rotate;
-    animation-duration: 1568.2352941176ms
+    animation-duration: 1568.2352941176ms;
 }
 
-.spinner {
+.circular-progress-spinner {
     will-change: transform;
     animation: infinite both rotate-arc;
     animation-duration: 5332ms;
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.left {
+.circular-progress-left {
     overflow: hidden;
-    inset: 0 50% 0 0
+    inset: 0 50% 0 0;
 }
 
-.right {
+.circular-progress-right {
     overflow: hidden;
-    inset: 0 0 0 50%
+    inset: 0 0 0 50%;
 }
 
-.circle {
+.circular-progress-circle {
     box-sizing: border-box;
     border-radius: 50%;
     border: solid calc(var(--_active-indicator-width) / 100 * (var(--_size) - 8px));
@@ -83,115 +83,115 @@ circle {
     animation-iteration-count: infinite;
     animation-fill-mode: both;
     animation-duration: 1333ms, 5332ms;
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.four-color .circle {
-    animation-name: expand-arc, four-color
+.circular-progress-four-color .circular-progress-circle {
+    animation-name: expand-arc, circular-progress-four-color;
 }
 
-.left .circle {
+.circular-progress-left .circular-progress-circle {
     rotate: 135deg;
-    inset: 0 -100% 0 0
+    inset: 0 -100% 0 0;
 }
 
-.right .circle {
+.circular-progress-right .circular-progress-circle {
     rotate: 100deg;
     inset: 0 0 0 -100%;
-    animation-delay: -666.5ms, 0ms
+    animation-delay: -666.5ms, 0ms;
 }
 
 /*noinspection ALL*/
 @media screen and (forced-colors: active) {
-    .progress {
-        stroke: CanvasText
+    .circular-progress-progress {
+        stroke: CanvasText;
     }
 
-    .circle {
-        border-color: CanvasText CanvasText Canvas Canvas
+    .circular-progress-circle {
+        border-color: CanvasText CanvasText Canvas Canvas;
     }
 }
 
 @keyframes expand-arc {
     0% {
-        transform: rotate(265deg)
+        transform: rotate(265deg);
     }
     50% {
-        transform: rotate(130deg)
+        transform: rotate(130deg);
     }
     100% {
-        transform: rotate(265deg)
+        transform: rotate(265deg);
     }
 }
 
 @keyframes rotate-arc {
     12.5% {
-        transform: rotate(135deg)
+        transform: rotate(135deg);
     }
     25% {
-        transform: rotate(270deg)
+        transform: rotate(270deg);
     }
     37.5% {
-        transform: rotate(405deg)
+        transform: rotate(405deg);
     }
     50% {
-        transform: rotate(540deg)
+        transform: rotate(540deg);
     }
     62.5% {
-        transform: rotate(675deg)
+        transform: rotate(675deg);
     }
     75% {
-        transform: rotate(810deg)
+        transform: rotate(810deg);
     }
     87.5% {
-        transform: rotate(945deg)
+        transform: rotate(945deg);
     }
     100% {
-        transform: rotate(1080deg)
+        transform: rotate(1080deg);
     }
 }
 
 @keyframes linear-rotate {
     to {
-        transform: rotate(360deg)
+        transform: rotate(360deg);
     }
 }
 
-@keyframes four-color {
+@keyframes circular-progress-four-color {
     0% {
         border-top-color: var(--_four-color-active-indicator-one-color);
-        border-right-color: var(--_four-color-active-indicator-one-color)
+        border-right-color: var(--_four-color-active-indicator-one-color);
     }
     15% {
         border-top-color: var(--_four-color-active-indicator-one-color);
-        border-right-color: var(--_four-color-active-indicator-one-color)
+        border-right-color: var(--_four-color-active-indicator-one-color);
     }
     25% {
         border-top-color: var(--_four-color-active-indicator-two-color);
-        border-right-color: var(--_four-color-active-indicator-two-color)
+        border-right-color: var(--_four-color-active-indicator-two-color);
     }
     40% {
         border-top-color: var(--_four-color-active-indicator-two-color);
-        border-right-color: var(--_four-color-active-indicator-two-color)
+        border-right-color: var(--_four-color-active-indicator-two-color);
     }
     50% {
         border-top-color: var(--_four-color-active-indicator-three-color);
-        border-right-color: var(--_four-color-active-indicator-three-color)
+        border-right-color: var(--_four-color-active-indicator-three-color);
     }
     65% {
         border-top-color: var(--_four-color-active-indicator-three-color);
-        border-right-color: var(--_four-color-active-indicator-three-color)
+        border-right-color: var(--_four-color-active-indicator-three-color);
     }
     75% {
         border-top-color: var(--_four-color-active-indicator-four-color);
-        border-right-color: var(--_four-color-active-indicator-four-color)
+        border-right-color: var(--_four-color-active-indicator-four-color);
     }
     90% {
         border-top-color: var(--_four-color-active-indicator-four-color);
-        border-right-color: var(--_four-color-active-indicator-four-color)
+        border-right-color: var(--_four-color-active-indicator-four-color);
     }
     100% {
         border-top-color: var(--_four-color-active-indicator-one-color);
-        border-right-color: var(--_four-color-active-indicator-one-color)
+        border-right-color: var(--_four-color-active-indicator-one-color);
     }
 }

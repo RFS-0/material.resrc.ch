@@ -27,8 +27,8 @@ export const CircularProgress: Component<CircularProgressProps> = (props) => {
             <div
                 class="circular-progress"
                 classList={{
-                    'indeterminate': componentProps.indeterminate,
-                    'four-color': componentProps.fourColor,
+                    'circular-progress-indeterminate': componentProps.indeterminate,
+                    'circular-progress-four-color ': componentProps.fourColor,
                 }}
                 role={'progressbar'}
                 aria-label={circularProps?.ariaLabel || ''}
@@ -38,22 +38,22 @@ export const CircularProgress: Component<CircularProgressProps> = (props) => {
                 aria-valuenow={componentProps.indeterminate ? undefined : componentProps.progress}>
                 <Show when={!componentProps.indeterminate}
                       fallback={
-                          <div class="spinner">
-                              <div class="left">
-                                  <div class="circle"></div>
+                          <div class="circular-progress-spinner">
+                              <div class="circular-progress-left">
+                                  <div class="circular-progress-circle"></div>
                               </div>
-                              <div class="right">
-                                  <div class="circle"></div>
+                              <div class="circular-progress-right">
+                                  <div class="circular-progress-circle"></div>
                               </div>
                           </div>
                       }
                 >
                     <svg viewBox="0 0 4800 4800">
-                        <circle class="track"
+                        <circle class="circular-progress-track"
                                 pathLength={pathLength}>
                         </circle>
                         <circle
-                            class="progress"
+                            class="circular-progress-progress"
                             pathLength={pathLength}
                             stroke-dashoffset={dashOffset()}>
                         </circle>
