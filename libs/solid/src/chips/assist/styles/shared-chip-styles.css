@@ -22,7 +22,6 @@
     position: absolute;
     display: inline-flex;
     height: var(--_container-height);
-    width: fit-content;
 
     border-start-start-radius: var(--_container-shape-start-start);
     border-start-end-radius: var(--_container-shape-start-end);
@@ -131,12 +130,6 @@
     align-self: center;
     display: flex;
     position: relative;
-}
-
-.icon ::slotted(:first-child) {
-    font-size: var(--_icon-size);
-    height: var(--_icon-size);
-    width: var(--_icon-size);
 }
 
 .leading.icon {

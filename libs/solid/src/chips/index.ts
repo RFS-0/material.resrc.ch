@@ -1,2 +1,1 @@
-export * from './ButtonAssistChip'
-export * from './LinkAssistChip'
+export * from './assist'

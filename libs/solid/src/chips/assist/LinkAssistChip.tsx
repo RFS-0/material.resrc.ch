@@ -1,23 +1,25 @@
 import {createSignal, JSX, Show, splitProps} from 'solid-js';
-import {FocusRing} from '../focus';
-import {createHandlers, createRippleEventEmitter, Ripple} from '../ripple';
+import {FocusRing} from '../../focus';
+import {createHandlers, createRippleEventEmitter, Ripple} from '../../ripple';
 import './styles/assist-chip-styles.css';
-import {composeEventHandlers} from '../controller';
-import {Elevation} from '../elevation';
+import {composeEventHandlers} from '../../controller';
+import {Elevation} from '../../elevation';
 
-export type ButtonAssistChipProps = {
+export type LinkAssistChipProps = {
     ariaHasPopup?: boolean;
     ariaLabel?: string
     disabled?: boolean;
     disableRipple?: boolean;
     elevated?: boolean;
-    icon?: JSX.Element
+    href: string;
+    icon: JSX.Element
     label: string;
     showFocusRing?: boolean;
-} & JSX.HTMLAttributes<HTMLButtonElement>
+    target: '_blank' | '_parent' | '_self' | '_top' | '';
+} & JSX.HTMLAttributes<HTMLAnchorElement>
 
-export const ButtonAssistChip = (props: ButtonAssistChipProps) => {
-    const [componentProps, buttonProps] = splitProps(props, [
+export const LinkAssistChip = (props: LinkAssistChipProps) => {
+    const [componentProps, linkProps] = splitProps(props, [
         'ariaHasPopup',
         'ariaLabel',
         'disabled',
@@ -54,10 +56,10 @@ export const ButtonAssistChip = (props: ButtonAssistChipProps) => {
     return (
         <div
             {...rippleHandlers}
-            onClick={composeEventHandlers([buttonProps?.onClick, rippleHandlers.onClick])}
-            onFocus={composeEventHandlers([buttonProps?.onfocus, activateFocus])}
-            onBlur={composeEventHandlers([buttonProps?.onblur, deactivateFocus])}
-            onPointerDown={composeEventHandlers([buttonProps?.onPointerDown, deactivateFocus])}
+            onClick={composeEventHandlers([linkProps?.onClick, rippleHandlers.onClick])}
+            onFocus={composeEventHandlers([linkProps?.onfocus, activateFocus])}
+            onBlur={composeEventHandlers([linkProps?.onblur, deactivateFocus])}
+            onPointerDown={composeEventHandlers([linkProps?.onPointerDown, deactivateFocus])}
             class={'chip-shared assist-chip container'}
             classList={{
                 'disabled': componentProps.disabled,
@@ -78,20 +80,20 @@ export const ButtonAssistChip = (props: ButtonAssistChipProps) => {
                 listen={listen}
                 unbounded={true}
             />
-            <button
-                {...buttonProps}
-                disabled={componentProps.disabled}
+            <a
+                {...linkProps}
                 aria-label={componentProps?.ariaLabel || ''}
                 aria-haspopup={componentProps?.ariaHasPopup || false}
                 class='primary action'
-                type='button'
             >
-                <Show when={componentProps.icon}>
+                <Show when={componentProps.icon}
+                      fallback={<span></span>}
+                >
                     <span class="leading icon">{componentProps.icon}</span>
                 </Show>
                 <span class="label">{componentProps.label}</span>
                 <span class="touch"></span>
-            </button>
+            </a>
         </div>
     )
 }
