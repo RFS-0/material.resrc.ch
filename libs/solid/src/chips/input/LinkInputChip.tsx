@@ -48,25 +48,6 @@ export const LinkInputChip = (props: LinkInputChipProps) => {
         return componentProps?.disableRipple || false;
     }
 
-
-    const updateTabIndices = () => {
-        if (!primaryAction || !trailingAction) {
-            // Does not have multiple actions.
-            primaryAction?.removeAttribute('tabindex');
-            trailingAction?.removeAttribute('tabindex');
-            return;
-        }
-
-        if (trailingAction.matches(':focus-within')) {
-            trailingAction.removeAttribute('tabindex');
-            primaryAction.tabIndex = -1;
-            return;
-        }
-
-        primaryAction.removeAttribute('tabindex');
-        trailingAction.tabIndex = -1;
-    }
-
     const handleKeyDown = (event: KeyboardEvent) => {
         const isLeft = event.key === 'ArrowLeft';
         const isRight = event.key === 'ArrowRight';
@@ -97,7 +78,6 @@ export const LinkInputChip = (props: LinkInputChipProps) => {
         event.stopPropagation();
         const actionToFocus = forwards ? trailingAction : primaryAction;
         actionToFocus.focus();
-        updateTabIndices();
     }
 
     const handleClick = () => {
@@ -131,10 +111,6 @@ export const LinkInputChip = (props: LinkInputChipProps) => {
         event.stopPropagation();
         dispatch('removed');
     }
-
-    onMount(() => {
-        updateTabIndices();
-    })
 
     return (
         <div
