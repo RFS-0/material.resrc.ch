@@ -17,7 +17,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Implement checkbox
 - [x] Implement chips
 - [x] Implement circular-progress
-- [ ] Implement dialog
+- [x] Implement dialog
 - [ ] Implement divider
 - [ ] Implement elevation
 - [ ] Implement fab
@@ -40,3 +40,4 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [ ] Setup test infrastructure
 - [ ] Test components
 - [ ] Document repo
+- [ ] Animate dialog

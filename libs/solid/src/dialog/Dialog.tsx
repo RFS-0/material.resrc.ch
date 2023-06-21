@@ -1,17 +1,24 @@
 import {createEffect, JSX, Show, Signal, splitProps} from 'solid-js';
 import './styles/dialog-styles.css';
-import {Button} from '../button';
 
 export type DialogProps = {
-    headlinePrefix?: JSX.Element
-    open: Signal<boolean>
+    footer?: JSX.Element;
+    headline: string;
+    headlinePrefix?: JSX.Element;
+    headlineSuffix?: JSX.Element;
+    open: Signal<boolean>;
+    supportingText?: JSX.Element;
 } & JSX.HTMLAttributes<HTMLDialogElement>
 
 
 export const Dialog = (props: DialogProps) => {
     const [componentProps, dialogProps] = splitProps(props, [
+        'footer',
+        'headline',
         'headlinePrefix',
-        'open'
+        'headlineSuffix',
+        'open',
+        'supportingText',
     ]);
 
     let dialogElement: HTMLDialogElement | null;
@@ -19,7 +26,15 @@ export const Dialog = (props: DialogProps) => {
 
     const [open, setOpen] = componentProps.open;
 
-    const close = () => {
+    const showModal = () => {
+        setOpen(true);
+        if (!dialogElement || dialogElement.open) {
+            return;
+        }
+        dialogElement.showModal()
+    }
+
+    const closeModal = () => {
         setOpen(false);
         dialogElement.close()
     }
@@ -29,14 +44,15 @@ export const Dialog = (props: DialogProps) => {
             return;
         }
         if (!e.composedPath().includes(containerElement)) {
-            close();
+            closeModal();
         }
     }
 
     createEffect(() => {
         if (open()) {
-            dialogElement.showModal()
+            showModal()
         } else {
+            closeModal()
             dialogElement.close()
         }
     });
@@ -44,7 +60,6 @@ export const Dialog = (props: DialogProps) => {
     return (
         <dialog
             ref={dialogElement}
-            {...dialogProps}
             class={'base-dialog dialog'}
             classList={{
                 'showing-open': open(),
@@ -67,23 +82,28 @@ export const Dialog = (props: DialogProps) => {
                         </div>
                     </Show>
                     <div class={'headline'}>
-                        headline
+                        {componentProps.headline}
                     </div>
-                    <div class={'headline-suffix'}>
-                        <div>
-                            headline-suffix
+                    <Show when={!!componentProps.headline}>
+                        <div class={'headline-suffix'}>
+                            {componentProps.headlineSuffix}
                         </div>
-                    </div>
+                    </Show>
                 </header>
                 <section
                     class={'content'}
                 >
-                    <div>supporting text</div>
+                    <Show when={!!componentProps.supportingText}>
+                        <div class={'supporting-text'}>
+                            {componentProps.supportingText}
+                        </div>
+                    </Show>
                 </section>
-                <footer class={'footer'}>
-                    <Button variant={'text'} label={'Cancel'} onClick={close}/>
-                    <Button variant={'text'} label={'Accept'} onClick={close}/>
-                </footer>
+                <Show when={!!componentProps.footer}>
+                    <footer class={'footer'}>
+                        {componentProps.footer}
+                    </footer>
+                </Show>
             </div>
         </dialog>
     )

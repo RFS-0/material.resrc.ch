@@ -62,18 +62,13 @@
     overflow: clip;
 }
 
-/*.dialog:not(.modeless) {*/
-/*    z-index: 10000;*/
-/*    pointer-events: none;*/
-/*}*/
+.dialog {
+    z-index: 10000;
+    pointer-events: none;
+}
 
-/*.dialog.showing-open {*/
-/*    display: flex;*/
-/*}*/
-
-.dialog::backdrop {
-    /*background: none;*/
-    background: cornflowerblue;
+.dialog.showing-open {
+    display: flex;
 }
 
 .dialog::before {
@@ -86,9 +81,9 @@
     pointer-events: none;
 }
 
-/*.base-dialog.modeless .dialog:before {*/
-/*    display: none;*/
-/*}*/
+.base-dialog.modeless.dialog::before {
+    display: none;
+}
 
 .container {
     position: absolute;
@@ -153,205 +148,7 @@
     gap: var(--_action-spacing);
 }
 
-/*.footer-hidden {*/
-/*    --_content-block-end-spacing: 0px;*/
-/*}*/
-
-/*.footer-hidden .footer {*/
-/*    display: none;*/
-/*}*/
-
-/*.stacked .footer {*/
-/*    flex-direction: column;*/
-/*    align-items: flex-end;*/
-/*}*/
-
-/*.scrollable .content {*/
-/*    border-block-start: var(--_with-divider-divider-height) solid rgba(0, 0, 0, 0);*/
-/*    border-block-end: var(--_with-divider-divider-height) solid rgba(0, 0, 0, 0);*/
-/*}*/
-
-/*.scroll-divider-header .content {*/
-/*    border-block-start-color: var(--_with-divider-divider-color);*/
-/*}*/
-
-/*.scroll-divider-footer:not(.footerHidden) .content {*/
-/*    border-block-end-color: var(--_with-divider-divider-color);*/
-/*}*/
-
-/*.dragging {*/
-/*    user-select: none;*/
-/*    cursor: move;*/
-/*    touch-action: none;*/
-/*}*/
-
-.container {
-    will-change: transform, opacity;
-    transition-property: transform;
-    overflow: hidden;
-}
-
-.container > * {
-    transition-timing-function: inherit;
-    transition-duration: inherit;
-    transition-property: opacity, transform;
-    will-change: transform, opacity;
-    opacity: 0;
-}
-
-.base-dialog.showing-open .container > * {
-    opacity: 1;
-    transform: none;
-}
-
-.base-dialog.showing-open .container {
-    opacity: 1;
-    transform: none;
-}
-
-.dialog::before {
-    transition: background-color linear;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-/*.base-dialog.showing-open .dialog::before {*/
-/*    background-color: var(--_scrim-color);*/
-/*}*/
-
-/*.base-dialog.opening .dialog::before {*/
-/*    transition-duration: calc(var(--_opening-transition-duration) / 2);*/
-/*}*/
-
-/*.base-dialog.closing .dialog::before {*/
-/*    transition-duration: calc(var(--_closing-transition-duration) / 2);*/
-/*}*/
-
-/*.base-dialog.opening .container {*/
-/*    transition-duration: var(--_opening-transition-duration);*/
-/*    transition-timing-function: var(--_opening-transition-easing);*/
-/*}*/
-
-/*.base-dialog.closing .container {*/
-/*    transition-duration: var(--_closing-transition-duration);*/
-/*    transition-timing-function: var(--_closing-transition-easing);*/
-/*}*/
-
-/*.base-dialog.closing .container > * {*/
-/*    transform: none;*/
-/*    opacity: 0;*/
-/*}*/
-
-/*.base-dialog.grow-down {*/
-/*    --_opening-transform: scale(1, 0.1) translateY(-20%);*/
-/*    --_closing-transform: scale(1, 0.9) translateY(-10%);*/
-/*    --_origin: top;*/
-/*    --_opening-content-transform: scale(1, 2);*/
-/*    --_origin-footer: bottom;*/
-/*}*/
-
-/*.base-dialog.grow-up {*/
-/*    --_opening-transform: scale(1, 0.1) translateY(20%);*/
-/*    --_closing-transform: scale(1, 0.9) translateY(10%);*/
-/*    --_origin: bottom;*/
-/*    --_opening-content-transform: scale(1, 2);*/
-/*    --_origin-footer: bottom;*/
-/*}*/
-
-/*.base-dialog.grow-left {*/
-/*    --_opening-transform: scale(0.1, 1) translateX(20%);*/
-/*    --_closing-transform: scale(0.9, 1) translateX(10%);*/
-/*    --_origin: right;*/
-/*    --_opening-content-transform: none;*/
-/*    --_origin-footer: none;*/
-/*}*/
-
-/*.base-dialog.grow-right {*/
-/*    --_opening-transform: scale(0.1, 1) translateX(-20%);*/
-/*    --_closing-transform: scale(0.9, 1) translateX(-10%);*/
-/*    --_origin: left;*/
-/*    --_opening-content-transform: none;*/
-/*    --_origin-footer: none;*/
-/*}*/
-
-/*.base-dialog:not(.shrink) .container {*/
-/*    transform-origin: var(--_origin);*/
-/*    transform: var(--_opening-transform);*/
-/*}*/
-
-/*.base-dialog:not(.shrink) .container > * {*/
-/*    transform-origin: var(--_origin);*/
-/*    transform: var(--_opening-content-transform);*/
-/*}*/
-
-/*.base-dialog:not(.shrink) .footer {*/
-/*    transform-origin: var(--_origin-footer);*/
-/*}*/
-
-/*.base-dialog:not(.shrink).closing {*/
-/*    transform: var(--_closing-transform);*/
-/*}*/
-
-/*.base-dialog.shrink .container {*/
-/*    transform: scale(1.2);*/
-/*}*/
-
-/*.base-dialog.grow .container {*/
-/*    transform: scale(0.8);*/
-/*}*/
-
-/*.base-dialog.shrink.closing .container, .base-dialog.grow.closing .container {*/
-/*    transition-duration: 0ms;*/
-/*    transform: none;*/
-/*}*/
-
-/*.base-dialog.showing-fullscreen {*/
-/*    --_container-max-block-size: none;*/
-/*    --_container-max-inline-size: none;*/
-/*}*/
-
-/*.base-dialog.showing-fullscreen .container {*/
-/*    block-size: 100dvh;*/
-/*    inline-size: 100dvw;*/
-/*    border-radius: 0px;*/
-/*    padding-block-start: 0;*/
-/*    padding-block-end: 0;*/
-/*}*/
-
-/*.base-dialog.showing-fullscreen .header {*/
-/*    justify-content: space-between;*/
-/*    flex-direction: row;*/
-/*    max-block-size: var(--_fullscreen-header-block-size);*/
-/*    padding-block-start: var(--_fullscreen-container-block-padding);*/
-/*    padding-inline: 4px;*/
-/*    --_header-spacing: 4px;*/
-/*}*/
-
-/*.base-dialog.showing-fullscreen .content {*/
-/*    margin-block-start: 0;*/
-/*    margin-block-end: 0;*/
-/*}*/
-
-/*.base-dialog.showing-fullscreen .footer {*/
-/*    max-block-size: var(--_fullscreen-footer-block-size);*/
-/*    padding-block-end: var(--_fullscreen-container-block-padding);*/
-/*}*/
-
-/*.base-dialog.showing-fullscreen .scroll-divider-footer .content {*/
-/*    border-block-end-color: rgba(0, 0, 0, 0);*/
-/*}*/
-
-/*@media screen and (forced-colors: active),(-ms-high-contrast: active) {*/
-/*    .container {*/
-/*        outline: windowtext solid 2px;*/
-/*    }*/
-/*}*/
-
 .headline-prefix > *, .headline-suffix > * {
     color: var(--_with-icon-icon-color);
     font-size: var(--_with-icon-icon-size);
-}
-
-
-.base-dialog.showing-fullscreen header > * {
-    flex: 1;
 }
