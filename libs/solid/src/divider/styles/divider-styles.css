@@ -1,0 +1,31 @@
+.base-divider {
+    --_color: var(--sys-outline-variant);
+    --_thickness: 1px;
+    box-sizing: border-box;
+    color: var(--_color);
+    display: flex;
+    height: var(--_thickness);
+    width: 100%
+}
+
+.base-divider.inset, .base-divider.inset-start {
+    padding-inline-start: 16px
+}
+
+.base-divider.inset, .base-divider.inset-end {
+    padding-inline-end: 16px
+}
+
+.base-divider::before {
+    background: currentColor;
+    content: "";
+    height: 100%;
+    width: 100%
+}
+
+@media (forced-colors: active) {
+    /*noinspection CssInvalidPropertyValue*/
+    .base-divider::before {
+        background: CanvasText
+    }
+}
