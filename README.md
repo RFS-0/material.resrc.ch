@@ -1,6 +1,7 @@
 # material.resrc.ch
 
-SolidJS port of: [Material design-system Web is Google’s UI toolkit for building beautiful, accessible web applications](https://github.com/material-components/material-web)
+SolidJS port
+of: [Material design-system Web is Google’s UI toolkit for building beautiful, accessible web applications](https://github.com/material-components/material-web)
 
 Navigate to www.demo.material.resrc.ch to see the demo application in action.
 Navigate to www.storybook.material.resrc.ch to see the Storybook for the components.
@@ -18,7 +19,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Implement chips
 - [x] Implement circular-progress
 - [x] Implement dialog
-- [ ] Implement divider
+- [x] Implement divider
 - [ ] Implement elevation
 - [ ] Implement fab
 - [ ] Implement field
