@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.22
+
+### Patch Changes
+
+- e8d6e4e: Implement divider
+
 ## 0.0.21
 
 ### Patch Changes
