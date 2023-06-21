@@ -3,24 +3,25 @@
  *
  */
 export enum Easing {
-  STANDARD = 'cubic-bezier(0.2, 0, 0, 1)',
+    STANDARD = 'cubic-bezier(0.2, 0, 0, 1)',
 }
 
 /**
  * A signal that is used for abortable tasks.
  */
 export interface AnimationSignal {
-  /**
-   * Starts the abortable task. Any previous tasks started with this instance
-   * will be aborted.
-   *
-   * @return An `AbortSignal` for the current task.
-   */
-  start(): AbortSignal;
-  /**
-   * Complete the current task.
-   */
-  finish(): void;
+    /**
+     * Starts the abortable task. Any previous tasks started with this instance
+     * will be aborted.
+     *
+     * @return An `AbortSignal` for the current task.
+     */
+    start(): AbortSignal;
+
+    /**
+     * Complete the current task.
+     */
+    finish(): void;
 }
 
 /**
@@ -57,22 +58,53 @@ export interface AnimationSignal {
  * @return An `AnimationSignal`.
  */
 export function createAnimationSignal(): AnimationSignal {
-  // The current animation's AbortController
-  let animationAbortController: AbortController | null = null;
+    // The current animation's AbortController
+    let animationAbortController: AbortController | null = null;
 
-  return {
-    start() {
-      // Tell the previous animation to cancel.
-      animationAbortController?.abort();
-      // Set up a new AbortController for the current animation.
-      animationAbortController = new AbortController();
-      // Provide the AbortSignal so that the caller can check aborted status
-      // and add listeners.
-      return animationAbortController.signal;
-    },
-    finish() {
-      animationAbortController = null;
-    },
-  };
+    return {
+        start() {
+            // Tell the previous animation to cancel.
+            animationAbortController?.abort();
+            // Set up a new AbortController for the current animation.
+            animationAbortController = new AbortController();
+            // Provide the AbortSignal so that the caller can check aborted status
+            // and add listeners.
+            return animationAbortController.signal;
+        },
+        finish() {
+            animationAbortController = null;
+        },
+    };
 }
 
+/**
+ * Returns a function which can be used to throttle function calls
+ * mapped to a key via a given function that should produce a promise that
+ * determines the throttle amount (defaults to requestAnimationFrame).
+ */
+export function createThrottle() {
+    const stack = new Set();
+    return async (
+        key = '', cb: (...args: unknown[]) => unknown, timeout = async () => {
+            await new Promise(requestAnimationFrame);
+        }) => {
+        if (!stack.has(key)) {
+            stack.add(key);
+            await timeout();
+            if (stack.has(key)) {
+                stack.delete(key);
+                cb();
+            }
+        }
+    };
+}
+
+/**
+ * Parses an number in milliseconds from a css time value
+ */
+export function msFromTimeCSSValue(value: string) {
+    const match = value.trim().match(/([\d.]+)(\s*s$)?/);
+    const time = match?.[1];
+    const seconds = match?.[2];
+    return Number(time ?? 0) * (seconds ? 1000 : 1);
+}
