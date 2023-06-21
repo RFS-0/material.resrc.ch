@@ -21,7 +21,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Implement dialog
 - [x] Implement divider
 - [x] Implement elevation
-- [ ] Implement fab
+- [x] Implement fab
 - [ ] Implement field
 - [ ] Implement focus
 - [ ] Implement icon

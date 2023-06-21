@@ -1,0 +1,156 @@
+.base-fab {
+    --ripple-hover-opacity: var(--_hover-state-layer-opacity);
+    --ripple-pressed-opacity: var(--_pressed-state-layer-opacity);
+    display: inline-flex
+}
+
+.fab, .icon, .icon > * {
+    display: flex
+}
+
+.fab {
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    padding: 0;
+    position: relative;
+    height: var(--_container-height);
+    transition-property: background-color;
+    border-width: 0;
+    outline: none;
+    z-index: 0;
+    ---elevation-level: var(--_container-elevation);
+    ---elevation-shadow-color: var(--_container-shadow-color);
+    background-color: var(--_container-color);
+    --ripple-hover-color: var(--_hover-state-layer-color);
+    --ripple-pressed-color: var(--_pressed-state-layer-color)
+}
+
+.fab.extended {
+    width: inherit;
+    box-sizing: border-box;
+    padding-inline-start: 16px;
+    padding-inline-end: 20px
+}
+
+.fab:not(.extended) {
+    width: var(--_container-width)
+}
+
+.fab.large {
+    width: var(--_large-container-width);
+    height: var(--_large-container-height)
+}
+
+.fab.large .icon > * {
+    width: var(--_large-icon-size);
+    height: var(--_large-icon-size);
+    font-size: var(--_large-icon-size)
+}
+
+.fab.large, .fab.large .ripple-container {
+    border-start-start-radius: var(--_large-container-shape-start-start);
+    border-start-end-radius: var(--_large-container-shape-start-end);
+    border-end-start-radius: var(--_large-container-shape-end-start);
+    border-end-end-radius: var(--_large-container-shape-end-end);
+    --focus-ring-shape-start-start: var(--_large-container-shape-start-start);
+    --focus-ring-shape-start-end: var(--_large-container-shape-start-end);
+    --focus-ring-shape-end-end: var(--_large-container-shape-end-end);
+    --focus-ring-shape-end-start: var(--_large-container-shape-end-start)
+}
+
+.fab:focus {
+    --elevation-level: var(--_focus-container-elevation)
+}
+
+.fab:hover {
+    --elevation-level: var(--_hover-container-elevation)
+}
+
+.fab:active {
+    ---elevation-level: var(--_pressed-container-elevation)
+}
+
+.fab.lowered {
+    background-color: var(--_lowered-container-color);
+    ---elevation-level: var(--_lowered-container-elevation)
+}
+
+.fab.lowered:focus {
+    ---elevation-level: var(--_lowered-focus-container-elevation)
+}
+
+.fab.lowered:hover {
+    ---elevation-level: var(--_lowered-hover-container-elevation)
+}
+
+.fab.lowered:active {
+    ---elevation-level: var(--_lowered-pressed-container-elevation)
+}
+
+.fab .label {
+    color: var(--_label-text-color)
+}
+
+.fab:hover .fab .label {
+    color: var(--_hover-label-text-color)
+}
+
+.fab:focus .fab .label {
+    color: var(--_focus-label-text-color)
+}
+
+.fab:active .fab .label {
+    color: var(--_pressed-label-text-color)
+}
+
+.label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font: var(--_label-text-type)
+}
+
+.icon + .label {
+    padding-inline-start: 12px
+}
+
+.ripple {
+    overflow: hidden
+}
+
+.ripple, .base-elevation {
+    z-index: -1
+}
+
+.touch-target {
+    position: absolute;
+    top: 50%;
+    height: 48px;
+    left: 50%;
+    width: 48px;
+    transform: translate(-50%, -50%)
+}
+
+.base-elevation, .fab {
+    transition-duration: 280ms;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1)
+}
+
+.fab, .ripple-container {
+    border-start-start-radius: var(--_container-shape-start-start);
+    border-start-end-radius: var(--_container-shape-start-end);
+    border-end-start-radius: var(--_container-shape-end-start);
+    border-end-end-radius: var(--_container-shape-end-end);
+    --ripple-shape: var(--_container-shape);
+    --focus-ring-shape-start-start: var(--_container-shape-start-start);
+    --focus-ring-shape-start-end: var(--_container-shape-start-end);
+    --focus-ring-shape-end-end: var(--_container-shape-end-end);
+    --focus-ring-shape-end-start: var(--_container-shape-end-start)
+}
+
+.icon > * {
+    width: var(--_icon-size);
+    height: var(--_icon-size);
+    font-size: var(--_icon-size)
+}
