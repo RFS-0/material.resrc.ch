@@ -20,7 +20,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Implement circular-progress
 - [x] Implement dialog
 - [x] Implement divider
-- [ ] Implement elevation
+- [x] Implement elevation
 - [ ] Implement fab
 - [ ] Implement field
 - [ ] Implement focus
@@ -42,3 +42,4 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [ ] Test components
 - [ ] Document repo
 - [ ] Animate dialog
+- [ ] Use css modules
