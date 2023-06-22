@@ -1,0 +1,279 @@
+.field-shared {
+    display: inline-flex;
+}
+
+.field {
+    display: inline-flex;
+    flex: 1;
+    flex-direction: column;
+    writing-mode: horizontal-tb;
+}
+
+.field__container-overflow {
+    border-start-start-radius: var(--_container-shape-start-start);
+    border-start-end-radius: var(--_container-shape-start-end);
+    border-end-end-radius: var(--_container-shape-end-end);
+    border-end-start-radius: var(--_container-shape-end-start);
+    display: flex;
+    position: relative
+}
+
+.field__container {
+    align-items: center;
+    border-radius: inherit;
+    display: flex;
+    flex: 1;
+    min-width: min-content;
+    overflow: hidden;
+    padding-top: var(--_container-padding-vertical);
+    padding-bottom: var(--_container-padding-vertical);
+    position: relative
+}
+
+.field--resizable .field__container {
+    resize: both
+}
+
+.field--disabled {
+    pointer-events: none
+}
+
+.field__start,
+.field__middle,
+.field__end {
+    display: flex;
+    box-sizing: border-box;
+    height: 100%;
+    position: relative
+}
+
+.field__start {
+    color: var(--_leading-content-color)
+}
+
+.field__end {
+    color: var(--_trailing-content-color)
+}
+
+.field__start,
+.field__end {
+    align-items: center;
+    justify-content: center
+}
+
+.field--with-start .field__start, .field--with-end .field__end {
+    min-width: 48px
+}
+
+.field--with-start .field__start {
+    margin-inline-end: 4px
+}
+
+.field--with-end .field__end {
+    margin-inline-start: 4px
+}
+
+.field__middle {
+    align-items: stretch;
+    align-self: baseline;
+    flex: 1
+}
+
+.field__content {
+    align-items: stretch;
+    color: var(--_content-color);
+    display: flex;
+    flex: 1;
+    font: var(--_content-type);
+    opacity: 0;
+    transition: opacity 83ms cubic-bezier(0.2, 0, 0, 1)
+}
+
+.field--no-label .field__content, .field--focused .field__content, .field--populated .field__content {
+    opacity: 1;
+    transition-delay: 67ms
+}
+
+.field:hover .field__content {
+    color: var(--_hover-content-color)
+}
+
+.field:hover .field__start {
+    color: var(--_hover-leading-content-color)
+}
+
+.field:hover .field__end {
+    color: var(--_hover-trailing-content-color)
+}
+
+.field--focused .field__content {
+    color: var(--_focus-content-color)
+}
+
+.field--focused .field__start {
+    color: var(--_focus-leading-content-color)
+}
+
+.field--focused .field__end {
+    color: var(--_focus-trailing-content-color)
+}
+
+.field--disabled .field__content {
+    color: var(--_disabled-content-color)
+}
+
+.field--disabled.field--no-label .field__content,
+.field--disabled.field--focused .field__content,
+.field--disabled.field--populated .field__content {
+    opacity: var(--_disabled-content-opacity)
+}
+
+.field--disabled .field__start {
+    color: var(--_disabled-leading-content-color);
+    opacity: var(--_disabled-leading-content-opacity)
+}
+
+.field--disabled .field__end {
+    color: var(--_disabled-trailing-content-color);
+    opacity: var(--_disabled-trailing-content-opacity)
+}
+
+.field--error .field__content {
+    color: var(--_error-content-color)
+}
+
+.field--error .field__start {
+    color: var(--_error-leading-content-color)
+}
+
+.field--error .field__end {
+    color: var(--_error-trailing-content-color)
+}
+
+.field--error:hover .field__content {
+    color: var(--_error-hover-content-color)
+}
+
+.field--error:hover .field__start {
+    color: var(--_error-hover-leading-content-color)
+}
+
+.field--error:hover .field__end {
+    color: var(--_error-hover-trailing-content-color)
+}
+
+.field--error.field--focused .field__content {
+    color: var(--_error-focus-content-color)
+}
+
+.field--error.field--focused .field__start {
+    color: var(--_error-focus-leading-content-color)
+}
+
+.field--error.field--focused .field__end {
+    color: var(--_error-focus-trailing-content-color)
+}
+
+.field__label {
+    color: var(--_label-text-color);
+    overflow: hidden;
+    max-width: 100%;
+    pointer-events: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 1;
+    font: var(--_label-text-type)
+}
+
+.field__label.field__label--resting {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.field__label.field__label--floating {
+    font-size: var(--_label-text-populated-size);
+    line-height: var(--_label-text-populated-line-height);
+    transform-origin: top left
+}
+
+.field__label.field__label--hidden {
+    opacity: 0
+}
+
+.field--no-label .field__label {
+    display: none
+}
+
+.field:hover .field__label {
+    color: var(--_hover-label-text-color)
+}
+
+.field--focused .field__label {
+    color: var(--_focus-label-text-color)
+}
+
+.field--disabled .field__label {
+    color: var(--_disabled-label-text-color)
+}
+
+.field--disabled .field__label:not(.field__label--hidden) {
+    opacity: var(--_disabled-label-text-opacity)
+}
+
+.field--error .field__label {
+    color: var(--_error-label-text-color)
+}
+
+.field--error:hover .field__label {
+    color: var(--_error-hover-label-text-color)
+}
+
+.field--error.field--focused .field__label {
+    color: var(--_error-focus-label-text-color)
+}
+
+.field__supporting-text {
+    color: var(--_supporting-text-color);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 var(--_supporting-text-padding);
+    font: var(--_supporting-text-type)
+}
+
+.field__supporting-text-start, .field__supporting-text-end {
+    display: flex
+}
+
+.field__supporting-text-start *:not(:empty), .field__supporting-text-end *:not(:empty) {
+    padding-top: var(--_supporting-text-padding-top)
+}
+
+.field__supporting-text-end *:not(:empty) {
+    padding-inline-start: var(--_supporting-text-padding)
+}
+
+.field:hover .field__supporting-text {
+    color: var(--_hover-supporting-text-color)
+}
+
+.field--focused .field__supporting-text {
+    color: var(--_focus-supporting-text-color)
+}
+
+.field--disabled .field__supporting-text {
+    color: var(--_disabled-supporting-text-color);
+    opacity: var(--_disabled-supporting-text-opacity)
+}
+
+.field--error .field__supporting-text {
+    color: var(--_error-supporting-text-color)
+}
+
+.field--error:hover .field__supporting-text {
+    color: var(--_error-hover-supporting-text-color)
+}
+
+.field--error.field--focused .field__supporting-text {
+    color: var(--_error-focus-supporting-text-color)
+}
