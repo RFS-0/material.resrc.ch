@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.25
+
+### Patch Changes
+
+- 58cca92: Implement field
+
 ## 0.0.24
 
 ### Patch Changes

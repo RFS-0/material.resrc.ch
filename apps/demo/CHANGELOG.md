@@ -1,5 +1,12 @@
 # demo.material.resrc.ch
 
+## 0.0.25
+
+### Patch Changes
+
+- Updated dependencies [58cca92]
+  - material.resrc.ch@0.0.25
+
 ## 0.0.24
 
 ### Patch Changes

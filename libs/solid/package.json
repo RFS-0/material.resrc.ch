@@ -51,5 +51,5 @@
     "test": "echo \"no tests yet\""
   },
   "types": "dist/index.d.ts",
-  "version": "0.0.24"
+  "version": "0.0.25"
 }
