@@ -1,9 +1,8 @@
-import {createSignal, JSX, onMount, Show, splitProps} from 'solid-js';
-import {FocusRing} from '../../focus';
+import {JSX, Show, splitProps} from 'solid-js';
 import {createHandlers, createRippleEventEmitter, Ripple} from '../../ripple';
-import {composeEventHandlers} from '../../controller';
 import {createEventDispatcher} from '@solid-primitives/event-dispatcher';
 import './styles/input-chip-styles.css';
+import {focusController as fc} from '../../focus';
 
 export type ButtonInputChipProps = {
     ariaHasPopup?: boolean;
@@ -19,6 +18,8 @@ export type ButtonInputChipProps = {
 } & JSX.HTMLAttributes<HTMLButtonElement>
 
 export const ButtonInputChip = (props: ButtonInputChipProps) => {
+    // noinspection JSUnusedLocalSymbols
+    const focusController = fc;
     const dispatch = createEventDispatcher(props);
     const [componentProps, buttonProps] = splitProps(props, [
         'ariaHasPopup',
@@ -35,8 +36,6 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
 
     let primaryAction: HTMLDivElement | null = null;
     let trailingAction: HTMLDivElement | null = null;
-
-    const [focus, setFocus] = createSignal(componentProps?.showFocusRing || false);
 
     const primaryRippleHandler = createRippleEventEmitter();
     const secondaryRippleHandler = createRippleEventEmitter();
@@ -79,30 +78,6 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
         actionToFocus.focus();
     }
 
-    const handleClick = () => {
-    }
-
-    const activateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(true);
-    };
-
-    const deactivateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(false);
-    };
-
-    const handleFocus = (e: FocusEvent) => {
-        activateFocus();
-        if (e.target === trailingAction) {
-            trailingAction.focus()
-        }
-    }
-
     const handleRemoveClick = (event: Event) => {
         if (componentProps.disabled) {
             return;
@@ -113,6 +88,9 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
 
     return (
         <div
+            use:focusController={{
+                disabled: !componentProps.showFocusRing,
+            }}
             class={'chip-shared input-chip chip-container'}
             classList={{
                 'chip-avatar': componentProps.avatar,
@@ -120,7 +98,6 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
             }}
         >
             <span class="chip-outline"></span>
-            <FocusRing visible={focus()}></FocusRing>
             <Ripple
                 disabled={rippleDisabled()}
                 listen={primaryRippleHandler.listen}
@@ -142,11 +119,7 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
                 <button
                     {...primaryRippleHandlers}
                     {...buttonProps}
-                    onClick={composeEventHandlers([primaryRippleHandlers.onClick, handleClick])}
-                    onFocus={composeEventHandlers([handleFocus])}
-                    onBlur={composeEventHandlers([deactivateFocus])}
-                    onPointerDown={composeEventHandlers([primaryRippleHandlers.onPointerDown, deactivateFocus])}
-                    onKeyDown={composeEventHandlers([handleKeyDown])}
+                    onKeyDown={handleKeyDown}
                     disabled={componentProps.disabled}
                     aria-label={componentProps?.ariaLabel || ''}
                     aria-haspopup={componentProps?.ariaHasPopup || false}
@@ -166,7 +139,6 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
                 disabled={componentProps.disabled}
                 onClick={handleRemoveClick}
             >
-                <FocusRing visible={focus()}></FocusRing>
                 <Ripple
                     disabled={rippleDisabled()}
                     listen={secondaryRippleHandler.listen}
@@ -181,4 +153,3 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
         </div>
     )
 }
-

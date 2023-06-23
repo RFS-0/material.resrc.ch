@@ -47,7 +47,7 @@ export const Disabled: Story = {
 export const FocusRing: Story = {
     render: () => <Checkbox
         data-testid="checkbox"
-        showFocusRing
+        showFocusRing={true}
     />,
 }
 

@@ -1,9 +1,9 @@
-import {createSignal, JSX, Show, splitProps} from 'solid-js';
-import {FocusRing} from '../../focus';
+import {JSX, Show, splitProps} from 'solid-js';
 import {createHandlers, createRippleEventEmitter, Ripple} from '../../ripple';
 import './styles/suggestion-chip-styles.css';
 import {composeEventHandlers} from '../../controller';
 import {Elevation} from '../../elevation';
+import {focusController as fc} from '../../focus';
 
 export type LinkSuggestionChipProps = {
     ariaHasPopup?: boolean;
@@ -18,6 +18,8 @@ export type LinkSuggestionChipProps = {
 } & JSX.HTMLAttributes<HTMLAnchorElement>
 
 export const LinkSuggestionChip = (props: LinkSuggestionChipProps) => {
+    // noinspection JSUnusedLocalSymbols
+    const focusController = fc;
     const [componentProps, linkProps] = splitProps(props, [
         'ariaHasPopup',
         'ariaLabel',
@@ -28,7 +30,6 @@ export const LinkSuggestionChip = (props: LinkSuggestionChipProps) => {
         'showFocusRing',
     ]);
 
-    const [focus, setFocus] = createSignal(componentProps?.showFocusRing || false);
     const {listen, emit} = createRippleEventEmitter();
 
     const rippleHandlers = createHandlers(emit);
@@ -37,22 +38,11 @@ export const LinkSuggestionChip = (props: LinkSuggestionChipProps) => {
         return componentProps?.disableRipple || false;
     }
 
-    const activateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(true);
-    };
-
-    const deactivateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(false);
-    };
-
     return (
         <div
+            use:focusController={{
+                disabled: !componentProps.showFocusRing,
+            }}
             class={'chip-shared suggestion-chip chip-container'}
             classList={{
                 'disabled': componentProps.disabled,
@@ -67,7 +57,6 @@ export const LinkSuggestionChip = (props: LinkSuggestionChipProps) => {
             >
                 <Elevation/>
             </Show>
-            <FocusRing visible={focus()}></FocusRing>
             <Ripple
                 disabled={rippleDisabled()}
                 listen={listen}
@@ -77,12 +66,9 @@ export const LinkSuggestionChip = (props: LinkSuggestionChipProps) => {
                 {...rippleHandlers}
                 {...linkProps}
 
-                onFocus={composeEventHandlers([linkProps?.onfocus, activateFocus])}
-                onBlur={composeEventHandlers([linkProps?.onblur, deactivateFocus])}
                 onPointerDown={composeEventHandlers([
                     linkProps?.onPointerDown,
                     rippleHandlers.onPointerDown,
-                    deactivateFocus
                 ])}
                 aria-label={componentProps?.ariaLabel || ''}
                 aria-haspopup={componentProps?.ariaHasPopup || false}
@@ -94,4 +80,3 @@ export const LinkSuggestionChip = (props: LinkSuggestionChipProps) => {
         </div>
     )
 }
-

@@ -1,7 +1,6 @@
-import {createEffect, createSignal, JSX, onMount, splitProps} from 'solid-js'
+import {createEffect, JSX, onMount, splitProps} from 'solid-js'
 import {createHandlers, createRippleEventEmitter, Ripple} from '../ripple'
 import './styles/checkbox-styles.css'
-import {FocusRing} from '../focus';
 import {composeEventHandlers} from '../controller';
 import {createStore} from 'solid-js/store';
 
@@ -44,7 +43,7 @@ export const Checkbox = (props: CheckboxProps) => {
         'value',
     ]);
 
-    let checkbox: HTMLInputElement | null
+    let checkbox: HTMLInputElement | null = null;
 
     const [state, setState] = createStore<StateChange>({
         checkBox: {
@@ -59,7 +58,6 @@ export const Checkbox = (props: CheckboxProps) => {
         },
     })
 
-    const [focus, setFocus] = createSignal(componentProps?.showFocusRing);
     const {listen, emit} = createRippleEventEmitter()
     const rippleHandlers = createHandlers(emit);
 
@@ -76,20 +74,6 @@ export const Checkbox = (props: CheckboxProps) => {
     const handleClick = (e: MouseEvent) => {
         emit({type: 'click', pointerEvent: (e)});
     }
-
-    const activateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(true);
-    };
-
-    const deactivateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(false);
-    };
 
     const handleChange = (event: Event) => {
         const target = event.target as HTMLInputElement
@@ -117,6 +101,7 @@ export const Checkbox = (props: CheckboxProps) => {
     return (
         <div class='base-checkbox'>
             <div
+                tabIndex={0}
                 class={'checkbox-container'}
                 classList={{
                     'checkbox-selected': state.checkBox.isChecked || state.checkBox.isIndeterminate,
@@ -132,7 +117,6 @@ export const Checkbox = (props: CheckboxProps) => {
             >
                 <div class="checkbox-outline"></div>
                 <div class="checkbox-background"></div>
-                <FocusRing visible={focus()}></FocusRing>
                 <Ripple listen={listen} unbounded={true}></Ripple>
                 <svg class="checkbox-icon" viewBox="0 0 18 18">
                     <rect class="checkbox-mark checkbox-short"/>
@@ -146,14 +130,12 @@ export const Checkbox = (props: CheckboxProps) => {
                 aria-label={`${props?.ariaLabel || ''}`}
                 checked={state.checkBox.isChecked}
                 disabled={state.checkBox.isDisabled}
-                onBlur={composeEventHandlers([checkBoxProps?.onblur, deactivateFocus])}
                 onChange={composeEventHandlers([checkBoxProps?.onchange, handleChange])}
                 onClick={composeEventHandlers([
                     checkBoxProps?.onclick,
                     rippleHandlers.onClick,
                     handleClick
                 ])}
-                onFocus={composeEventHandlers([checkBoxProps?.onfocus, activateFocus])}
                 onPointerDown={composeEventHandlers([
                     checkBoxProps?.onpointerdown,
                     rippleHandlers.onPointerDown,

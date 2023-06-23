@@ -1,9 +1,8 @@
 import {createSignal, JSX, Show, splitProps} from 'solid-js';
 import {Elevation} from '../elevation';
-import {FocusRing} from '../focus';
 import {createHandlers, createRippleEventEmitter, Ripple} from '../ripple';
 import './styles/fab-styles.css';
-import {composeEventHandlers} from '../controller';
+import {focusController as fc} from '../focus';
 
 export type FabSize = 'medium' | 'small' | 'large';
 export type Variant = 'surface' | 'primary' | 'secondary' | 'tertiary';
@@ -21,6 +20,8 @@ export type FabProps = {
 } & JSX.HTMLAttributes<HTMLButtonElement>
 
 export const Fab = (props: FabProps) => {
+    // noinspection JSUnusedLocalSymbols
+    const focusController = fc;
     const [componentProps, buttonProps] = splitProps(props, [
         'ariaHasPopup',
         'ariaLabel',
@@ -33,32 +34,19 @@ export const Fab = (props: FabProps) => {
         'variant',
     ]);
 
-    const [focus, setFocus] = createSignal(false);
     const [extended,] = createSignal(!!componentProps.label);
 
     const {listen, emit} = createRippleEventEmitter();
     const rippleHandlers = createHandlers(emit);
 
-    const activateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(true);
-    };
-
-    const deactivateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(false);
-    };
 
     return (
         <button
+            use:focusController={{
+                disabled: !componentProps.showFocusRing,
+            }}
             {...rippleHandlers}
             {...buttonProps}
-            onFocus={composeEventHandlers([activateFocus, buttonProps.onFocus])}
-            onBlur={composeEventHandlers([deactivateFocus, buttonProps.onBlur])}
             class={'base-fab fab'}
             classList={{
                 'lowered': componentProps?.lowered || false,
@@ -74,7 +62,6 @@ export const Fab = (props: FabProps) => {
 
         >
             <Elevation/>
-            <FocusRing visible={focus()}></FocusRing>
             <Ripple
                 class={'ripple'}
                 listen={listen}

@@ -23,7 +23,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Implement elevation
 - [x] Implement fab
 - [x] Implement field
-- [ ] Implement focus
+- [x] Implement focus
 - [ ] Implement icon
 - [ ] Implement icon-button
 - [ ] Implement linear-progress
