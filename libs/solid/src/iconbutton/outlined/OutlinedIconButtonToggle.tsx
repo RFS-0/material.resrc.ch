@@ -15,7 +15,7 @@ export type OutlinedToggleIconButtonProps = {
 export const OutlinedToggleIconButton: Component<OutlinedToggleIconButtonProps> = (props) => {
     // noinspection JSUnusedLocalSymbols
     const focusController = fc;
-    const [standardIconButtonProps, buttonProps] = splitProps(props, [
+    const [componentProps, buttonProps] = splitProps(props, [
         'ariaHasPopup',
         'ariaLabel',
         'selected',
@@ -64,14 +64,14 @@ export const OutlinedToggleIconButton: Component<OutlinedToggleIconButtonProps> 
                     <span
                         class={'icon-button__icon'}
                     >
-                        {standardIconButtonProps.offIcon}
+                        {componentProps.offIcon}
                     </span>
                 }
             >
                 <span
                     class={'icon-button__icon icon-button__icon--selected'}
                 >
-                    {standardIconButtonProps.onIcon}
+                    {componentProps.onIcon}
                 </span>
             </Show>
         </button>
