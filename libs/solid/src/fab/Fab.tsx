@@ -49,32 +49,28 @@ export const Fab = (props: FabProps) => {
             {...buttonProps}
             class={'base-fab fab'}
             classList={{
-                'lowered': componentProps?.lowered || false,
-                'small': componentProps?.size === 'small',
-                'large': componentProps?.size === 'large',
-                'extended': extended(),
-                'primary': componentProps?.variant === 'primary',
-                'secondary': componentProps?.variant === 'secondary',
-                'tertiary': componentProps?.variant === 'tertiary',
+                'fab--lowered': componentProps?.lowered || false,
+                'fab--small': componentProps?.size === 'small',
+                'fab--large': componentProps?.size === 'large',
+                'fab--extended': extended(),
+                'fab--primary': componentProps?.variant === 'primary',
+                'fab--secondary': componentProps?.variant === 'secondary',
+                'fab--tertiary': componentProps?.variant === 'tertiary',
             }}
             aria-label={componentProps?.ariaLabel || ''}
             aria-haspopup={componentProps?.ariaHasPopup || false}
 
         >
             <Elevation/>
-            <Ripple
-                class={'ripple'}
-                listen={listen}
-                unbounded={true}
-            />
+            <Ripple listen={listen} unbounded={true}/>
             <Show when={!componentProps.reducedTouchTarget}>
-                <div class={'touch-target'}></div>
+                <div class={'fab__touch-target'}></div>
             </Show>
             <Show when={!!componentProps.icon}>
-                <span class={'icon'}>{componentProps.icon}</span>
+                <span class={'fab__icon'}>{componentProps.icon}</span>
             </Show>
             <Show when={!!componentProps.label}>
-                <span class={'label'}>{componentProps.label}</span>
+                <span class={'fab__label'}>{componentProps.label}</span>
             </Show>
         </button>
     );

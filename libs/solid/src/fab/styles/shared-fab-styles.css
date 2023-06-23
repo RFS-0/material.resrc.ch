@@ -4,7 +4,7 @@
     display: inline-flex
 }
 
-.fab, .icon, .icon > * {
+.fab, .fab__icon, .fab__icon > * {
     display: flex
 }
 
@@ -26,29 +26,30 @@
     --ripple-pressed-color: var(--_pressed-state-layer-color)
 }
 
-.fab.extended {
+.fab.fab--extended {
     width: inherit;
     box-sizing: border-box;
     padding-inline-start: 16px;
     padding-inline-end: 20px
 }
 
-.fab:not(.extended) {
+.fab:not(.fab--extended) {
     width: var(--_container-width)
 }
 
-.fab.large {
+.fab.fab--large {
     width: var(--_large-container-width);
     height: var(--_large-container-height)
 }
 
-.fab.large .icon > * {
+.fab.fab--large .fab__icon > * {
     width: var(--_large-icon-size);
     height: var(--_large-icon-size);
     font-size: var(--_large-icon-size)
 }
 
-.fab.large, .fab.large .ripple-container {
+.fab.fab--large,
+.fab.fab--large .ripple-container {
     border-start-start-radius: var(--_large-container-shape-start-start);
     border-start-end-radius: var(--_large-container-shape-start-end);
     border-end-start-radius: var(--_large-container-shape-end-start);
@@ -71,59 +72,55 @@
     ---elevation-level: var(--_pressed-container-elevation)
 }
 
-.fab.lowered {
+.fab.fab--lowered {
     background-color: var(--_lowered-container-color);
     ---elevation-level: var(--_lowered-container-elevation)
 }
 
-.fab.lowered:focus {
+.fab.fab--lowered:focus {
     ---elevation-level: var(--_lowered-focus-container-elevation)
 }
 
-.fab.lowered:hover {
+.fab.fab--lowered:hover {
     ---elevation-level: var(--_lowered-hover-container-elevation)
 }
 
-.fab.lowered:active {
+.fab.fab--lowered:active {
     ---elevation-level: var(--_lowered-pressed-container-elevation)
 }
 
-.fab .label {
+.fab .fab__label {
     color: var(--_label-text-color)
 }
 
-.fab:hover .fab .label {
+.fab:hover .fab .fab__label {
     color: var(--_hover-label-text-color)
 }
 
-.fab:focus .fab .label {
+.fab:focus .fab .fab__label {
     color: var(--_focus-label-text-color)
 }
 
-.fab:active .fab .label {
+.fab:active .fab .fab__label {
     color: var(--_pressed-label-text-color)
 }
 
-.label {
+.fab__label {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font: var(--_label-text-type)
 }
 
-.icon + .label {
+.fab__icon + .fab__label {
     padding-inline-start: 12px
-}
-
-.ripple {
-    overflow: hidden
 }
 
 .ripple, .base-elevation {
     z-index: -1
 }
 
-.touch-target {
+.fab__touch-target {
     position: absolute;
     top: 50%;
     height: 48px;
@@ -132,12 +129,14 @@
     transform: translate(-50%, -50%)
 }
 
-.base-elevation, .fab {
+.fab .base-elevation,
+.fab {
     transition-duration: 280ms;
     transition-timing-function: cubic-bezier(0.2, 0, 0, 1)
 }
 
-.fab, .ripple-container {
+.fab,
+.fab .ripple-container {
     border-start-start-radius: var(--_container-shape-start-start);
     border-start-end-radius: var(--_container-shape-start-end);
     border-end-start-radius: var(--_container-shape-end-start);
@@ -149,7 +148,7 @@
     --focus-ring-shape-end-start: var(--_container-shape-end-start)
 }
 
-.icon > * {
+.fab__icon > * {
     width: var(--_icon-size);
     height: var(--_icon-size);
     font-size: var(--_icon-size)
