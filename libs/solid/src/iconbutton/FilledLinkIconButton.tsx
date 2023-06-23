@@ -1,5 +1,4 @@
 import {Component, JSX, splitProps} from "solid-js";
-import "./filled-icon-button-styles.css";
 import {createHandlers, createRippleEventEmitter, Ripple} from "../ripple";
 import {focusController as fc} from '../focus';
 

@@ -1,7 +1,6 @@
-import { Component, createSignal, JSX, Show, splitProps } from "solid-js";
-import "./filled-icon-button-styles.css";
-import { createHandlers, createRippleEventEmitter, Ripple } from "../ripple";
-import { composeEventHandlers } from "../controller";
+import {Component, createSignal, JSX, Show, splitProps} from "solid-js";
+import {createHandlers, createRippleEventEmitter, Ripple} from "../ripple";
+import {composeEventHandlers} from "../controller";
 
 export type FilledTonalIconToggleButtonProps = {
   selected?: boolean

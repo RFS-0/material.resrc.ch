@@ -1,7 +1,5 @@
 import {Component, JSX, splitProps} from "solid-js";
 import {createHandlers, createRippleEventEmitter, Ripple} from "../ripple";
-import './filled-tonal-icon-button-styles.css';
-import './filled-icon-button-styles.css';
 import {focusController as fc} from '../focus';
 
 export type FilledTonalLinkIconButtonProps = {

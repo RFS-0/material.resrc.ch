@@ -62,15 +62,19 @@ export const Button = (props: ButtonProps) => {
             {...rippleHandlers}
             onClick={
                 composeEventHandlers([
-                    buttonProps?.onClick,
-                    rippleHandlers.onClick,
-                    handleClick]
+                        buttonProps?.onClick,
+                        rippleHandlers.onClick,
+                        handleClick
+                    ]
                 )
             }
-            onPointerDown={composeEventHandlers([
-                buttonProps?.onPointerDown,
-                rippleHandlers.onPointerDown,
-            ])}
+            onPointerDown={
+                composeEventHandlers([
+                        buttonProps?.onPointerDown,
+                        rippleHandlers.onPointerDown,
+                    ]
+                )
+            }
             class={'button-shared button'}
             classList={{
                 'button-elevation-shared': componentProps.variant === 'elevated' || props.variant === 'filled' || props.variant === 'tonal',

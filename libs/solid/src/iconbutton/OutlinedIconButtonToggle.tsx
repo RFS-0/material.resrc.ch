@@ -1,10 +1,7 @@
 import {Component, createSignal, JSX, Show, splitProps} from "solid-js";
-import './filled-icon-button-styles.css';
 import {createHandlers, createRippleEventEmitter, Ripple} from "../ripple";
 import {composeEventHandlers} from "../controller";
 import {focusController as fc} from '../focus';
-
-import './standard-icon-button-styles.css';
 
 export type OutlinedIconToggleButtonProps = {
     selected?: boolean

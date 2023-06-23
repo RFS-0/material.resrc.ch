@@ -1,6 +1,5 @@
 import {Component, JSX, splitProps} from "solid-js";
 import {createHandlers, createRippleEventEmitter, Ripple} from "../ripple";
-import "./outlined-icon-button-styles.css";
 import {focusController as fc} from '../focus';
 
 export type OutlinedLinkIconButtonProps = {

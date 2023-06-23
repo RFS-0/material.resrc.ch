@@ -1,11 +1,10 @@
-@import 'shared-icon-button-styles.css';
+@import "../../styles/shared-icon-button-styles.css";
 
-.icon-button-shared.icon-button--standard {
-    --_disabled-icon-color: rgb(var(--sys-on-surface-rgb), 0.38);
+.shared-icon-button  {
+    --_disabled-icon-color: var(--sys-on-surface);
+    --_disabled-icon-opacity: 0.38;
     --_icon-size: 24px;
-   --_selected-focus-icon-color: var(--sys-primary);
-    --_selected-focus-state-layer-color: var(--sys-primary);
-    --_selected-focus-state-layer-opacity: 0.12;
+    --_selected-focus-icon-color: var(--sys-primary);
     --_selected-hover-icon-color: var(--sys-primary);
     --_selected-hover-state-layer-color: var(--sys-primary);
     --_selected-hover-state-layer-opacity: 0.08;
@@ -16,8 +15,6 @@
     --_state-layer-shape: 9999px;
     --_state-layer-size: 40px;
     --_unselected-focus-icon-color: var(--sys-on-surface-variant);
-    --_unselected-focus-state-layer-color: var(--sys-on-surface-variant);
-    --_unselected-focus-state-layer-opacity: 0.12;
     --_unselected-hover-icon-color: var(--sys-on-surface-variant);
     --_unselected-hover-state-layer-color: var(--sys-on-surface-variant);
     --_unselected-hover-state-layer-opacity: 0.08;
@@ -27,19 +24,16 @@
     --_unselected-pressed-state-layer-opacity: 0.12;
     height: var(--_state-layer-size);
     width: var(--_state-layer-size);
-    --md-focus-ring-shape: var(--_state-layer-shape);
+    --focus-ring-shape: var(--_state-layer-shape)
 }
 
 .icon-button--standard {
     background-color: rgba(0, 0, 0, 0);
     color: var(--_unselected-icon-color);
-    --ripple-focus-color: var(--_unselected-focus-state-layer-color);
-    --ripple-focus-opacity: var(--_unselected-focus-state-layer-opacity);
     --ripple-hover-color: var(--_unselected-hover-state-layer-color);
     --ripple-hover-opacity: var(--_unselected-hover-state-layer-opacity);
     --ripple-pressed-color: var(--_unselected-pressed-state-layer-color);
-    --ripple-pressed-opacity: var(--_unselected-pressed-state-layer-opacity);
-    --ripple-shape: var(--_state-layer-shape)
+    --ripple-pressed-opacity: var(--_unselected-pressed-state-layer-opacity)
 }
 
 .icon-button--standard:hover {
@@ -58,9 +52,15 @@
     color: var(--_disabled-icon-color)
 }
 
-.icon-button--selected {
-    --ripple-focus-color: var(--_selected-focus-state-layer-color);
-    --ripple-focus-opacity: var(--_selected-focus-state-layer-opacity);
+.ripple-container {
+    border-radius: var(--_state-layer-shape)
+}
+
+.icon-button--standard:disabled .icon-button__icon {
+    opacity: var(--_disabled-icon-opacity)
+}
+
+.icon-button__icon--selected {
     --ripple-hover-color: var(--_selected-hover-state-layer-color);
     --ripple-hover-opacity: var(--_selected-hover-state-layer-opacity);
     --ripple-pressed-color: var(--_selected-pressed-state-layer-color);
