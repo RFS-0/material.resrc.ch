@@ -1,6 +1,6 @@
 @import "../../styles/shared-icon-button-styles.css";
 
-.shared-icon-button  {
+.shared-icon-button.icon-button--standard  {
     --_disabled-icon-color: var(--sys-on-surface);
     --_disabled-icon-opacity: 0.38;
     --_icon-size: 24px;
@@ -60,25 +60,25 @@
     opacity: var(--_disabled-icon-opacity)
 }
 
-.icon-button__icon--selected {
+.icon-button--standard.icon-button__icon--selected {
     --ripple-hover-color: var(--_selected-hover-state-layer-color);
     --ripple-hover-opacity: var(--_selected-hover-state-layer-opacity);
     --ripple-pressed-color: var(--_selected-pressed-state-layer-color);
     --ripple-pressed-opacity: var(--_selected-pressed-state-layer-opacity)
 }
 
-.icon-button--selected:not(:disabled) {
+.icon-button--standard.icon-button--selected:not(:disabled) {
     color: var(--_selected-icon-color)
 }
 
-.icon-button--selected:not(:disabled):hover {
+.icon-button--standard.icon-button--selected:not(:disabled):hover {
     color: var(--_selected-hover-icon-color)
 }
 
-.icon-button--selected:not(:disabled):focus {
+.icon-button--standard.icon-button--selected:not(:disabled):focus {
     color: var(--_selected-focus-icon-color)
 }
 
-.icon-button--selected:not(:disabled):active {
+.icon-button--standard.icon-button--selected:not(:disabled):active {
     color: var(--_selected-pressed-icon-color)
 }
