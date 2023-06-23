@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.26
+
+### Patch Changes
+
+- cde5ef5: Implement focus
+
 ## 0.0.25
 
 ### Patch Changes

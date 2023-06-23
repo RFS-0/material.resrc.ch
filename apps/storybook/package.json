@@ -41,5 +41,5 @@
     "dev": "storybook dev -p 6006",
     "test": "echo \"no tests yet\""
   },
-  "version": "0.0.25"
+  "version": "0.0.26"
 }
