@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from 'storybook-solidjs';
-import {ButtonInputChip} from 'material.resrc.ch';
+import {ButtonInputChip, Icon} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof ButtonInputChip> = {
@@ -21,7 +21,7 @@ export const Standalone: Story = {
     render: (args) => <ButtonInputChip
         data-testid="input-chip"
         {...args}
-        icon={<span class="material-symbols-outlined">add</span>}
+        icon={<Icon name={'add'}/>}
     />,
 };
 
@@ -49,7 +49,7 @@ export const Disabled: Story = {
     render: (args) => <ButtonInputChip
         data-testid="input-chip"
         {...args}
-        icon={<span class="material-symbols-outlined">add</span>}
+        icon={<Icon name={'add'}/>}
     />,
 };
 
@@ -62,6 +62,6 @@ export const WithFocusRing: Story = {
     render: (args) => <ButtonInputChip
         data-testid="input-chip"
         {...args}
-        icon={<span class="material-symbols-outlined">add</span>}
+        icon={<Icon name={'add'}/>}
     />,
 };

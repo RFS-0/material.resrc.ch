@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from 'storybook-solidjs';
-import {Fab} from 'material.resrc.ch';
+import {Fab, Icon} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof Fab> = {
@@ -18,7 +18,7 @@ export const Standalone: Story = {
         return <Fab
             data-testid="fab"
             {...args}
-            icon={<span class="material-symbols-outlined">edit</span>}
+            icon={<Icon name={'edit'}/>}
         />
     }
 };
@@ -31,7 +31,7 @@ export const Extended: Story = {
         return <Fab
             data-testid="fab"
             {...args}
-            icon={<span class="material-symbols-outlined">edit</span>}
+            icon={<Icon name={'edit'}/>}
         />
     }
 };
@@ -55,7 +55,7 @@ export const Lowered: Story = {
         return <Fab
             data-testid="fab"
             {...args}
-            icon={<span class="material-symbols-outlined">edit</span>}
+            icon={<Icon name={'edit'}/>}
         />
     }
 };
@@ -68,7 +68,7 @@ export const Small: Story = {
         return <Fab
             data-testid="fab"
             {...args}
-            icon={<span class="material-symbols-outlined">edit</span>}
+            icon={<Icon name={'edit'}/>}
         />
     }
 };
@@ -81,7 +81,7 @@ export const Medium: Story = {
         return <Fab
             data-testid="fab"
             {...args}
-            icon={<span class="material-symbols-outlined">edit</span>}
+            icon={<Icon name={'edit'}/>}
         />
     }
 };
@@ -94,7 +94,7 @@ export const Large: Story = {
         return <Fab
             data-testid="fab"
             {...args}
-            icon={<span class="material-symbols-outlined">edit</span>}
+            icon={<Icon name={'edit'}/>}
         />
     }
 };
@@ -107,7 +107,7 @@ export const Primary: Story = {
         return <Fab
             data-testid="fab"
             {...args}
-            icon={<span class="material-symbols-outlined">edit</span>}
+            icon={<Icon name={'edit'}/>}
         />
     }
 };
@@ -120,7 +120,7 @@ export const Secondary: Story = {
         return <Fab
             data-testid="fab"
             {...args}
-            icon={<span class="material-symbols-outlined">edit</span>}
+            icon={<Icon name={'edit'}/>}
         />
     }
 };
@@ -133,7 +133,7 @@ export const Tertiary: Story = {
         return <Fab
             data-testid="fab"
             {...args}
-            icon={<span class="material-symbols-outlined">edit</span>}
+            icon={<Icon name={'edit'}/>}
         />
     }
 };
@@ -147,7 +147,7 @@ export const WithFocusRing: Story = {
         return <Fab
             data-testid="fab"
             {...args}
-            icon={<span class="material-symbols-outlined">edit</span>}
+            icon={<Icon name={'edit'}/>}
         />
     }
 };

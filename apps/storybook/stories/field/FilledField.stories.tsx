@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from 'storybook-solidjs';
-import {FilledField} from 'material.resrc.ch';
+import {FilledField, Icon} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof FilledField> = {
@@ -60,13 +60,13 @@ export const Disabled: Story = {
         error: false,
         focused: false,
         label: 'My Label',
-        leadingIcon: <span class="material-symbols-outlined">favorite</span>,
+        leadingIcon: <Icon name={'favorite'}/>,
         populated: false,
         resizable: false,
         required: false,
         supportingTextEnd: '8/10',
         supportingTextStart: 'Supporting Text',
-        trailingIcon: <span class="material-symbols-outlined">cancel</span>,
+        trailingIcon: <Icon name={'cancel'}/>,
     },
     render: (args) => {
         return (
@@ -84,7 +84,7 @@ export const WithLeadingIcon: Story = {
         error: false,
         focused: true,
         label: 'My Label',
-        leadingIcon: <span class="material-symbols-outlined">favorite</span>,
+        leadingIcon: <Icon name={'favorite'}/>,
         populated: true,
         resizable: false,
         required: false,
@@ -113,7 +113,7 @@ export const WithTrailingIcon: Story = {
         required: false,
         supportingTextEnd: '8/10',
         supportingTextStart: 'Supporting Text',
-        trailingIcon: <span class="material-symbols-outlined">cancel</span>,
+        trailingIcon: <Icon name={'cancel'}/>,
         value: 'My Value'
     },
     render: (args) => {
@@ -132,13 +132,13 @@ export const WithLeadingAndTrailingIcon: Story = {
         error: false,
         focused: false,
         label: 'My Label',
-        leadingIcon: <span class="material-symbols-outlined">favorite</span>,
+        leadingIcon: <Icon name={'favorite'}/>,
         populated: true,
         resizable: false,
         required: false,
         supportingTextEnd: '8/10',
         supportingTextStart: 'Supporting Text',
-        trailingIcon: <span class="material-symbols-outlined">cancel</span>,
+        trailingIcon: <Icon name={'cancel'}/>,
         value: 'My Value'
     },
     render: (args) => {
