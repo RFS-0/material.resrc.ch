@@ -1,9 +1,9 @@
-import {createSignal, JSX, Show, splitProps} from 'solid-js';
-import {FocusRing} from '../../focus';
+import {JSX, Show, splitProps} from 'solid-js';
 import {createHandlers, createRippleEventEmitter, Ripple} from '../../ripple';
 import './styles/suggestion-chip-styles.css';
 import {composeEventHandlers} from '../../controller';
 import {Elevation} from '../../elevation';
+import {focusController as fc} from '../../focus';
 
 export type ButtonSuggestionChipProps = {
     ariaHasPopup?: boolean;
@@ -16,6 +16,8 @@ export type ButtonSuggestionChipProps = {
 } & JSX.HTMLAttributes<HTMLButtonElement>
 
 export const ButtonSuggestionChip = (props: ButtonSuggestionChipProps) => {
+    // noinspection JSUnusedLocalSymbols
+    const focusController = fc;
     const [componentProps, buttonProps] = splitProps(props, [
         'ariaHasPopup',
         'ariaLabel',
@@ -26,7 +28,6 @@ export const ButtonSuggestionChip = (props: ButtonSuggestionChipProps) => {
         'showFocusRing',
     ]);
 
-    const [focus, setFocus] = createSignal(componentProps?.showFocusRing || false);
     const {listen, emit} = createRippleEventEmitter();
 
     const rippleHandlers = createHandlers(emit);
@@ -35,27 +36,13 @@ export const ButtonSuggestionChip = (props: ButtonSuggestionChipProps) => {
         return componentProps?.disableRipple || false;
     }
 
-    const activateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(true);
-    };
-
-    const deactivateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(false);
-    };
-
     return (
         <div
+            use:focusController={{
+                disabled: !componentProps.showFocusRing,
+            }}
             {...rippleHandlers}
             onClick={composeEventHandlers([buttonProps?.onClick, rippleHandlers.onClick])}
-            onFocus={composeEventHandlers([buttonProps?.onfocus, activateFocus])}
-            onBlur={composeEventHandlers([buttonProps?.onblur, deactivateFocus])}
-            onPointerDown={composeEventHandlers([buttonProps?.onPointerDown, deactivateFocus])}
             class={'chip-shared suggestion-chip chip-container'}
             classList={{
                 'disabled': componentProps.disabled,
@@ -70,7 +57,6 @@ export const ButtonSuggestionChip = (props: ButtonSuggestionChipProps) => {
             >
                 <Elevation/>
             </Show>
-            <FocusRing visible={focus()}></FocusRing>
             <Ripple
                 disabled={rippleDisabled()}
                 listen={listen}
@@ -90,4 +76,3 @@ export const ButtonSuggestionChip = (props: ButtonSuggestionChipProps) => {
         </div>
     )
 }
-

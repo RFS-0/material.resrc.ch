@@ -1,12 +1,38 @@
-import { Component } from "solid-js"
+import {Accessor, onCleanup, onMount} from "solid-js"
 import './focus-ring-styles.css'
 
-export type FocusRingProps = {
-  visible: boolean
+export type FocusControllerOptions = {
+    disabled?: boolean
+    inward?: boolean
 }
 
-export const FocusRing: Component<FocusRingProps> = (props) => {
-  return (
-    <span class={`base-focus-ring md3-focus-ring ${props?.visible ? 'md3-focus-ring--visible' : ''}`} ></span>
-  )
+export function focusController(element: HTMLElement, options: Accessor<FocusControllerOptions>) {
+    const opts = options();
+    let focusElement: HTMLDivElement = document.createElement('div');
+    focusElement.setAttribute('focus-ring', '');
+    element.appendChild(focusElement)
+
+    const showFocusRing = () => {
+        if (opts?.disabled) {
+            return;
+        }
+        focusElement.setAttribute('focus-ring-visible', '');
+    };
+
+    const hideFocusRing = () => {
+        focusElement.removeAttribute('focus-ring-visible');
+    }
+
+    onMount(() => {
+        if (opts?.inward) {
+            focusElement.setAttribute('focus-ring-inward', '');
+        }
+        element.addEventListener('focusin', showFocusRing);
+        element.addEventListener('focusout', hideFocusRing);
+        element.addEventListener('pointerdown', hideFocusRing);
+    });
+
+    onCleanup(() => {
+        focusElement.remove()
+    })
 }

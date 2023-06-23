@@ -1,3 +1,6 @@
+import './styles/baseline.css'
+import {FocusControllerOptions} from './focus';
+
 export * from './button'
 export * from './checkbox'
 export * from './chips'
@@ -7,5 +10,13 @@ export * from './divider'
 export * from './elevation'
 export * from './fab'
 export * from './field'
+export * from './focus'
 export * from './iconbutton'
-import './styles/baseline.css'
+
+declare module "solid-js" {
+    namespace JSX {
+        interface Directives {
+            focusController: FocusControllerOptions;
+        }
+    }
+}

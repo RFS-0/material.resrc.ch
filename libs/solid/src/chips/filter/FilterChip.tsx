@@ -1,10 +1,10 @@
-import {createSignal, JSX, onMount, Show, splitProps} from 'solid-js';
-import {FocusRing} from '../../focus';
+import {createSignal, JSX, Show, splitProps} from 'solid-js';
 import {createHandlers, createRippleEventEmitter, Ripple} from '../../ripple';
 import {composeEventHandlers} from '../../controller';
 import {Elevation} from '../../elevation';
 import './styles/filter-chip-styles.css';
 import {createEventDispatcher} from '@solid-primitives/event-dispatcher';
+import {focusController as fc} from '../../focus';
 
 export type FilterChipProps = {
     ariaHasPopup?: boolean;
@@ -22,6 +22,8 @@ export type FilterChipProps = {
 } & JSX.HTMLAttributes<HTMLButtonElement>
 
 export const FilterChip = (props: FilterChipProps) => {
+    // noinspection JSUnusedLocalSymbols
+    const focusController = fc;
     const dispatch = createEventDispatcher(props);
     const [componentProps, buttonProps] = splitProps(props, [
         'ariaHasPopup',
@@ -43,7 +45,6 @@ export const FilterChip = (props: FilterChipProps) => {
 
     const [selected, setSelected] = createSignal(componentProps.selected || false);
 
-    const [focus, setFocus] = createSignal(componentProps?.showFocusRing || false);
 
     const primaryRippleHandler = createRippleEventEmitter();
     const secondaryRippleHandler = createRippleEventEmitter();
@@ -93,27 +94,6 @@ export const FilterChip = (props: FilterChipProps) => {
         }
     }
 
-    const activateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(true);
-    };
-
-    const deactivateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(false);
-    };
-
-    const handleFocus = (e: FocusEvent) => {
-        activateFocus();
-        if (e.target === trailingAction) {
-            trailingAction.focus()
-        }
-    }
-
     const handleRemoveClick = (event: Event) => {
         if (componentProps.disabled) {
             return;
@@ -124,6 +104,9 @@ export const FilterChip = (props: FilterChipProps) => {
 
     return (
         <div
+            use:focusController={{
+                disabled: componentProps.disabled
+            }}
             class={'chip-shared filter-chip chip-container'}
             classList={{
                 'chip-disabled': componentProps.disabled,
@@ -139,7 +122,6 @@ export const FilterChip = (props: FilterChipProps) => {
             >
                 <Elevation/>
             </Show>
-            <FocusRing visible={focus()}></FocusRing>
             <Ripple
                 disabled={rippleDisabled()}
                 listen={primaryRippleHandler.listen}
@@ -149,9 +131,6 @@ export const FilterChip = (props: FilterChipProps) => {
                 {...primaryRippleHandlers}
                 {...buttonProps}
                 onClick={composeEventHandlers([primaryRippleHandlers.onClick, handleClick])}
-                onFocus={composeEventHandlers([handleFocus])}
-                onBlur={composeEventHandlers([deactivateFocus])}
-                onPointerDown={composeEventHandlers([primaryRippleHandlers.onPointerDown, deactivateFocus])}
                 onKeyDown={composeEventHandlers([handleKeyDown])}
                 disabled={componentProps.disabled}
                 aria-label={componentProps?.ariaLabel || ''}
@@ -172,12 +151,14 @@ export const FilterChip = (props: FilterChipProps) => {
             </button>
             <Show when={componentProps.removable}>
                 <button
+                    use:focusController={{
+                        disabled: componentProps.disabled
+                    }}
                     {...trailingRippleHandlers}
                     class="chip-trailing chip-action"
                     disabled={componentProps.disabled}
                     onClick={handleRemoveClick}
                 >
-                    <FocusRing visible={focus()}></FocusRing>
                     <Ripple
                         disabled={rippleDisabled()}
                         listen={secondaryRippleHandler.listen}
@@ -193,4 +174,3 @@ export const FilterChip = (props: FilterChipProps) => {
         </div>
     )
 }
-

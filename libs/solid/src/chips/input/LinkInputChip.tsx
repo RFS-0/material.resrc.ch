@@ -1,8 +1,8 @@
-import {createSignal, JSX, onMount, Show, splitProps} from 'solid-js';
-import {FocusRing} from '../../focus';
+import {JSX, Show, splitProps} from 'solid-js';
 import {createHandlers, createRippleEventEmitter, Ripple} from '../../ripple';
 import {createEventDispatcher} from '@solid-primitives/event-dispatcher';
 import './styles/input-chip-styles.css';
+import {focusController as fc} from '../../focus';
 
 export type LinkInputChipProps = {
     ariaHasPopup?: boolean;
@@ -20,6 +20,8 @@ export type LinkInputChipProps = {
 } & JSX.HTMLAttributes<HTMLAnchorElement>
 
 export const LinkInputChip = (props: LinkInputChipProps) => {
+    // noinspection JSUnusedLocalSymbols
+    const focusController = fc;
     const dispatch = createEventDispatcher(props);
     const [componentProps, linkProps] = splitProps(props, [
         'ariaHasPopup',
@@ -36,8 +38,6 @@ export const LinkInputChip = (props: LinkInputChipProps) => {
 
     let primaryAction: HTMLDivElement | null = null;
     let trailingAction: HTMLDivElement | null = null;
-
-    const [focus, setFocus] = createSignal(componentProps?.showFocusRing || false);
 
     const primaryRippleHandler = createRippleEventEmitter();
     const secondaryRippleHandler = createRippleEventEmitter();
@@ -80,30 +80,6 @@ export const LinkInputChip = (props: LinkInputChipProps) => {
         actionToFocus.focus();
     }
 
-    const handleClick = () => {
-    }
-
-    const activateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(true);
-    };
-
-    const deactivateFocus = () => {
-        if (!componentProps?.showFocusRing) {
-            return;
-        }
-        setFocus(false);
-    };
-
-    const handleFocus = (e: FocusEvent) => {
-        activateFocus();
-        if (e.target === trailingAction) {
-            trailingAction.focus()
-        }
-    }
-
     const handleRemoveClick = (event: Event) => {
         if (componentProps.disabled) {
             return;
@@ -114,6 +90,9 @@ export const LinkInputChip = (props: LinkInputChipProps) => {
 
     return (
         <div
+            use:focusController={{
+                disabled: !componentProps.showFocusRing
+            }}
             class={'chip-shared input-chip chip-container'}
             classList={{
                 'chip-avatar': componentProps.avatar,
@@ -121,7 +100,6 @@ export const LinkInputChip = (props: LinkInputChipProps) => {
             }}
         >
             <span class="chip-outline"></span>
-            <FocusRing visible={focus()}></FocusRing>
             <Ripple
                 disabled={rippleDisabled()}
                 listen={primaryRippleHandler.listen}
@@ -141,7 +119,9 @@ export const LinkInputChip = (props: LinkInputChipProps) => {
                   }
             >
                 <a
+                    {...primaryRippleHandlers}
                     {...linkProps}
+                    onKeyDown={handleKeyDown}
                     aria-label={componentProps?.ariaLabel || ''}
                     aria-haspopup={componentProps?.ariaHasPopup || false}
                     class='chip-primary chip-action'
@@ -156,12 +136,14 @@ export const LinkInputChip = (props: LinkInputChipProps) => {
                 </a>
             </Show>
             <button
+                use:focusController={{
+                    disabled: !componentProps.showFocusRing
+                }}
                 {...trailingRippleHandlers}
                 class="chip-trailing chip-action"
                 disabled={componentProps.disabled}
                 onClick={handleRemoveClick}
             >
-                <FocusRing visible={focus()}></FocusRing>
                 <Ripple
                     disabled={rippleDisabled()}
                     listen={secondaryRippleHandler.listen}
@@ -176,4 +158,3 @@ export const LinkInputChip = (props: LinkInputChipProps) => {
         </div>
     )
 }
-
