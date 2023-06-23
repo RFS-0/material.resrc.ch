@@ -39,10 +39,10 @@
 
 .icon-button--filled-tonal {
     color: var(--_icon-color);
-    --md-ripple-hover-color: var(--_hover-state-layer-color);
-    --md-ripple-hover-opacity: var(--_hover-state-layer-opacity);
-    --md-ripple-pressed-color: var(--_pressed-state-layer-color);
-    --md-ripple-pressed-opacity: var(--_pressed-state-layer-opacity)
+    --ripple-hover-color: var(--_hover-state-layer-color);
+    --ripple-hover-opacity: var(--_hover-state-layer-opacity);
+    --ripple-pressed-color: var(--_pressed-state-layer-color);
+    --ripple-pressed-opacity: var(--_pressed-state-layer-opacity)
 }
 
 .icon-button--filled-tonal:hover {
@@ -80,8 +80,8 @@
 }
 
 .icon-button--toggle-filled-tonal {
-    --md-ripple-hover-color: var(--_toggle-unselected-hover-state-layer-color);
-    --md-ripple-pressed-color: var(--_toggle-unselected-pressed-state-layer-color)
+    --ripple-hover-color: var(--_toggle-unselected-hover-state-layer-color);
+    --ripple-pressed-color: var(--_toggle-unselected-pressed-state-layer-color)
 }
 
 .icon-button--toggle-filled-tonal:not(:disabled) {
@@ -105,8 +105,8 @@
 }
 
 .icon-button--filled-tonal.icon-button--selected {
-    --md-ripple-hover-color: var(--_toggle-selected-hover-state-layer-color);
-    --md-ripple-pressed-color: var(--_toggle-selected-pressed-state-layer-color)
+    --ripple-hover-color: var(--_toggle-selected-hover-state-layer-color);
+    --ripple-pressed-color: var(--_toggle-selected-pressed-state-layer-color)
 }
 
 .icon-button--filled-tonal.icon-button--selected:not(:disabled) {
