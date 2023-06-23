@@ -20,7 +20,7 @@ export const Standalone: Story = {
         href: 'https://blog.resrc.ch'
     },
     render: (args) => <StandardLinkIconButton
-        data-testid="standardIconButtonToggle"
+        data-testid="icon-button"
         {...args}
     />,
 };

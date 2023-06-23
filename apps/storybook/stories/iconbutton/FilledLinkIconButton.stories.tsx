@@ -20,7 +20,7 @@ export const Standalone: Story = {
         href: 'https://blog.resrc.ch'
     },
     render: (args) => <FilledLinkIconButton
-        data-testid="filledLinkIconButtonToggle"
+        data-testid="icon-button"
         {...args}
     />,
 };

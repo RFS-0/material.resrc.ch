@@ -19,7 +19,7 @@ export const Standalone: Story = {
         offIcon: <Icon name={'add'}/>,
     },
     render: (args) => <StandardToggleIconButton
-        data-testid="standardIconButtonToggle"
+        data-testid="icon-button"
         {...args}
     />,
 };

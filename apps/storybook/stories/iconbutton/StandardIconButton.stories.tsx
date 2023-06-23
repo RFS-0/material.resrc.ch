@@ -18,7 +18,7 @@ export const Standalone: Story = {
         icon: <Icon name={'add'}/>,
     },
     render: (args) => <StandardIconButton
-        data-testid="standardIconButton"
+        data-testid="icon-button"
         {...args}
     />,
 };
