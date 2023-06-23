@@ -1,10 +1,9 @@
 import type {Meta, StoryObj} from 'storybook-solidjs';
-import { within, userEvent } from '@storybook/testing-library';
+import {userEvent, within} from '@storybook/testing-library';
 import {Button} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof Button> = {
-    title: 'Button',
     title: 'Design System/Components/Button',
     component: Button,
 };

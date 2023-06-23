@@ -1,29 +1,23 @@
-@import "../styles/baseline.css";
-
-.icon-button-shared {
+.shared-icon-button {
     display: inline-flex;
     outline: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     height: var(--_container-size);
     width: var(--_container-size);
     justify-content: center;
-    --md-focus-ring-shape: var(--_state-layer-shape);
-    --md-focus-ring-shape-start-start: var(--_container-shape-start-start);
-    --md-focus-ring-shape-start-end: var(--_container-shape-start-end);
-    --md-focus-ring-shape-end-end: var(--_container-shape-end-end);
-    --md-focus-ring-shape-end-start: var(--_container-shape-end-start)
+    --focus-ring-shape-start-start: var(--_container-shape-start-start);
+    --focus-ring-shape-start-end: var(--_container-shape-start-end);
+    --focus-ring-shape-end-end: var(--_container-shape-end-end);
+    --focus-ring-shape-end-start: var(--_container-shape-end-start)
 }
 
-.icon-button-shared[disabled] {
-    pointer-events: none;
-}
-
-.icon-button-shared .ripple {
-    z-index: -1
+.shared-icon-button[disabled] {
+    pointer-events: none
 }
 
 .icon-button {
     align-items: center;
+    background: none;
     border: none;
     box-sizing: border-box;
     cursor: pointer;
@@ -42,12 +36,18 @@
 }
 
 .icon-button__icon {
-    --md-icon-size: var(--_icon-size);
-    --md-icon-weight: inherit
+    height: var(--_icon-size);
+    width: var(--_icon-size);
+    --icon-size: var(--_icon-size);
+    --icon-weight: inherit
 }
 
-.md3-icon-button--flip-icon .icon-button__icon {
-    transform: scaleX(-1)
+.ripple-container {
+    z-index: -1;
+    border-start-start-radius: var(--_container-shape-start-start);
+    border-start-end-radius: var(--_container-shape-start-end);
+    border-end-start-radius: var(--_container-shape-end-start);
+    border-end-end-radius: var(--_container-shape-end-end)
 }
 
 .icon-button__icon {

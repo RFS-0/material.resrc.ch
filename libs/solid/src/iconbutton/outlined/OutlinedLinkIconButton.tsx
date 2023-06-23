@@ -1,21 +1,23 @@
 import {Component, JSX, splitProps} from "solid-js";
-import {createHandlers, createRippleEventEmitter, Ripple} from "../ripple";
-import './filled-tonal-icon-button-styles.css';
-import './filled-icon-button-styles.css';
-import {focusController as fc} from '../focus';
+import {createHandlers, createRippleEventEmitter, Ripple} from "../../ripple";
+import {focusController as fc} from '../../focus';
+import './styles/outlined-icon-button-styles.css';
 
-export type FilledTonalLinkIconButtonProps = {
+export type OutlinedLinkIconButtonProps = {
+    ariaHasPopup?: boolean;
+    ariaLabel?: string
     icon: JSX.Element
 } & JSX.AnchorHTMLAttributes<HTMLAnchorElement>
 
-export const FilledTonalLinkIconButton: Component<FilledTonalLinkIconButtonProps> = (props) => {
+export const OutlinedLinkIconButton: Component<OutlinedLinkIconButtonProps> = (props) => {
     // noinspection JSUnusedLocalSymbols
     const focusController = fc;
-    const [iconButtonProps, linkProps] = splitProps(props, [
+    const [componentProps, linkProps] = splitProps(props, [
+        'ariaHasPopup',
+        'ariaLabel',
         'icon',
     ]);
     const {listen, emit} = createRippleEventEmitter();
-
     const rippleHandlers = createHandlers(emit);
 
 
@@ -23,12 +25,12 @@ export const FilledTonalLinkIconButton: Component<FilledTonalLinkIconButtonProps
         <div
             use:focusController={{}}
             {...rippleHandlers}
-            class={`icon-button-shared tonal-icon-button icon-button icon-button--filled-tonal`}
+            class={'shared-icon-button icon-button icon-button--outlined'}
         >
             <Ripple listen={listen} unbounded={true}></Ripple>
             <span class="icon-button__touch"></span>
             <span class="icon-button__icon">
-        {iconButtonProps.icon}
+          {componentProps.icon}
       </span>
             <a
                 {...linkProps}

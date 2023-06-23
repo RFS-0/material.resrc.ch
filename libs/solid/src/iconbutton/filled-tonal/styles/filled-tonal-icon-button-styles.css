@@ -1,15 +1,14 @@
-@import 'shared-icon-button-styles.css';
+@import "../../styles/shared-icon-button-styles.css";
 
-.icon-button-shared.tonal-icon-button {
+.shared-icon-button.icon-button--filled-tonal {
     --_container-color: var(--sys-secondary-container);
     --_container-shape: 9999px;
     --_container-size: 40px;
-    --_state-layer-size: 40px;
-    --_disabled-container-color: var(--sys-on-surface-rgb);
-    --_disabled-icon-color: var(--sys-on-surface-rgb);
+    --_disabled-container-color: var(--sys-on-surface);
+    --_disabled-container-opacity: 0.12;
+    --_disabled-icon-color: var(--sys-on-surface);
+    --_disabled-icon-opacity: 0.38;
     --_focus-icon-color: var(--sys-on-secondary-container);
-    --_focus-state-layer-color: var(--sys-on-secondary-container);
-    --_focus-state-layer-opacity: 0.12;
     --_hover-icon-color: var(--sys-on-secondary-container);
     --_hover-state-layer-color: var(--sys-on-secondary-container);
     --_hover-state-layer-opacity: 0.08;
@@ -20,14 +19,12 @@
     --_pressed-state-layer-opacity: 0.12;
     --_selected-container-color: var(--sys-secondary-container);
     --_toggle-selected-focus-icon-color: var(--sys-on-secondary-container);
-    --_toggle-selected-focus-state-layer-color: var(--sys-on-secondary-container);
     --_toggle-selected-hover-icon-color: var(--sys-on-secondary-container);
     --_toggle-selected-hover-state-layer-color: var(--sys-on-secondary-container);
     --_toggle-selected-icon-color: var(--sys-on-secondary-container);
     --_toggle-selected-pressed-icon-color: var(--sys-on-secondary-container);
     --_toggle-selected-pressed-state-layer-color: var(--sys-on-secondary-container);
     --_toggle-unselected-focus-icon-color: var(--sys-on-surface-variant);
-    --_toggle-unselected-focus-state-layer-color: var(--sys-on-surface-variant);
     --_toggle-unselected-hover-icon-color: var(--sys-on-surface-variant);
     --_toggle-unselected-hover-state-layer-color: var(--sys-on-surface-variant);
     --_toggle-unselected-icon-color: var(--sys-on-surface-variant);
@@ -40,76 +37,94 @@
     --_container-shape-end-start: var(--_container-shape);
 }
 
-.tonal-icon-button.icon-button {
-    background-color: var(--_container-color);
+.icon-button--filled-tonal {
     color: var(--_icon-color);
-    --ripple-focus-state-layer-color: var(--_focus-state-layer-color);
-    --ripple-focus-state-layer-opacity: var(--_focus-state-layer-opacity);
-    --ripple-hover-state-layer-color: var(--_hover-state-layer-color);
-    --ripple-hover-state-layer-opacity: var(--_hover-state-layer-opacity);
-    --ripple-pressed-state-layer-color: var(--_pressed-state-layer-color);
-    --ripple-pressed-state-layer-opacity: var(--_pressed-state-layer-opacity)
+    --ripple-hover-color: var(--_hover-state-layer-color);
+    --ripple-hover-opacity: var(--_hover-state-layer-opacity);
+    --ripple-pressed-color: var(--_pressed-state-layer-color);
+    --ripple-pressed-opacity: var(--_pressed-state-layer-opacity)
 }
 
-.tonal-icon-button.icon-button:hover {
+.icon-button--filled-tonal:hover {
     color: var(--_hover-icon-color)
 }
 
-.tonal-icon-button.icon-button:focus {
+.icon-button--filled-tonal:focus {
     color: var(--_focus-icon-color)
 }
 
-.tonal-icon-button.icon-button:active {
+.icon-button--filled-tonal:active {
     color: var(--_pressed-icon-color)
 }
 
-.tonal-icon-button.icon-button:disabled {
-    background-color: var(--_disabled-container-color);
+.icon-button--filled-tonal:disabled {
     color: var(--_disabled-icon-color)
 }
 
-.tonal-icon-button.icon-button--toggle-filled-tonal {
-    --ripple-focus-color: var(--_toggle-unselected-focus-state-layer-color);
+.icon-button--filled-tonal::before {
+    background-color: var(--_container-color);
+    border-radius: inherit;
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: -1
+}
+
+.icon-button--filled-tonal:disabled::before {
+    background-color: var(--_disabled-container-color);
+    opacity: var(--_disabled-container-opacity)
+}
+
+.icon-button--filled-tonal:disabled .icon {
+    opacity: var(--_disabled-icon-opacity)
+}
+
+.icon-button--toggle-filled-tonal {
     --ripple-hover-color: var(--_toggle-unselected-hover-state-layer-color);
     --ripple-pressed-color: var(--_toggle-unselected-pressed-state-layer-color)
 }
 
-.tonal-icon-button.icon-button--toggle-filled-tonal:not(:disabled) {
-    background-color: var(--_unselected-container-color);
+.icon-button--toggle-filled-tonal:not(:disabled) {
     color: var(--_toggle-unselected-icon-color)
 }
 
-.tonal-icon-button.icon-button--toggle-filled-tonal:not(:disabled):hover {
+.icon-button--toggle-filled-tonal:not(:disabled):hover {
     color: var(--_toggle-unselected-hover-icon-color)
 }
 
-.tonal-icon-button.icon-button--toggle-filled-tonal:not(:disabled):focus {
+.icon-button--toggle-filled-tonal:not(:disabled):focus {
     color: var(--_toggle-unselected-focus-icon-color)
 }
 
-.tonal-icon-button.icon-button--toggle-filled-tonal:not(:disabled):active {
+.icon-button--toggle-filled-tonal:not(:disabled):active {
     color: var(--_toggle-unselected-pressed-icon-color)
 }
 
-.tonal-icon-button.icon-button--selected {
-    --ripple-focus-state-layer-color: var(--_toggle-selected-focus-state-layer-color);
-    --ripple-hover-state-layer-color: var(--_toggle-selected-hover-state-layer-color);
-    --ripple-pressed-state-layer-color: var(--_toggle-selected-pressed-state-layer-color)
+.icon-button--toggle-filled-tonal:not(:disabled)::before {
+    background-color: var(--_unselected-container-color)
 }
 
-.tonal-icon-button.icon-button--selected:not(:disabled) {
-    background-color: var(--_selected-container-color);
+.icon-button--filled-tonal.icon-button--selected {
+    --ripple-hover-color: var(--_toggle-selected-hover-state-layer-color);
+    --ripple-pressed-color: var(--_toggle-selected-pressed-state-layer-color)
+}
+
+.icon-button--filled-tonal.icon-button--selected:not(:disabled) {
     color: var(--_toggle-selected-icon-color)
 }
 
-.tonal-icon-button.icon-button--selected:not(:disabled):hover {
+.icon-button--filled-tonal.icon-button--selected:not(:disabled):hover {
     color: var(--_toggle-selected-hover-icon-color)
 }
 
-.tonal-icon-button.icon-button--selected:not(:disabled):active {
+.icon-button--filled-tonal.icon-button--selected:not(:disabled):focus {
+    color: var(--_toggle-selected-focus-icon-color)
+}
+
+.icon-button--filled-tonal.icon-button--selected:not(:disabled):active {
     color: var(--_toggle-selected-pressed-icon-color)
 }
 
-.tonal-icon-button.icon-button--selected:not(:disabled):focus {
-    color: var(--_toggle-selected-focus-icon-color)
+.icon-button--filled-tonal.icon-button--selected:not(:disabled)::before {
+    background-color: var(--_selected-container-color)
 }
