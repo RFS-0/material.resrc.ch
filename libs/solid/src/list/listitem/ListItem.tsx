@@ -8,6 +8,8 @@ export type ListItemProps = {
     ariaChecked?: boolean;
     ariaSelected?: boolean;
     data: ListItemData;
+    end?: JSX.Element;
+    nonInteractive?: boolean;
     showFocusRing?: boolean;
     start?: JSX.Element;
 } & JSX.HTMLAttributes<HTMLLIElement>;
@@ -19,6 +21,8 @@ export const ListItem = (props: ListItemProps) => {
         'ariaChecked',
         'ariaSelected',
         'data',
+        'end',
+        'nonInteractive',
         'showFocusRing',
         'start',
     ]);
@@ -49,16 +53,19 @@ export const ListItem = (props: ListItemProps) => {
         <li
             ref={listItemElement}
             use:focusController={{
-                disabled: !componentProps.showFocusRing,
+                disabled: !componentProps.showFocusRing ||
+                    componentProps.data.state.disabled ||
+                    componentProps.nonInteractive,
             }}
             {...rippleHandlers}
             {...listItemProps}
             class={'list-item'}
             classList={{
-                'with-one-line': componentProps.data.supportingText === '',
-                'with-two-line': componentProps.data.supportingText !== '' && !componentProps.data.multiLineSupportingText,
-                'with-three-line': componentProps.data.supportingText !== '' && componentProps.data.multiLineSupportingText !== '',
-                'disabled': componentProps.data.state.disabled,
+                'list-item--with-one-line': !componentProps.data.supportingText,
+                'list-item--with-two-line': !!componentProps.data.supportingText && !componentProps.data.multiLineSupportingText,
+                'list-item--with-three-line': !!componentProps.data.supportingText && !!componentProps.data.multiLineSupportingText,
+                'list-item--disabled': componentProps.data.state.disabled,
+                'list-item--noninteractive': componentProps.nonInteractive,
             }}
             aria-checked={componentProps.ariaChecked}
             aria-selected={componentProps.ariaSelected}
@@ -66,15 +73,15 @@ export const ListItem = (props: ListItemProps) => {
             role={listItemProps.role || undefined}
             tabIndex={itemTabIndex()}
         >
-            <div class="content-wrapper">
-                <div class="start">
+            <div class="list-item__content-wrapper">
+                <div class="list-item__start">
                     {componentProps.start}
                 </div>
-                <div class="body">
-                    <span class="label-text">{componentProps.data.headline}</span>
+                <div class="list-item__body">
+                    <span class="list-item__label-text">{componentProps.data.headline}</span>
                     <Show when={componentProps.data.supportingText !== ''}>
                         <span
-                            class={'supporting-text'}
+                            class={'list-item__supporting-text'}
                             classList={{
                                 'supporting-text--multi-line': componentProps.data.multiLineSupportingText !== '',
                             }}
@@ -83,12 +90,23 @@ export const ListItem = (props: ListItemProps) => {
                         </span>
                     </Show>
                 </div>
-                <div class="end">
+                <div class="list-item__end">
                     <Show when={componentProps.data.trailingSupportingText !== ''}>
-                        <span class="trailing-supporting-text">{componentProps.data.trailingSupportingText}</span>
+                        <span
+                            class="list--item__trailing-supporting-text">{componentProps.data.trailingSupportingText}</span>
+                    </Show>
+                    <Show when={componentProps.end}>
+                        {componentProps.end}
                     </Show>
                 </div>
-                <Ripple listen={listen} disabled={componentProps.data.state.disabled} unbounded={true}></Ripple>
+                {/*TODO: ensure ripple is visible, currently it is not because z-index is too low.*/}
+                {/*However, increasing it will make it overlay the underlying element.*/}
+                {/*Wait for updated version of ripple to reevaluate if it still is broken.*/}
+                <Ripple
+                    listen={listen}
+                    disabled={componentProps.nonInteractive || componentProps.data.state.disabled}
+                    unbounded={true}
+                />
             </div>
         </li>
     );
