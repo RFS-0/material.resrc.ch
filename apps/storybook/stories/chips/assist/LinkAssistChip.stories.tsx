@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from 'storybook-solidjs';
-import {LinkAssistChip} from 'material.resrc.ch';
+import {Icon, LinkAssistChip} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof LinkAssistChip> = {
@@ -22,7 +22,7 @@ export const Standalone: Story = {
         {...args}
         data-testid="link-assist-chip"
         label="My Link Assist Chip"
-        icon={<span class="material-symbols-outlined">link</span>}
+        icon={<Icon name="link"/>}
     />,
 };
 
@@ -51,7 +51,7 @@ export const Disabled: Story = {
         {...args}
         label="My Link Assist Chip"
         disabled={args.disabled}
-        icon={<span class="material-symbols-outlined">link</span>}
+        icon={<Icon name="link"/>}
     />,
 };
 
@@ -65,7 +65,7 @@ export const Elevated: Story = {
         data-testid="link-assist-chip"
         label="My Link Assist Chip"
         elevated={args.elevated}
-        icon={<span class="material-symbols-outlined">link</span>}
+        icon={<Icon name="link"/>}
     />,
 };
 
@@ -79,6 +79,6 @@ export const WithFocusRing: Story = {
         data-testid="link-assist-chip"
         label="My Link Assist Chip"
         showFocusRing={args.showFocusRing}
-        icon={<span class="material-symbols-outlined">link</span>}
+        icon={<Icon name="link"/>}
     />,
 };

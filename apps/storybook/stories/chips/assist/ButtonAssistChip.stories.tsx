@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from 'storybook-solidjs';
-import {ButtonAssistChip} from 'material.resrc.ch';
+import {ButtonAssistChip, Icon} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof ButtonAssistChip> = {
@@ -21,7 +21,7 @@ export const Standalone: Story = {
         data-testid="button-assist-chip"
         {...args}
         label="My Button Assist Chip"
-        icon={<span class="material-symbols-outlined">add</span>}
+        icon={<Icon name="add" />}
     />,
 };
 
@@ -47,7 +47,7 @@ export const Disabled: Story = {
         data-testid="button-assist-chip"
         label="My Button Assist Chip"
         disabled={args.disabled}
-        icon={<span class="material-symbols-outlined">add</span>}
+        icon={<Icon name="add" />}
     />,
 };
 
@@ -59,7 +59,7 @@ export const Elevated: Story = {
         data-testid="button-assist-chip"
         label="My Button Assist Chip"
         elevated={args.elevated}
-        icon={<span class="material-symbols-outlined">add</span>}
+        icon={<Icon name="add" />}
     />,
 };
 
@@ -71,6 +71,6 @@ export const WithFocusRing: Story = {
         data-testid="button-assist-chip"
         label="My Button Assist Chip"
         showFocusRing={args.showFocusRing}
-        icon={<span class="material-symbols-outlined">add</span>}
+        icon={<Icon name="add" />}
     />,
 };

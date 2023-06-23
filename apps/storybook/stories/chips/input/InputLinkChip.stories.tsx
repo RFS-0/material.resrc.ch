@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from 'storybook-solidjs';
-import {LinkInputChip} from 'material.resrc.ch';
+import {Icon, LinkInputChip} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof LinkInputChip> = {
@@ -22,7 +22,7 @@ export const Standalone: Story = {
     render: (args) => <LinkInputChip
         data-testid="input-chip"
         {...args}
-        icon={<span class="material-symbols-outlined">link</span>}
+        icon={<Icon name={'link'}/>}
     />,
 };
 
@@ -52,7 +52,7 @@ export const Disabled: Story = {
     render: (args) => <LinkInputChip
         data-testid="input-chip"
         {...args}
-        icon={<span class="material-symbols-outlined">link</span>}
+        icon={<Icon name={'link'}/>}
     />,
 };
 
@@ -65,6 +65,6 @@ export const WithFocusRing: Story = {
     render: (args) => <LinkInputChip
         data-testid="input-chip"
         {...args}
-        icon={<span class="material-symbols-outlined">link</span>}
+        icon={<Icon name={'link'}/>}
     />,
 };

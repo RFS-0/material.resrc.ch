@@ -11,6 +11,7 @@ export * from './elevation'
 export * from './fab'
 export * from './field'
 export * from './focus'
+export * from './icon'
 export * from './iconbutton'
 
 declare module "solid-js" {

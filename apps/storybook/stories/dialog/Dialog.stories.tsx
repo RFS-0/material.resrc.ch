@@ -1,8 +1,7 @@
 import type {Meta, StoryObj} from 'storybook-solidjs';
-import {Button, Dialog, FilterChip} from 'material.resrc.ch';
+import {Button, Dialog, FilterChip, Icon} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 import {createSignal} from 'solid-js';
-import FilterChipStories from '../chips/filter/FilterChip.stories';
 
 const meta: Meta<typeof Dialog> = {
     title: 'Design System/Components/Dialog',
@@ -13,11 +12,10 @@ export default meta;
 type Story = StoryObj<typeof Dialog>;
 
 export const Standalone: Story = {
-    args: {},
-    render: (args) => {
+    render: () => {
 
         const openSignal = createSignal(false);
-        const [open, setOpen] = openSignal;
+        const [, setOpen] = openSignal;
 
         const openModal = () => setOpen(true);
         const closeModal = () => setOpen(false);
@@ -45,11 +43,11 @@ export const Standalone: Story = {
                         <div>
                             <p>Some text describing the dialog</p>
                             <p>Could also make use of other stuff than text like e.g.</p>
-                                <FilterChip
-                                    icon={<span class="material-symbols-outlined">favorite</span>}
-                                    label={'A filter chip'}
-                                />
-                                <Button variant={'filled'} label={'A button'}/>
+                            <FilterChip
+                                icon={<Icon name={'favorite'}/>}
+                                label={'A filter chip'}
+                            />
+                            <Button variant={'filled'} label={'A button'}/>
                         </div>
                     }
                 />
