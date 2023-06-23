@@ -41,7 +41,6 @@ export const Button = (props: ButtonProps) => {
     ]);
 
     const {listen, emit} = createRippleEventEmitter();
-
     const rippleHandlers = createHandlers(emit);
 
     const [selected, setSelected] = createSignal(componentProps?.selected || false);
