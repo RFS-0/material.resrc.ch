@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.29
+
+### Patch Changes
+
+- 0346d89: Implement linear progress
+
 ## 0.0.28
 
 ### Patch Changes
