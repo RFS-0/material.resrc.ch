@@ -26,7 +26,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Implement focus
 - [x] Implement icon
 - [x] Implement icon-button
-- [ ] Implement linear-progress
+- [x] Implement linear-progress
 - [ ] Implement list
 - [ ] Implement menu
 - [ ] Implement radio
