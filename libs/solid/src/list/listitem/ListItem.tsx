@@ -49,7 +49,6 @@ export const ListItem = (props: ListItemProps) => {
             if (!componentProps.data.state.disabled &&
                 componentProps.data.state.focusOnActivation &&
                 componentProps.data.state.active) {
-                console.log('focusOnActivation');
                 listItemElement?.focus();
             }
         });
@@ -58,7 +57,6 @@ export const ListItem = (props: ListItemProps) => {
     const handleClick = (e: Event) => {
         e.stopPropagation();
         dispatch('itemClicked', componentProps.data);
-        console.log('handleClick dispatched', componentProps.data);
     };
 
     return (

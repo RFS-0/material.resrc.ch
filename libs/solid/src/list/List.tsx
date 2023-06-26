@@ -47,14 +47,12 @@ export function handleItemClick(event: CustomEvent<ListItemData>, itemStore: [ge
     const indexOfItemToDeactivate = items.findIndex((item) => item.state.active === true);
     if (indexOfItemToDeactivate !== -1) {
         const itemToDeactivate = items[indexOfItemToDeactivate];
-        console.log('item to deactivate', itemToDeactivate.id);
         const deactivated = {...itemToDeactivate, state: {...itemToDeactivate.state, active: false}}
         setItems((items) => [...items.slice(0, indexOfItemToDeactivate), deactivated, ...items.slice(indexOfItemToDeactivate + 1)]);
     }
     const indexOfItemToActivate = items.findIndex((item) => item.id === clickedItem.id);
     const itemToActivate = items[indexOfItemToActivate];
     const activated = {...itemToActivate, state: {...itemToActivate.state, active: true}}
-    console.log('item activated', activated.id);
     setItems((items) => [...items.slice(0, indexOfItemToActivate), activated, ...items.slice(indexOfItemToActivate + 1)]);
 }
 

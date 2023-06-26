@@ -50,7 +50,6 @@ export const Standalone: Story = {
                     data-testid={item.id}
                     data={item}
                     showFocusRing={true}
-                    onClick={() => console.log('click')}
                     onItemClicked={(item) => handleItemClick(item, items)}
                 />
                 }
