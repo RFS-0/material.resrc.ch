@@ -94,7 +94,7 @@ export const Dialog = (props: DialogProps) => {
                     class={'content'}
                 >
                     <Show when={!!componentProps.supportingText}>
-                        <div class={'supporting-text'}>
+                        <div class={'list-item__supporting-text'}>
                             {componentProps.supportingText}
                         </div>
                     </Show>

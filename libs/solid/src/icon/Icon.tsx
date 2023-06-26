@@ -7,6 +7,7 @@ export type IconProps = {
 export const Icon = (props: IconProps) => {
     return (
         <span
+            {...props}
             class={'base-icon'}
         >
             {props.name}
