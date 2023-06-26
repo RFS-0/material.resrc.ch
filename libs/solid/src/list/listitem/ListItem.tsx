@@ -3,6 +3,8 @@ import {createEffect, JSX, onMount, Show, splitProps} from 'solid-js';
 import {createHandlers, createRippleEventEmitter, Ripple} from '../../ripple';
 import {focusController as fc} from '../../focus';
 import './styles/list-item-styles.css';
+import {composeEventHandlers} from '../../controller';
+import {createEventDispatcher} from '@solid-primitives/event-dispatcher';
 
 export type ListItemProps = {
     ariaChecked?: boolean;
@@ -12,16 +14,19 @@ export type ListItemProps = {
     nonInteractive?: boolean;
     showFocusRing?: boolean;
     start?: JSX.Element;
+    onItemClicked?: (evt: CustomEvent<ListItemData>) => void;
 } & JSX.HTMLAttributes<HTMLLIElement>;
 
 export const ListItem = (props: ListItemProps) => {
     // noinspection JSUnusedLocalSymbols
     const focusController = fc;
+    const dispatch = createEventDispatcher(props);
     const [componentProps, listItemProps] = splitProps(props, [
         'ariaChecked',
         'ariaSelected',
         'data',
         'end',
+        'onItemClicked',
         'nonInteractive',
         'showFocusRing',
         'start',
@@ -44,10 +49,17 @@ export const ListItem = (props: ListItemProps) => {
             if (!componentProps.data.state.disabled &&
                 componentProps.data.state.focusOnActivation &&
                 componentProps.data.state.active) {
+                console.log('focusOnActivation');
                 listItemElement?.focus();
             }
         });
     })
+
+    const handleClick = (e: Event) => {
+        e.stopPropagation();
+        dispatch('itemClicked', componentProps.data);
+        console.log('handleClick dispatched', componentProps.data);
+    };
 
     return (
         <li
@@ -67,6 +79,14 @@ export const ListItem = (props: ListItemProps) => {
                 'list-item--disabled': componentProps.data.state.disabled,
                 'list-item--noninteractive': componentProps.nonInteractive,
             }}
+            onClick={
+                composeEventHandlers([
+                        listItemProps?.onClick,
+                        rippleHandlers.onClick,
+                        handleClick
+                    ]
+                )
+            }
             aria-checked={componentProps.ariaChecked}
             aria-selected={componentProps.ariaSelected}
             id={componentProps.data.id}

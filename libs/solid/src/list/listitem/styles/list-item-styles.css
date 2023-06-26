@@ -222,7 +222,7 @@
     padding-block-start: calc((var(--_list-item-label-text-line-height) - var(--_list-item-trailing-supporting-text-line-height)) / 2);
 }
 
-.list-item .focus-ring {
+.list-item [focus-ring] {
     z-index: 1;
 }
 

@@ -3,7 +3,7 @@ import {Checkbox, Icon, ListItem} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 
 const meta: Meta<typeof ListItem> = {
-    title: 'Design System/Components/ListItem',
+    title: 'Design System/Components/List/ListItem',
     component: ListItem,
 };
 
@@ -57,6 +57,7 @@ export const WithEnd: Story = {
                 }
                 // TODO: check why check box does not get the click event
                 end={<Checkbox/>}
+                showFocusRing={true}
             />
         )
     }

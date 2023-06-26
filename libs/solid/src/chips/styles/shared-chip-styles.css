@@ -129,6 +129,7 @@
 .chip-icon {
     align-self: center;
     display: flex;
+    fill: currentColor;
     position: relative;
 }
 
