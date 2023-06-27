@@ -1,5 +1,5 @@
 .list-shared {
-    --_container-color:  var(--sys-surface);
+    --_container-color: var(--list-container-color, var(--sys-surface));
     color: unset
 }
 

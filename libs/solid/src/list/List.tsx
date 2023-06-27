@@ -19,6 +19,7 @@ export type ListProps = {
     items: [get: Store<ListItemData[]>, set: SetStoreFunction<ListItemData[]>];
     itemRenderer: (item: ListItemData) => JSX.Element;
     tabIndex?: number;
+    type?: 'list' | 'menu';
 } & JSX.HTMLAttributes<HTMLUListElement>;
 
 
@@ -62,6 +63,7 @@ export const List = (props: ListProps) => {
         'items',
         'itemRenderer',
         'tabIndex',
+        'type',
     ]);
 
     const [items, setItems] = componentProps.items;
@@ -260,7 +262,7 @@ export const List = (props: ListProps) => {
         <ul
             ref={listElement}
             class={'list-shared list'}
-            role={'list'}
+            role={componentProps?.type || undefined}
             {...listProps}
             tabIndex={componentProps.tabIndex || 0}
             onKeyDown={handleKeydown}

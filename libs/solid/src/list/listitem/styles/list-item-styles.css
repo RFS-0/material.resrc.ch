@@ -1,5 +1,5 @@
 .list-item {
-    --_list-item-container-color: var(--sys-surface);
+    --_list-item-container-color: var(--list-item-list-item-container-color), var(--sys-surface));
     --_list-item-container-shape: 0px;
     --_list-item-disabled-label-text-color: var(--sys-on-surface);
     --_list-item-disabled-label-text-opacity: 0.3;

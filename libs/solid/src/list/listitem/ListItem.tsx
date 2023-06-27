@@ -69,7 +69,7 @@ export const ListItem = (props: ListItemProps) => {
             }}
             {...rippleHandlers}
             {...listItemProps}
-            class={'list-item'}
+            class={['list-item', props.class].join(' ')}
             classList={{
                 'list-item--with-one-line': !componentProps.data.supportingText,
                 'list-item--with-two-line': !!componentProps.data.supportingText && !componentProps.data.multiLineSupportingText,
