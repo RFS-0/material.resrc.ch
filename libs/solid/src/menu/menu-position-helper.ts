@@ -39,7 +39,7 @@ export type SurfacePositionHelperProps = {
   /**
    * Whether or not the surface should be "open" and visible
    */
-  isOpen: boolean;
+  isOpen: Accessor<boolean>;
   /**
    * The number of pixels in which to offset from the inline axis relative to
    * logical property.
@@ -205,8 +205,6 @@ export class SurfacePositionHelper {
       inlineOutOfBoundsCorrection;
 
     // Whether or not to apply the height of the anchor
-    console.log('anchor', anchorEl)
-    console.log('surface', surfaceEl)
     const blockAnchorOffset = isOneBlockEnd * anchorRect.height + yOffset;
     // The absolute block position of the anchor relative to window
     const blockTopLayerOffset = isSurfaceBlockStart * anchorRect.top

@@ -62,7 +62,7 @@ export const Standalone: Story = {
                 />
 
                 <Menu
-                    menuProps={{
+                    positionHelperProps={{
                         anchorEl: () => menuAnchor,
                         isOpen: menuOpen(),
                     }}
@@ -75,6 +75,7 @@ export const Standalone: Story = {
                         onCloseMenu={() => setMenuOpen(false)}
                     />
                     }
+                    open={[menuOpen, setMenuOpen]}
                 />
             </div>
         )

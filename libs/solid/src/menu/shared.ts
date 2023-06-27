@@ -46,3 +46,21 @@ export function isClosableKey(code: string):
     code is Values<typeof KEYDOWN_CLOSE_KEYS> {
     return Object.values(KEYDOWN_CLOSE_KEYS).some(value => (value === code));
 }
+
+export function isElementInSubtree(
+    target: EventTarget, container: EventTarget) {
+    // Dispatch a composed, bubbling event to check its path to see if the
+    // newly-focused element is contained in container's subtree
+    const focusEv = new Event('md-contains', {bubbles: true, composed: true});
+    let composedPath: EventTarget[] = [];
+    const listener = (ev: Event) => {
+        composedPath = ev.composedPath();
+    };
+
+    container.addEventListener('md-contains', listener);
+    target.dispatchEvent(focusEv);
+    container.removeEventListener('md-contains', listener);
+
+    const isContained = composedPath.length > 0;
+    return isContained;
+}
