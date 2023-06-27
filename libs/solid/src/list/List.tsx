@@ -1,5 +1,6 @@
 import {JSX, splitProps} from 'solid-js';
 import {SetStoreFunction, Store} from 'solid-js/store';
+import './styles/list-styles.css'
 
 export type ListItemData = {
     headline?: string
@@ -258,7 +259,7 @@ export const List = (props: ListProps) => {
     return (
         <ul
             ref={listElement}
-            class={'list'}
+            class={'list-shared list'}
             role={'list'}
             {...listProps}
             tabIndex={componentProps.tabIndex || 0}
