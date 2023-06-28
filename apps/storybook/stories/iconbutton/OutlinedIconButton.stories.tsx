@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<typeof OutlinedIconButton>;
 
 export const Standalone: Story = {
-    storyName: 'OutlinedIconButton',
+    name: 'OutlinedIconButton',
     args: {
         ariaHasPopup: false,
         ariaLabel: 'My OutlinedIconButton',

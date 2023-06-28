@@ -12,7 +12,7 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const ButtonStory: Story = {
-    storyName: 'Button',
+    name: 'Button',
     args: {
         ariaHasPopup: false,
         ariaLabel: 'My Button',

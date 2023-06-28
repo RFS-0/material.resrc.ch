@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<typeof StandardToggleIconButton>;
 
 export const Standalone: Story = {
-    storyName: 'StandardToggleIconButton',
+    name: 'StandardToggleIconButton',
     args: {
         ariaHasPopup: false,
         ariaLabel: 'My StandardToggleIconButton',
