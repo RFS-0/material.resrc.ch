@@ -62,9 +62,9 @@ export const Standalone: Story = {
                 />
 
                 <Menu
-                    positionHelperProps={{
+                    positionHelper={{
                         anchorEl: () => menuAnchor,
-                        isOpen: menuOpen(),
+                        isOpen: menuOpen,
                     }}
                     items={[items[0], items[1]]}
                     itemRenderer={(item) => <MenuItem
@@ -72,7 +72,6 @@ export const Standalone: Story = {
                         data={item}
                         showFocusRing={true}
                         onItemClicked={(item) => handleItemClick(item, items)}
-                        onCloseMenu={() => setMenuOpen(false)}
                     />
                     }
                     open={[menuOpen, setMenuOpen]}
