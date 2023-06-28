@@ -66,6 +66,7 @@ export const ListItem = (props: ListItemProps) => {
                 disabled: !componentProps.showFocusRing ||
                     componentProps.data.state.disabled ||
                     componentProps.nonInteractive,
+                inward: true
             }}
             {...rippleHandlers}
             {...listItemProps}
