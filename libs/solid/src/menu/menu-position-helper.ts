@@ -6,66 +6,14 @@ import {Accessor, createSignal, JSX, Setter} from "solid-js";
 export type Corner = 'END_START' | 'END_END' | 'START_START' | 'START_END';
 
 export type SurfacePositionHelperProps = {
-  /**
-   * The corner of the anchor to align the surface's position.
-   */
   anchorCorner: Corner;
-  /**
-   * The corner of the surface to align to the given anchor corner.
-   */
   menuCorner: Corner;
-  /**
-   * The HTMLElement reference of the surface to be positioned.
-   */
   surfaceEl: () => HTMLElement | null;
-  /**
-   * The HTMLElement reference of the anchor to align to.
-   */
   anchorEl: () => HTMLElement;
-  /**
-   * Whether or not the calculation should be relative to the top layer rather
-   * than relative to the parent of the anchor.
-   *
-   * Examples for `isTopLayer:true`:
-   *
-   * - If there is no `position:relative` in the given parent tree and the
-   *   surface is `position:absolute`
-   * - If the surface is `position:fixed`
-   * - If the surface is in the "top layer"
-   * - The anchor and the surface do not share a common `position:relative`
-   *   ancestor
-   */
   isTopLayer: boolean;
-  /**
-   * Whether or not the surface should be "open" and visible
-   */
   isOpen: Accessor<boolean>;
-  /**
-   * The number of pixels in which to offset from the inline axis relative to
-   * logical property.
-   *
-   * Positive is right in LTR and left in RTL.
-   */
   xOffset: number;
-  /**
-   * The number of pixes in which to offset the block axis.
-   *
-   * Positive is down and negative is up.
-   */
   yOffset: number;
-  /**
-   * A function to call after the surface has been positioned.
-   */
-  onOpen: () => void;
-  /**
-   * A function to call before the surface should be closed. (A good time to
-   * perform animations while the surface is still visible)
-   */
-  beforeClose: () => Promise<void>;
-  /**
-   * A function to call after the surface has been closed.
-   */
-  onClose: () => void;
 }
 
 export class SurfacePositionHelper {
@@ -75,7 +23,7 @@ export class SurfacePositionHelper {
   private setContainerStylesInternal: Setter<JSX.CSSProperties>;
 
   constructor(
-    private readonly props: SurfacePositionHelperProps,
+    readonly props: SurfacePositionHelperProps,
   ) {
     [this.surfaceStylesInternal, this.setSurfaceStylesInternal] = createSignal<JSX.CSSProperties>({
       display: 'none',
@@ -85,12 +33,6 @@ export class SurfacePositionHelper {
     });
   }
 
-  /**
-   * Calculates the surface's new position required so that the surface's
-   * `surfaceCorner` aligns to the anchor's `anchorCorner` while keeping the
-   * surface inside the window viewport. This positioning also respects RTL by
-   * checking `getComputedStyle()` on the surface element.
-   */
   async position() {
     const {
       surfaceEl: surfacElRaw,
