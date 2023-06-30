@@ -28,14 +28,23 @@ export const ListItem = (props: ListItemProps) => {
         'end',
         'onItemClicked',
         'nonInteractive',
+        'ref',
         'showFocusRing',
         'start',
     ]);
 
-    const {listen, emit} = createRippleEventEmitter();
-    const rippleHandlers = createHandlers(emit);
-
     let listItemElement: HTMLLIElement | null = null;
+
+    const refCallback = (el: HTMLLIElement) => {
+        listItemElement = el;
+        if (typeof componentProps.ref === 'function') {
+            componentProps.ref(el);
+        }
+    }
+
+    const {listen, emit} = createRippleEventEmitter();
+
+    const rippleHandlers = createHandlers(emit);
 
     const itemTabIndex = () => {
         if (componentProps.data.state.active) {
@@ -49,7 +58,7 @@ export const ListItem = (props: ListItemProps) => {
             if (!componentProps.data.state.disabled &&
                 componentProps.data.state.focusOnActivation &&
                 componentProps.data.state.active) {
-                listItemElement?.focus();
+                listItemElement.focus();
             }
         });
     })
@@ -61,15 +70,16 @@ export const ListItem = (props: ListItemProps) => {
 
     return (
         <li
-            ref={listItemElement}
+            {...listItemProps}
+            ref={refCallback}
             use:focusController={{
                 disabled: !componentProps.showFocusRing ||
                     componentProps.data.state.disabled ||
                     componentProps.nonInteractive,
+                inward: true
             }}
             {...rippleHandlers}
-            {...listItemProps}
-            class={'list-item'}
+            class={['list-item', props.class].join(' ')}
             classList={{
                 'list-item--with-one-line': !componentProps.data.supportingText,
                 'list-item--with-two-line': !!componentProps.data.supportingText && !componentProps.data.multiLineSupportingText,

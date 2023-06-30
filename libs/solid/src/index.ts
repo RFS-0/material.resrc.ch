@@ -15,6 +15,7 @@ export * from './icon'
 export * from './iconbutton'
 export * from './linearprogress'
 export * from './list'
+export * from './menu'
 
 declare module "solid-js" {
     namespace JSX {

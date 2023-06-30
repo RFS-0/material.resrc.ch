@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<typeof FilledLinkIconButton>;
 
 export const Standalone: Story = {
-    storyName: 'FilledLinkIconButton',
+    name: 'FilledLinkIconButton',
     args: {
         ariaHasPopup: false,
         ariaLabel: 'My FilledLinkIconButton',

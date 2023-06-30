@@ -1,0 +1,16 @@
+.list-shared {
+    --_container-color: var(--list-container-color, var(--sys-surface));
+    color: unset
+}
+
+.list-shared.list {
+    background-color: var(--_container-color);
+    border-radius: inherit;
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    min-width: inherit;
+    outline: none;
+    padding: 8px 0;
+    position: relative
+}

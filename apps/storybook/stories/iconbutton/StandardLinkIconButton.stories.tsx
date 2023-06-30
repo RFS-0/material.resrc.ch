@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<typeof StandardLinkIconButton>;
 
 export const Standalone: Story = {
-    storyName: 'StandardLinkIconButton',
+    name: 'StandardLinkIconButton',
     args: {
         ariaHasPopup: false,
         ariaLabel: 'My StandardLinkIconButton',

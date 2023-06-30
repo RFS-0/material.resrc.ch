@@ -1,5 +1,6 @@
 import {JSX, splitProps} from 'solid-js';
 import {SetStoreFunction, Store} from 'solid-js/store';
+import './styles/list-styles.css'
 
 export type ListItemData = {
     headline?: string
@@ -18,6 +19,7 @@ export type ListProps = {
     items: [get: Store<ListItemData[]>, set: SetStoreFunction<ListItemData[]>];
     itemRenderer: (item: ListItemData) => JSX.Element;
     tabIndex?: number;
+    type?: 'list' | 'menu';
 } & JSX.HTMLAttributes<HTMLUListElement>;
 
 
@@ -43,17 +45,62 @@ type ItemRecord = {
 
 export function handleItemClick(event: CustomEvent<ListItemData>, itemStore: [get: Store<ListItemData[]>, set: SetStoreFunction<ListItemData[]>]) {
     const clickedItem = event.detail;
+    const items = itemStore[0];
+    const itemToDeactivate = items.find((item) => item.state.active === true);
+    if (itemToDeactivate) {
+        deactivateItem(itemToDeactivate, itemStore);
+    }
+    activateItem(clickedItem, itemStore);
+}
+
+export function deactivateItem(itemToDeactivate: ListItemData, itemStore: [get: Store<ListItemData[]>, set: SetStoreFunction<ListItemData[]>]) {
     const [items, setItems] = itemStore;
-    const indexOfItemToDeactivate = items.findIndex((item) => item.state.active === true);
+    const indexOfItemToDeactivate = items.findIndex((item) => item.id === itemToDeactivate.id);
     if (indexOfItemToDeactivate !== -1) {
         const itemToDeactivate = items[indexOfItemToDeactivate];
         const deactivated = {...itemToDeactivate, state: {...itemToDeactivate.state, active: false}}
         setItems((items) => [...items.slice(0, indexOfItemToDeactivate), deactivated, ...items.slice(indexOfItemToDeactivate + 1)]);
     }
-    const indexOfItemToActivate = items.findIndex((item) => item.id === clickedItem.id);
-    const itemToActivate = items[indexOfItemToActivate];
+}
+
+export function activateItem(itemToActivate: ListItemData, itemStore: [get: Store<ListItemData[]>, set: SetStoreFunction<ListItemData[]>]) {
+    console.log('activateItem', itemToActivate);
+    const [items, setItems] = itemStore;
+    const indexOfItemToActivate = items.findIndex((item) => item.id === itemToActivate.id);
     const activated = {...itemToActivate, state: {...itemToActivate.state, active: true}}
     setItems((items) => [...items.slice(0, indexOfItemToActivate), activated, ...items.slice(indexOfItemToActivate + 1)]);
+}
+
+export function getActiveItem(items: ListItemData[]) {
+    for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        if (item.state.active) {
+            return {
+                item,
+                index: i,
+            } as ItemRecord;
+        }
+    }
+    return null;
+}
+
+export function getFirstActivatableItem<T extends unknown & ListItemData>(items: T[]): T {
+    for (const item of items) {
+        if (!item.state.disabled) {
+            return item;
+        }
+    }
+    return null;
+}
+
+export function getLastActivatableItem<T extends unknown & ListItemData>(items: T[]) {
+    for (let i = items.length - 1; i >= 0; i--) {
+        const item = items[i];
+        if (!item.state.disabled) {
+            return item;
+        }
+    }
+    return null;
 }
 
 export const List = (props: ListProps) => {
@@ -61,6 +108,7 @@ export const List = (props: ListProps) => {
         'items',
         'itemRenderer',
         'tabIndex',
+        'type',
     ]);
 
     const [items, setItems] = componentProps.items;
@@ -81,19 +129,6 @@ export const List = (props: ListProps) => {
 
     let listElement: HTMLUListElement | null = null;
 
-    const getActiveItem = () => {
-        for (let i = 0; i < items.length; i++) {
-            const item = items[i];
-            if (item.state.active) {
-                return {
-                    item,
-                    index: i,
-                } as ItemRecord;
-            }
-        }
-        return null;
-    }
-
     const getNextItem = (index: number) => {
         for (let i = 1; i < items.length; i++) {
             const nextIndex = (i + index) % items.length;
@@ -106,17 +141,8 @@ export const List = (props: ListProps) => {
         return items[index] ? items[index] : null;
     }
 
-    const getFirstActivatableItem = () => {
-        for (const item of items) {
-            if (!item.state.disabled) {
-                return item;
-            }
-        }
-        return null;
-    }
-
     const activateFirstItem = () => {
-        const firstItem = getFirstActivatableItem();
+        const firstItem = getFirstActivatableItem(items);
         if (firstItem) {
             updateItem(
                 firstItem,
@@ -219,7 +245,7 @@ export const List = (props: ListProps) => {
         if (!items.length) {
             return;
         }
-        const activeItemRecord = getActiveItem();
+        const activeItemRecord = getActiveItem(items);
         if (activeItemRecord) {
             updateItemRecord(
                 activeItemRecord,
@@ -258,8 +284,8 @@ export const List = (props: ListProps) => {
     return (
         <ul
             ref={listElement}
-            class={'list'}
-            role={'list'}
+            class={'list-shared list'}
+            role={componentProps?.type || undefined}
             {...listProps}
             tabIndex={componentProps.tabIndex || 0}
             onKeyDown={handleKeydown}

@@ -1,6 +1,6 @@
 import {createEventBus, Emit, EventBus, Listen} from '@solid-primitives/event-bus';
 import {createSignal, JSX, ParentComponent, ParentProps} from 'solid-js';
-import { createAnimationSignal, Easing } from "../motion";
+import {createAnimationSignal, EASING} from "../motion";
 import './ripple-styles.css';
 
 enum State {
@@ -163,7 +163,6 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
             const pointerEvent = positionEvent as Event & Record<'pageX', number> & Record<'pageY', number>;
             startPoint = getNormalizedPointerEventCoords(pointerEvent);
         } else {
-            console.log('no position event');
             startPoint = {
                 x: width / 2,
                 y: height / 2,
@@ -202,7 +201,7 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
             {
                 pseudoElement: PRESS_PSEUDO,
                 duration: PRESS_GROW_MS,
-                easing: Easing.STANDARD,
+                easing: EASING.STANDARD,
                 fill: ANIMATION_FILL,
             });
 

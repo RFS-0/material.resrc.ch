@@ -1,0 +1,60 @@
+.menu__container {
+    position: absolute;
+    min-width: 300px;
+}
+
+.menu-shared {
+    --_container-color: var(--sys-surface-container);
+    --_container-elevation: 2;
+    --_container-shadow-color: var(--sys-shadow);
+    --_container-shape: 4px;
+    --list-container-color: var(--_container-color);
+    --elevation-level: var(--_container-elevation);
+    --elevation-shadow-color: var(--_container-shadow-color);
+    --focus-ring-shape-start-start: var(--md-focus-ring-shape, var(--_container-shape));
+    --focus-ring-shape-start-end: var(--md-focus-ring-shape, var(--_container-shape));
+    --focus-ring-shape-end-end: var(--md-focus-ring-shape, var(--_container-shape));
+    --focus-ring-shape-end-start: var(--md-focus-ring-shape, var(--_container-shape));
+}
+
+.menu-shared.menu {
+    border-radius: var(--_container-shape);
+    display: none;
+    opacity: 0;
+    z-index: 20;
+    position: relative;
+    user-select: none;
+    max-height: inherit;
+    min-width: inherit;
+}
+
+.menu.menu--fixed {
+    position: fixed;
+}
+
+.menu .list {
+    height: inherit;
+    max-height: inherit;
+    display: block;
+    overflow: auto;
+    min-width: inherit;
+    border-radius: inherit;
+}
+
+.menu.menu--has-overflow .list {
+    overflow: visible;
+}
+
+.menu.menu--animating .list {
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.menu.menu--animating ul .menu__item--hidden {
+    opacity: 0;
+}
+
+.menu li {
+    height: inherit;
+    max-height: inherit;
+}
