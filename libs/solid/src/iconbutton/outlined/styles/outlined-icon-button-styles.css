@@ -68,7 +68,7 @@
     opacity: var(--_disabled-unselected-outline-opacity)
 }
 
-.icon-button--outlined:disabled .icon {
+.icon-button--outlined:disabled .radio__icon {
     opacity: var(--_disabled-icon-opacity)
 }
 

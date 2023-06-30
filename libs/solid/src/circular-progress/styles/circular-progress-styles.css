@@ -23,16 +23,23 @@
     margin: 4px;
 }
 
-.circular-progress, .circular-progress-spinner, .circular-progress-left, .circular-progress-right, .circular-progress-circle, svg, .circular-progress-track, .circular-progress-progress {
+.circular-progress,
+.circular-progress-spinner,
+.circular-progress-left,
+.circular-progress-right,
+.circular-progress-circle,
+.circular-progress svg,
+.circular-progress-track,
+.circular-progress-progress {
     position: absolute;
     inset: 0;
 }
 
-svg {
+.circular-progress svg {
     transform: rotate(-90deg);
 }
 
-circle {
+.circular-progress circle {
     cx: 50%;
     cy: 50%;
     r: calc(50% * (1 - var(--_active-indicator-width) / 100));
