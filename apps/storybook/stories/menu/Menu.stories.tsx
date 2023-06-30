@@ -24,7 +24,6 @@ export const Standalone: Story = {
                     focusOnActivation: true,
                     selected: false,
                 },
-                focus: () => console.log('focus'),
             },
             {
                 id: 'menu-item-2',
@@ -35,7 +34,6 @@ export const Standalone: Story = {
                     focusOnActivation: true,
                     selected: false,
                 },
-                focus: () => console.log('focus'),
             },
             {
                 id: 'menu-item-3',
@@ -75,6 +73,8 @@ export const Standalone: Story = {
                     />
                     }
                     open={[menuOpen, setMenuOpen]}
+                    stayOpenOnFocusout={true}
+                    typeaheadActive={true}
                 />
             </div>
         )

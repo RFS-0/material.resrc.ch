@@ -34,6 +34,18 @@ export class CloseMenuEvent<T extends Reason = DefaultReasons> extends Event {
     }
 }
 
+export class DeactivateTypeaheadEvent extends Event {
+    constructor() {
+        super('deactivate-typeahead', {bubbles: true, composed: true});
+    }
+}
+
+export class ActivateTypeaheadEvent extends Event {
+    constructor() {
+        super('activate-typeahead', {bubbles: true, composed: true});
+    }
+}
+
 export const KEYDOWN_CLOSE_KEYS = {
     ESCAPE: 'Escape',
     SPACE: SELECTION_KEY.SPACE,
@@ -60,6 +72,5 @@ export function isElementInSubtree(target: EventTarget, container: EventTarget) 
     target.dispatchEvent(focusEv);
     container.removeEventListener('contains', listener);
 
-    const isContained = composedPath.length > 0;
-    return isContained;
+    return composedPath.length > 0;
 }

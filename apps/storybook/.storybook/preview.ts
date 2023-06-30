@@ -9,6 +9,9 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    options: {
+      enableShortcuts: false,
+    }
   },
 };
 

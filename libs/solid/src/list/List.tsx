@@ -45,7 +45,7 @@ type ItemRecord = {
 
 export function handleItemClick(event: CustomEvent<ListItemData>, itemStore: [get: Store<ListItemData[]>, set: SetStoreFunction<ListItemData[]>]) {
     const clickedItem = event.detail;
-    const [items, setItems] = itemStore;
+    const items = itemStore[0];
     const itemToDeactivate = items.find((item) => item.state.active === true);
     if (itemToDeactivate) {
         deactivateItem(itemToDeactivate, itemStore);
@@ -64,6 +64,7 @@ export function deactivateItem(itemToDeactivate: ListItemData, itemStore: [get: 
 }
 
 export function activateItem(itemToActivate: ListItemData, itemStore: [get: Store<ListItemData[]>, set: SetStoreFunction<ListItemData[]>]) {
+    console.log('activateItem', itemToActivate);
     const [items, setItems] = itemStore;
     const indexOfItemToActivate = items.findIndex((item) => item.id === itemToActivate.id);
     const activated = {...itemToActivate, state: {...itemToActivate.state, active: true}}
@@ -83,7 +84,7 @@ export function getActiveItem(items: ListItemData[]) {
     return null;
 }
 
-export function getFirstActivatableItem(items: ListItemData[]) {
+export function getFirstActivatableItem<T extends unknown & ListItemData>(items: T[]): T {
     for (const item of items) {
         if (!item.state.disabled) {
             return item;
@@ -92,7 +93,7 @@ export function getFirstActivatableItem(items: ListItemData[]) {
     return null;
 }
 
-export function getLastActivatableItem(items: ListItemData[]) {
+export function getLastActivatableItem<T extends unknown & ListItemData>(items: T[]) {
     for (let i = items.length - 1; i >= 0; i--) {
         const item = items[i];
         if (!item.state.disabled) {

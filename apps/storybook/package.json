@@ -4,23 +4,24 @@
     "url": "https://github.com/RFS-0/material.resrc.ch/issues"
   },
   "dependencies": {
+    "@storybook/manager-api": "^7.0.24",
     "material.resrc.ch": "workspace:*"
   },
   "description": "A SolidJS Port of Material 3",
   "devDependencies": {
-    "@storybook/addon-essentials": "^7.0.20",
-    "@storybook/addon-interactions": "^7.0.20",
-    "@storybook/addon-links": "^7.0.20",
-    "@storybook/blocks": "^7.0.20",
-    "@storybook/testing-library": "^0.0.14-next.2",
+    "@storybook/addon-essentials": "^7.0.24",
+    "@storybook/addon-interactions": "^7.0.24",
+    "@storybook/addon-links": "^7.0.24",
+    "@storybook/blocks": "^7.0.24",
+    "@storybook/testing-library": "0.0.14-next.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook": "^7.0.20",
-    "storybook-solidjs": "^1.0.0-beta.2",
-    "storybook-solidjs-vite": "^1.0.0-beta.2",
-    "typescript": "^5.1.3",
-    "vite": "^4.1.1",
-    "vite-plugin-solid": "^2.5.0"
+    "storybook": "^7.0.24",
+    "storybook-solidjs": "1.0.0-beta.2",
+    "storybook-solidjs-vite": "1.0.0-beta.2",
+    "typescript": "^5.1.6",
+    "vite": "^4.3.9",
+    "vite-plugin-solid": "^2.7.0"
   },
   "homepage": "https://github.com/RFS-0/material.resrc.ch#readme",
   "keywords": [

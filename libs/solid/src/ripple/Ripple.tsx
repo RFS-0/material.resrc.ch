@@ -163,7 +163,6 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
             const pointerEvent = positionEvent as Event & Record<'pageX', number> & Record<'pageY', number>;
             startPoint = getNormalizedPointerEventCoords(pointerEvent);
         } else {
-            console.log('no position event');
             startPoint = {
                 x: width / 2,
                 y: height / 2,

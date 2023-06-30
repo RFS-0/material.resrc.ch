@@ -49,7 +49,7 @@ export const MenuItem = (props: MenuItemProps) => {
     return (
         <ListItem
             {...menuItemProps}
-            ref={(el) => (menuItem = el)}
+            ref={menuItem}
             data-menu-item
             class={'menu-item-shared'}
             classList={{

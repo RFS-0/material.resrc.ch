@@ -1,4 +1,4 @@
-import {createEffect, JSX, mergeProps, on, onCleanup, onMount, Signal, splitProps} from 'solid-js';
+import {createEffect, createSignal, JSX, mergeProps, on, onCleanup, onMount, Signal, splitProps} from 'solid-js';
 import {
     SurfacePositionHelper as MenuPositionHelper, SurfacePositionHelperProps as MenuPositionHelperProps
 } from "./menu-position-helper";
@@ -8,9 +8,10 @@ import {
 } from '../list';
 import './styles/menu-styles.css'
 import {SetStoreFunction, Store} from 'solid-js/store';
-import {isClosableKey, isElementInSubtree} from './shared';
+import {ActivateTypeaheadEvent, DeactivateTypeaheadEvent, isClosableKey, isElementInSubtree} from './shared';
 import {createEventDispatcher} from '@solid-primitives/event-dispatcher';
 import {createAnimationSignal, EASING} from '../motion';
+import {TypeaheadController} from './typeahead-controller';
 
 function getFocusedElement(activeDoc: Document | ShadowRoot = document):
     HTMLElement | null {
@@ -35,10 +36,29 @@ export type MenuItemData = {
         selected: boolean;
     }
     close?: () => void;
-    focus: () => void;
+    focus?: () => void;
 } & Omit<ListItemData, 'state'>
 
 export type DefaultFocusState = 'NONE' | 'LIST_ROOT' | 'FIRST_ITEM' | 'LAST_ITEM';
+
+export function unselectItem(itemToDeactivate: MenuItemData, itemStore: [get: Store<MenuItemData[]>, set: SetStoreFunction<MenuItemData[]>]) {
+    const [items, setItems] = itemStore;
+    const indexOfItemToUnselect = items.findIndex((item) => item.id === itemToDeactivate.id);
+    if (indexOfItemToUnselect !== -1) {
+        const itemToUnselect = items[indexOfItemToUnselect];
+        const unselected = {...itemToUnselect, state: {...itemToUnselect.state, selected: false}}
+        setItems((items) => [...items.slice(0, indexOfItemToUnselect), unselected, ...items.slice(indexOfItemToUnselect + 1)]);
+        deactivateItem(unselected, itemStore);
+    }
+}
+
+export function selectItem(itemToSelect: MenuItemData, itemStore: [get: Store<MenuItemData[]>, set: SetStoreFunction<MenuItemData[]>]) {
+    const [items, setItems] = itemStore;
+    const indexOfItemToSelect = items.findIndex((item) => item.id === itemToSelect.id);
+    const selected = {...itemToSelect, state: {...itemToSelect.state, active: true}}
+    setItems((items) => [...items.slice(0, indexOfItemToSelect), selected, ...items.slice(indexOfItemToSelect + 1)]);
+    activateItem(selected, itemStore);
+}
 
 export type MenuProps = {
     defaultFocus?: DefaultFocusState;
@@ -55,9 +75,10 @@ export type MenuProps = {
     quick?: boolean;
     showFocusRing?: boolean;
     skipRestoreFocus?: boolean;
-    stayOpenOnFocusOut?: boolean;
+    stayOpenOnFocusout?: boolean;
     stayOpenOnOutsideClick?: boolean;
     typeaheadActive?: boolean;
+    typeaheadDelay?: number;
 };
 
 export const Menu = (props: MenuProps) => {
@@ -75,13 +96,14 @@ export const Menu = (props: MenuProps) => {
             'quick',
             'showFocusRing',
             'skipRestoreFocus',
-            'stayOpenOnFocusOut',
+            'stayOpenOnFocusout',
             'stayOpenOnOutsideClick',
             'typeaheadActive',
+            'typeaheadDelay',
         ],
     );
 
-    const [items, setItems] = componentProps.items;
+    const [items, ] = componentProps.items;
 
     let menuElement: HTMLDivElement | null = null;
     let listElement: HTMLUListElement | null = null;
@@ -90,10 +112,13 @@ export const Menu = (props: MenuProps) => {
 
     const fixed = props.positionHelper.isTopLayer || false;
     const quick = props.quick || false;
-    let [open, setOpen] = componentProps.open;
+    const [open, setOpen] = componentProps.open;
+    const [stayOpenOnFocusout, setStayOpenOnFocusout] = createSignal(componentProps.stayOpenOnFocusout || false);
     const hasOverflow = props.hasOverflow
     let skipRestoreFocus = componentProps.skipRestoreFocus || false;
     const defaultFocus = componentProps.defaultFocus || 'NONE';
+    const [typeaheadActive, setTypeaheadActive] = createSignal(componentProps.typeaheadActive || false);
+    const [typeaheadDelay, ]  = createSignal(componentProps.typeaheadDelay || 500);
 
     const onOpened = () => {
         lastFocusedElement = getFocusedElement();
@@ -111,13 +136,13 @@ export const Menu = (props: MenuProps) => {
             case 'FIRST_ITEM':
                 const first = getFirstActivatableItem(items);
                 if (first) {
-                    activateItem(first, componentProps.items);
+                    selectItem(first, componentProps.items);
                 }
                 break;
             case 'LAST_ITEM':
                 const last = getLastActivatableItem(items);
                 if (last) {
-                    activateItem(last, componentProps.items);
+                    selectItem(last, componentProps.items);
                 }
                 break;
             case 'LIST_ROOT':
@@ -171,6 +196,12 @@ export const Menu = (props: MenuProps) => {
     )
     const menuPostionHelper = new MenuPositionHelper(menuPositionHelperProps);
 
+    const typeaheadController = new TypeaheadController({
+        items: componentProps.items,
+        typeaheadBufferTime: typeaheadDelay,
+        active: typeaheadActive
+    })
+
     createEffect(
         on(
             open,
@@ -189,15 +220,9 @@ export const Menu = (props: MenuProps) => {
         )
     );
 
-    const close = () => {
-        items.forEach(item => {
-            item.close?.();
-        });
-        setOpen(false);
-    }
 
     const handleFocusout = (e: FocusEvent) => {
-        if (componentProps.stayOpenOnFocusOut) {
+        if (stayOpenOnFocusout()) {
             return;
         }
         // Stop propagation to prevent nested menus from interfering with each other
@@ -218,11 +243,13 @@ export const Menu = (props: MenuProps) => {
         skipRestoreFocus = oldRestoreFocus;
     }
 
+
     const handleListKeydown = (e: KeyboardEvent) => {
         if (e.target === listElement && !e.defaultPrevented && isClosableKey(e.code)) {
             e.preventDefault();
             close();
         }
+        typeaheadController.onKeydown(e);
     };
 
     const openDirection = (): 'UP' | 'DOWN' => {
@@ -424,9 +451,59 @@ export const Menu = (props: MenuProps) => {
         }
     };
 
+    const onCloseMenu = () => {
+        close();
+    };
+
+    const onDeactivateItems = (e: Event) => {
+        e.stopPropagation();
+        for (const item of items) {
+            deactivateItem(item, componentProps.items);
+        }
+    }
+
+    const handleDeactivateTypeahead = (e: DeactivateTypeaheadEvent) => {
+        // stopPropagation so that this does not deactivate any typeaheads in menus
+        // nested above it e.g. md-sub-menu-item
+        e.stopPropagation();
+        setTypeaheadActive(false);
+    }
+
+    const handleActivateTypeahead = (e: ActivateTypeaheadEvent) => {
+        // stopPropagation so that this does not activate any typeaheads in menus
+        // nested above it e.g. md-sub-menu-item
+        e.stopPropagation();
+        setTypeaheadActive(true);
+    }
+
+    const handleStayOpenOnFocusout = (e: FocusEvent) => {
+        e.stopPropagation();
+        setStayOpenOnFocusout(false);
+    };
+
+    const handleCloseOnFocusout = (e: Event) => {
+        e.stopPropagation();
+        setStayOpenOnFocusout(false);
+    }
+
+    const focus = () => {
+        listElement?.focus();
+    }
+
+    const close = () => {
+        setOpen(false);
+        items.forEach(item => {
+            item.close?.();
+        });
+    }
+
     onMount(() => {
         window.addEventListener('click', onWindowClick, {capture: true});
         listElement.addEventListener('keydown', handleListKeydown, {capture: true});
+
+        createEffect(() => {
+            console.log('items', componentProps.items[0].find(item => item.state.active))
+        })
     });
 
     onCleanup(() => {
@@ -450,8 +527,8 @@ export const Menu = (props: MenuProps) => {
                     'menu--has-overflow': hasOverflow
                 }}
                 style={menuPostionHelper.surfaceStyles()}
+                onFocus={focus}
                 onFocusOut={handleFocusout}
-                tabIndex={0}
             >
                 <Elevation/>
                 <List
@@ -460,8 +537,12 @@ export const Menu = (props: MenuProps) => {
                     items={componentProps.items}
                     itemRenderer={componentProps.itemRenderer}
                     type="menu"
-                    // @ts-ignore
-                    on:close-menu={() => console.log('received close event menu from menu item')}
+                    on:close-menu={onCloseMenu}
+                    on:deactivate-items={onDeactivateItems}
+                    on:activate-typeahead={handleActivateTypeahead}
+                    on:deactivate-typeahead={handleDeactivateTypeahead}
+                    on:stay-open-on-focusout={handleStayOpenOnFocusout}
+                    on:close-on-focusout={handleCloseOnFocusout}
                     tabIndex={0}
                 />
             </div>
