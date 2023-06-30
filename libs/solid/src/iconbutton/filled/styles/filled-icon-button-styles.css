@@ -75,7 +75,7 @@
     opacity: var(--_disabled-container-opacity)
 }
 
-.icon-button--filled:disabled .icon {
+.icon-button--filled:disabled .radio__icon {
     opacity: var(--_disabled-icon-opacity)
 }
 
