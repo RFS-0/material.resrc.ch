@@ -44,7 +44,7 @@ export const FilledIconButton: Component<FilledIconButtonProps> = (props) => {
             aria-label={props?.ariaLabel || ''}
             aria-haspopup={props?.ariaHasPopup || false}
         >
-            <Ripple listen={listen} unbounded={true}/>
+            <Ripple listen={listen}/>
             <span class="icon-button__touch"></span>
             <span class="icon-button__icon">
         {componentProps.icon}

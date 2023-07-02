@@ -60,7 +60,6 @@ export const ButtonSuggestionChip = (props: ButtonSuggestionChipProps) => {
             <Ripple
                 disabled={rippleDisabled()}
                 listen={listen}
-                unbounded={true}
             />
             <button
                 {...buttonProps}

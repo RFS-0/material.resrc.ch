@@ -49,7 +49,7 @@
 }
 
 .fab.fab--large,
-.fab.fab--large .ripple-container {
+.fab.fab--large .ripple__container {
     border-start-start-radius: var(--_large-container-shape-start-start);
     border-start-end-radius: var(--_large-container-shape-start-end);
     border-end-start-radius: var(--_large-container-shape-end-start);
@@ -136,7 +136,7 @@
 }
 
 .fab,
-.fab .ripple-container {
+.fab .ripple__container {
     border-start-start-radius: var(--_container-shape-start-start);
     border-start-end-radius: var(--_container-shape-start-end);
     border-end-start-radius: var(--_container-shape-end-start);

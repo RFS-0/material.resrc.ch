@@ -30,7 +30,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Implement list
 - [x] Implement menu
 - [x] Implement radio
-- [ ] Implement ripple
+- [x] Implement ripple
 - [ ] Implement segmented-button
 - [ ] Implement segmented-button-set
 - [ ] Implement select

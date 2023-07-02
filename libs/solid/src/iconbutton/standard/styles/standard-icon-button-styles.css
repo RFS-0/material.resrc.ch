@@ -52,7 +52,7 @@
     color: var(--_disabled-icon-color)
 }
 
-.ripple-container {
+.icon-button--standard .ripple__container {
     border-radius: var(--_state-layer-shape)
 }
 

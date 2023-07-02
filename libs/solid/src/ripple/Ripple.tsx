@@ -1,40 +1,22 @@
 import {createEventBus, Emit, EventBus, Listen} from '@solid-primitives/event-bus';
-import {createSignal, JSX, ParentComponent, ParentProps} from 'solid-js';
+import {createSignal, JSX, ParentComponent, VoidProps} from 'solid-js';
 import {createAnimationSignal, EASING} from "../motion";
-import './ripple-styles.css';
+import './styles/ripple-styles.css';
+
+const PRESS_GROW_MS = 450;
+const MINIMUM_PRESS_MS = 225;
+const INITIAL_ORIGIN_SCALE = 0.2;
+const PADDING = 10;
+const SOFT_EDGE_MINIMUM_SIZE = 75;
+const SOFT_EDGE_CONTAINER_RATIO = 0.35;
+const PRESS_PSEUDO = '::after';
+const ANIMATION_FILL = 'forwards';
+const TOUCH_DELAY_MS = 150;
 
 enum State {
-    /**
-     * Initial state of the control, no touch in progress.
-     *
-     * Transitions:
-     *   - on touch down: transition to `TOUCH_DELAY`.
-     *   - on mouse down: transition to `WAITING_FOR_CLICK`.
-     */
     INACTIVE,
-    /**
-     * Touch down has been received, waiting to determine if it's a swipe or
-     * scroll.
-     *
-     * Transitions:
-     *   - on touch up: beginPress(); transition to `WAITING_FOR_CLICK`.
-     *   - on cancel: transition to `INACTIVE`.
-     *   - after `TOUCH_DELAY_MS`: beginPress(); transition to `HOLDING`.
-     */
     TOUCH_DELAY,
-    /**
-     * A touch has been deemed to be a press
-     *
-     * Transitions:
-     *  - on up: transition to `WAITING_FOR_CLICK`.
-     */
     HOLDING,
-    /**
-     * The user touch has finished, transition into rest state.
-     *
-     * Transitions:
-     *   - on click endPress(); transition to `INACTIVE`.
-     */
     WAITING_FOR_CLICK
 }
 
@@ -69,29 +51,18 @@ export function createHandlers(emit: Emit<RippleEvent>): RippleHandlers {
     };
 }
 
-export type RippleProps = ParentProps & JSX.IntrinsicElements['div'] & {
+export type RippleProps = {
     listen: Listen<RippleEvent>
-    unbounded?: boolean
     disabled?: boolean
-}
+} & JSX.HTMLAttributes<HTMLDivElement> & VoidProps
+
 
 export const Ripple: ParentComponent<RippleProps> = (props) => {
-    let rippler!: HTMLDivElement;
+    let rippleElement: HTMLDivElement | null = null;
 
-    const PRESS_GROW_MS = 450;
-    const MINIMUM_PRESS_MS = 225;
-    const INITIAL_ORIGIN_SCALE = 0.2;
-    const PADDING = 10;
-    const SOFT_EDGE_MINIMUM_SIZE = 75;
-    const SOFT_EDGE_CONTAINER_RATIO = 0.35;
-    const PRESS_PSEUDO = '::after';
-    const ANIMATION_FILL = 'forwards';
-    const TOUCH_DELAY_MS = 150;
 
-    const [unbounded, _] = createSignal(props?.unbounded || false);
     const [disabled, __] = createSignal(props?.disabled || false);
     const [hovered, setHovered] = createSignal(false);
-    const [focused] = createSignal(false);
     const [pressed, setPressed] = createSignal(false);
 
     let rippleSize = '';
@@ -108,28 +79,19 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
     let clickTimer: number | null = null;
 
     const getDimensions = () => {
-        return (rippler.parentElement ?? rippler).getBoundingClientRect();
+        return (rippleElement.parentElement ?? rippleElement).getBoundingClientRect();
     };
 
     const determineRippleSize = () => {
         const {height, width} = getDimensions();
         const maxDim = Math.max(height, width);
-        const softEdgeSize =
-            Math.max(SOFT_EDGE_CONTAINER_RATIO * maxDim, SOFT_EDGE_MINIMUM_SIZE);
+        const softEdgeSize = Math.max(SOFT_EDGE_CONTAINER_RATIO * maxDim, SOFT_EDGE_MINIMUM_SIZE);
 
-        let maxRadius: number;
-        let _initialSize = Math.floor(maxDim * INITIAL_ORIGIN_SCALE);
-
+        const initialSize =  Math.floor(maxDim * INITIAL_ORIGIN_SCALE);
         const hypotenuse = Math.sqrt(width ** 2 + height ** 2);
-        maxRadius = hypotenuse + PADDING;
+        const maxRadius = hypotenuse + PADDING;
 
-        // ensure `initialSize` is even for unbounded
-        if (unbounded()) {
-            _initialSize = _initialSize - (_initialSize % 2);
-        }
-
-        initialSize = _initialSize;
-        rippleScale = `${(maxRadius + softEdgeSize) / _initialSize}`;
+        rippleScale = `${(maxRadius + softEdgeSize) / initialSize}`;
         rippleSize = `${initialSize}px`;
     };
 
@@ -175,6 +137,7 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
             y: startPoint.y - (initialSize / 2),
         };
 
+
         return {startPoint, endPoint};
     };
 
@@ -185,9 +148,10 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
         const translateStart = `${startPoint.x}px, ${startPoint.y}px`;
         const translateEnd = `${endPoint.x}px, ${endPoint.y}px`;
 
+
         const signal = pressAnimationSignal.start();
 
-        let _growAnimation = rippler.animate(
+        let _growAnimation = rippleElement.animate(
             {
                 top: [0, 0],
                 left: [0, 0],
@@ -203,7 +167,8 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
                 duration: PRESS_GROW_MS,
                 easing: EASING.STANDARD,
                 fill: ANIMATION_FILL,
-            });
+            }
+        );
 
         _growAnimation.addEventListener('finish', () => {
             pressAnimationSignal.finish();
@@ -294,7 +259,7 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
     };
 
     const inBounds = ({x, y}: PointerEvent) => {
-        const {top, left, bottom, right} = rippler!.getBoundingClientRect();
+        const {top, left, bottom, right} = rippleElement!.getBoundingClientRect();
         return x >= left && x <= right && y >= top && y <= bottom;
     };
 
@@ -304,7 +269,7 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
         }
         state = State.TOUCH_DELAY;
         touchTimer = window.setTimeout(async () => {
-            if (rippler === null || state !== State.TOUCH_DELAY) {
+            if (rippleElement === null || state !== State.TOUCH_DELAY) {
                 return;
             }
             state = State.HOLDING;
@@ -398,21 +363,20 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
     // noinspection JSUnusedAssignment
     return (
         <div
-            class='ripple-container'
+            class='ripple-shared ripple__container'
+            classList={{
+                'ripple--disabled': disabled(),
+            }}
         >
             <div
-                ref={rippler!}
+                ref={rippleElement!}
                 {...props}
-                class='ripple ripple-surface'
+                class='ripple__surface'
                 classList={{
-                    'ripple--hovered': hovered(),
-                    'ripple--focused': focused(),
-                    'ripple--pressed': pressed(),
-                    'ripple--unbounded': unbounded(),
+                    'ripple__surface--hovered': hovered(),
+                    'ripple__surface--pressed': pressed(),
                 }}
-            >
-                {props.children}
-            </div>
+            />
         </div>
     );
 };

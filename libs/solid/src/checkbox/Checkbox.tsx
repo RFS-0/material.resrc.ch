@@ -117,8 +117,8 @@ export const Checkbox = (props: CheckboxProps) => {
             >
                 <div class="checkbox-outline"></div>
                 <div class="checkbox-background"></div>
-                <Ripple listen={listen} unbounded={true}></Ripple>
                 <svg class="checkbox-icon" viewBox="0 0 18 18">
+                    <Ripple listen={listen}></Ripple>
                     <rect class="checkbox-mark checkbox-short"/>
                     <rect class="checkbox-mark checkbox-long"/>
                 </svg>

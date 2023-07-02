@@ -27,7 +27,7 @@ export const FilledTonalLinkIconButton: Component<FilledTonalLinkIconButtonProps
             {...rippleHandlers}
             class={'shared-icon-button icon-button icon-button--filled-tonal'}
         >
-            <Ripple listen={listen} unbounded={true}></Ripple>
+            <Ripple listen={listen} ></Ripple>
             <span class="icon-button__touch"></span>
             <span class="icon-button__icon">
           {componentProps.icon}

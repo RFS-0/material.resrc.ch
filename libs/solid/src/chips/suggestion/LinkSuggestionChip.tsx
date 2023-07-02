@@ -60,7 +60,6 @@ export const LinkSuggestionChip = (props: LinkSuggestionChipProps) => {
             <Ripple
                 disabled={rippleDisabled()}
                 listen={listen}
-                unbounded={true}
             />
             <a
                 {...rippleHandlers}

@@ -62,7 +62,7 @@ export const Fab = (props: FabProps) => {
 
         >
             <Elevation/>
-            <Ripple listen={listen} unbounded={true}/>
+            <Ripple listen={listen}/>
             <Show when={!componentProps.reducedTouchTarget}>
                 <div class={'fab__touch-target'}></div>
             </Show>

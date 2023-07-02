@@ -62,7 +62,6 @@ export const LinkAssistChip = (props: LinkAssistChipProps) => {
             <Ripple
                 disabled={rippleDisabled()}
                 listen={listen}
-                unbounded={true}
             />
             <a
                 {...linkProps}

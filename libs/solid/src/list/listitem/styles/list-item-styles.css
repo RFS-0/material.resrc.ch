@@ -1,5 +1,5 @@
 .list-item {
-    --_list-item-container-color: var(--list-item-list-item-container-color), var(--sys-surface));
+    --_list-item-container-color: var(var(--list-item-list-item-container-color), var(--sys-surface));
     --_list-item-container-shape: 0px;
     --_list-item-disabled-label-text-color: var(--sys-on-surface);
     --_list-item-disabled-label-text-opacity: 0.3;
@@ -59,7 +59,7 @@
     --focus-ring-shape: 8px;
 }
 
-.list-item .ripple-container {
+.list-item .ripple__container {
     --ripple-hover-color: var(--_list-item-hover-state-layer-color);
     --ripple-hover-opacity: var(--_list-item-hover-state-layer-opacity);
     --ripple-pressed-color: var(--_list-item-pressed-state-layer-color);
@@ -94,7 +94,7 @@
     border-radius: inherit;
 }
 
-.list-item .ripple-container {
+.list-item .ripple__container {
     border-radius: inherit;
 }
 

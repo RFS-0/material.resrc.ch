@@ -133,7 +133,6 @@ export const ListItem = (props: ListItemProps) => {
                 <Ripple
                     listen={listen}
                     disabled={componentProps.nonInteractive || componentProps.data.state.disabled}
-                    unbounded={true}
                 />
             </div>
         </li>

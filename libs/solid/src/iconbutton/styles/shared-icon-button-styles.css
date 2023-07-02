@@ -42,7 +42,7 @@
     --icon-weight: inherit
 }
 
-.ripple-container {
+.shared-icon-button .ripple__container {
     z-index: -1;
     border-start-start-radius: var(--_container-shape-start-start);
     border-start-end-radius: var(--_container-shape-start-end);

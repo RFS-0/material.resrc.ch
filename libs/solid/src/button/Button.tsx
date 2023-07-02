@@ -93,7 +93,7 @@ export const Button = (props: ButtonProps) => {
             }>
                 <Elevation/>
             </Show>
-            <Ripple listen={listen} unbounded={true}></Ripple>
+            <Ripple listen={listen}></Ripple>
             <Show when={componentProps?.variant === 'outlined'}>
                 <span class="button__outline"></span>
             </Show>
