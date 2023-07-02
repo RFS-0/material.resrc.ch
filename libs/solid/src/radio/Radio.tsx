@@ -101,7 +101,7 @@ export const Radio = (props: RadioProps) => {
             onFocus={focus}
             data-disabled={componentProps.disabled || undefined}
         >
-            <Ripple listen={listen} unbounded={true}></Ripple>
+            <Ripple listen={listen} ></Ripple>
             <svg class="radio__icon" viewBox="0 0 20 20">
                 <mask id="cutout">
                     <rect width="100%" height="100%" fill="white"/>

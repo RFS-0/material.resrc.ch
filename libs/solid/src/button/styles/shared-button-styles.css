@@ -1,25 +1,18 @@
 @import "../../styles/baseline.css";
 
-:root {
-    --md-filled-button-container-shape-start-start: 12px;
-    --md-filled-button-container-shape: 8px;
-}
-
 .button-shared {
     display: inline-flex;
     outline: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     vertical-align: top;
     --ripple-hover-color: var(--_hover-state-layer-color);
-    --ripple-focus-color: var(--_focus-state-layer-color);
-    --ripple-pressed-color: var(--_pressed-state-layer-color);
     --ripple-hover-opacity: var(--_hover-state-layer-opacity);
-    --ripple-focus-opacity: var(--_focus-state-layer-opacity);
+    --ripple-pressed-color: var(--_pressed-state-layer-color);
     --ripple-pressed-opacity: var(--_pressed-state-layer-opacity);
-    --md-focus-ring-shape-start-start: var(--_container-shape-start-start);
-    --md-focus-ring-shape-start-end: var(--_container-shape-start-end);
-    --md-focus-ring-shape-end-end: var(--_container-shape-end-end);
-    --md-focus-ring-shape-end-start: var(--_container-shape-end-start);
+    --focus-ring-shape-start-start: var(--_container-shape-start-start);
+    --focus-ring-shape-start-end: var(--_container-shape-start-end);
+    --focus-ring-shape-end-end: var(--_container-shape-end-end);
+    --focus-ring-shape-end-start: var(--_container-shape-end-start);
 }
 
 .button-shared[disabled] {
@@ -107,7 +100,8 @@
     }
 }
 
-.button, .button__ripple {
+.button,
+.button__ripple {
     border-start-start-radius: var(--_container-shape-start-start);
     border-start-end-radius: var(--_container-shape-start-end);
     border-end-start-radius: var(--_container-shape-end-start);

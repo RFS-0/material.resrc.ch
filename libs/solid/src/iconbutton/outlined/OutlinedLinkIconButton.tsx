@@ -27,7 +27,7 @@ export const OutlinedLinkIconButton: Component<OutlinedLinkIconButtonProps> = (p
             {...rippleHandlers}
             class={'shared-icon-button icon-button icon-button--outlined'}
         >
-            <Ripple listen={listen} unbounded={true}></Ripple>
+            <Ripple listen={listen} ></Ripple>
             <span class="icon-button__touch"></span>
             <span class="icon-button__icon">
           {componentProps.icon}

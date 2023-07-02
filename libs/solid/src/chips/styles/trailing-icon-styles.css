@@ -10,7 +10,7 @@
     --focus-ring-outward-offset: -2px;
 }
 
-.chip-trailing.chip-action .ripple-container {
+.chip-trailing.chip-action .ripple__container {
     border-radius: 50%;
     height: calc(1.3333333333 * var(--_icon-size));
     width: calc(1.3333333333 * var(--_icon-size));

@@ -101,7 +101,6 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
             <Ripple
                 disabled={rippleDisabled()}
                 listen={primaryRippleHandler.listen}
-                unbounded={true}
             />
             <Show when={!componentProps.removeOnly}
                   fallback={
@@ -142,7 +141,6 @@ export const ButtonInputChip = (props: ButtonInputChipProps) => {
                 <Ripple
                     disabled={rippleDisabled()}
                     listen={secondaryRippleHandler.listen}
-                    unbounded={true}
                 />
                 <svg class="chip-trailing chip-icon" viewBox="0 96 960 960">
                     <path

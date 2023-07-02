@@ -56,7 +56,7 @@ export const FilledTonalToggleIconButton: Component<FilledTonalToggleIconButtonP
                 'icon-button--selected': selected(),
             }}
         >
-            <Ripple listen={listen} unbounded={true}></Ripple>
+            <Ripple listen={listen} ></Ripple>
             <span class="icon-button__touch"></span>
             <Show
                 when={selected()}

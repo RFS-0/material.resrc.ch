@@ -17,6 +17,7 @@ export * from './linearprogress'
 export * from './list'
 export * from './menu'
 export * from './radio'
+export * from './ripple'
 
 declare module "solid-js" {
     namespace JSX {

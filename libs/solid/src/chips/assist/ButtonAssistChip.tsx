@@ -60,7 +60,6 @@ export const ButtonAssistChip = (props: ButtonAssistChipProps) => {
             <Ripple
                 disabled={rippleDisabled()}
                 listen={listen}
-                unbounded={true}
             />
             <button
                 {...rippleHandlers}

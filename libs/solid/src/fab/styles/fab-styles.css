@@ -226,7 +226,7 @@
 }
 
 .fab.fab--small,
-.fab.fab--small .ripple-container {
+.fab.fab--small .ripple__container {
     border-start-start-radius: var(--_small-container-shape-start-start);
     border-start-end-radius: var(--_small-container-shape-start-end);
     border-end-start-radius: var(--_small-container-shape-end-start);
