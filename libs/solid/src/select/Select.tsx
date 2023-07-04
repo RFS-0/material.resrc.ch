@@ -131,6 +131,10 @@ export const Select = (props: FilledSelectProps) => {
         selectElement.dispatchEvent(new Event('change', {bubbles: true}));
     }
 
+    // TODO: keydown does not work properly because li elements cannot be focused without setting tabindex
+    // this is because only the active li element is intended to be focused
+    // keydown in the select should work like in the menu where it is possible to navigate the menu with arrow keys
+    // currently it is unclear why the menu in the select case behaves differently
     const handleKeyDown = (e: KeyboardEvent) => {
         if (open() || componentProps.disabled || !menuElement) {
             return;
