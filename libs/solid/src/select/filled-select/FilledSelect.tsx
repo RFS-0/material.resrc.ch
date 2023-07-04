@@ -3,13 +3,13 @@ import {createSignal, JSX, Signal, splitProps} from 'solid-js';
 import {
     isElementInSubtree, Menu, selectItem as selectMenuItem, TYPEAHEAD_RECORD, TypeaheadController,
     unselectItem as unselectMenuItem
-} from '../menu';
-import {FilledField} from '../field';
+} from '../../menu';
+import {FilledField} from '../../field';
 import {SetStoreFunction, Store} from 'solid-js/store';
 import {
     getSelectedItems, RequestDeselectionEvent, RequestSelectionEvent, SelectOptionItem, SelectOptionRecord
-} from './shared';
-import {activateItem, deactivateItem, getActiveItem, ListItemData} from '../list';
+} from '../shared';
+import {activateItem, deactivateItem, getActiveItem, ListItemData} from '../../list';
 
 export type FilledSelectProps = {
     disabled?: boolean
@@ -211,7 +211,7 @@ export const FilledSelect = (props: FilledSelectProps) => {
     return (
         <span
             ref={selectElement}
-            class="select__container"
+            class="select__container select__container--filled"
             classList={{
                 'select--disabled': componentProps.disabled,
             }}

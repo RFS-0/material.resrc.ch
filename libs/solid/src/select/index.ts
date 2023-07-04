@@ -1,4 +1,4 @@
 export * from './OutlinedSelect'
-export * from './FilledSelect'
+export * from './filled-select'
 export * from './select-option'
 export * from './shared'

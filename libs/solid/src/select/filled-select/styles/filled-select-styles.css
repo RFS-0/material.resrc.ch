@@ -1,6 +1,6 @@
-@import './shared-select-styles.css';
+@import '../../styles/shared-select-styles.css';
 
-.select__container {
+.select__container--filled.select__container {
     --_text-field-active-indicator-color: var(--sys-on-surface-variant);
     --_text-field-active-indicator-height:  1px;
     --_text-field-container-color: var(--sys-surface-container-highest);
@@ -141,13 +141,13 @@
     --filled-field-trailing-content-color: var(--_text-field-trailing-icon-color)
 }
 
-.field__start .base-icon {
+.select__container--filled .field__start .base-icon {
     font-size: var(--_text-field-leading-icon-size);
     height: var(--_text-field-leading-icon-size);
     width: var(--_text-field-leading-icon-size)
 }
 
-.field__end .base-icon {
+.select__container--filled .field__end .base-icon {
     font-size: var(--_text-field-trailing-icon-size);
     height: var(--_text-field-trailing-icon-size);
     width: var(--_text-field-trailing-icon-size)
