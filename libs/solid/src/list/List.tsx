@@ -107,6 +107,7 @@ export const List = (props: ListProps) => {
         'items',
         'itemRenderer',
         'tabIndex',
+        'ref',
         'type',
     ]);
 
@@ -127,6 +128,12 @@ export const List = (props: ListProps) => {
     }
 
     let listElement: HTMLUListElement | null = null;
+    const refCallback = (el: HTMLUListElement ) => {
+        listElement = el;
+        if (typeof componentProps.ref === 'function') {
+            componentProps.ref(el);
+        }
+    }
 
     const getNextItem = (index: number) => {
         for (let i = 1; i < items.length; i++) {
@@ -282,7 +289,7 @@ export const List = (props: ListProps) => {
 
     return (
         <ul
-            ref={listElement}
+            ref={refCallback}
             class={'list-shared list'}
             role={componentProps?.type || undefined}
             {...listProps}

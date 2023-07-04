@@ -55,6 +55,6 @@
 }
 
 .menu li {
-    height: inherit;
-    max-height: inherit;
+    height: max-content;
+    max-height: max-content;
 }
