@@ -17,7 +17,7 @@ importers:
       '@solidjs/meta': ^0.28.5
       '@solidjs/router': ^0.8.2
       autoprefixer: ^10.4.14
-      material.resrc.ch: workspace:0.0.35
+      material.resrc.ch: workspace:0.0.36
       postcss: ^8.4.24
       solid-devtools: ^0.27.3
       solid-js: ^1.7.7
@@ -145,7 +145,7 @@ packages:
       '@babel/parser': 7.22.6
       '@babel/template': 7.22.5
       '@babel/traverse': 7.22.6
-      '@babel/types': 7.21.5
+      '@babel/types': 7.22.5
       convert-source-map: 1.9.0
       debug: 4.3.4
       gensync: 1.0.0-beta.2
@@ -181,7 +181,7 @@ packages:
     resolution: {integrity: sha512-F3fZga2uv09wFdEjEQIJxXALXfz0+JaOb7SabvVMmjHxeVTuGW8wgE8Vp1Hd7O+zMTYtcfEISGRzPkeiaPPsvg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.21.5
+      '@babel/types': 7.22.5
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
       jsesc: 2.5.2
@@ -494,7 +494,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.21.5
+      '@babel/types': 7.22.5
     dev: true
 
   /@babel/parser/7.22.6:
@@ -2108,7 +2108,7 @@ packages:
       '@babel/plugin-transform-unicode-escapes': 7.22.5_@babel+core@7.21.8
       '@babel/plugin-transform-unicode-regex': 7.22.5_@babel+core@7.21.8
       '@babel/preset-modules': 0.1.5_@babel+core@7.21.8
-      '@babel/types': 7.21.5
+      '@babel/types': 7.22.5
       babel-plugin-polyfill-corejs2: 0.3.3_@babel+core@7.21.8
       babel-plugin-polyfill-corejs3: 0.6.0_@babel+core@7.21.8
       babel-plugin-polyfill-regenerator: 0.4.1_@babel+core@7.21.8
@@ -2296,13 +2296,13 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.22.5
-      '@babel/generator': 7.21.9
+      '@babel/generator': 7.22.5
       '@babel/helper-environment-visitor': 7.22.5
       '@babel/helper-function-name': 7.22.5
       '@babel/helper-hoist-variables': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
-      '@babel/parser': 7.21.9
-      '@babel/types': 7.21.5
+      '@babel/parser': 7.22.6
+      '@babel/types': 7.22.5
       debug: 4.3.4
       globals: 11.12.0
     transitivePeerDependencies:
@@ -4532,7 +4532,7 @@ packages:
     resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 16.18.38
+      '@types/node': 20.3.3
     dev: true
 
   /@types/graceful-fs/4.1.6:

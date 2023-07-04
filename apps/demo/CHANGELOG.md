@@ -1,5 +1,13 @@
 # demo.material.resrc.ch
 
+## 0.0.36
+
+### Patch Changes
+
+- 933da73: Update deps
+- Updated dependencies [933da73]
+  - material.resrc.ch@0.0.36
+
 ## 0.0.35
 
 ### Patch Changes
