@@ -1,15 +1,16 @@
 import './styles/filled-select-styles.css'
+import './styles/outlined-select-styles.css'
 import {createSignal, JSX, Signal, splitProps} from 'solid-js';
 import {
     isElementInSubtree, Menu, selectItem as selectMenuItem, TYPEAHEAD_RECORD, TypeaheadController,
     unselectItem as unselectMenuItem
-} from '../../menu';
-import {FilledField} from '../../field';
+} from '../menu';
+import {Field} from '../field';
 import {SetStoreFunction, Store} from 'solid-js/store';
 import {
     getSelectedItems, RequestDeselectionEvent, RequestSelectionEvent, SelectOptionItem, SelectOptionRecord
-} from '../shared';
-import {activateItem, deactivateItem, getActiveItem, ListItemData} from '../../list';
+} from './shared';
+import {activateItem, deactivateItem, getActiveItem, ListItemData} from '../list';
 
 export type FilledSelectProps = {
     disabled?: boolean
@@ -26,9 +27,10 @@ export type FilledSelectProps = {
     supportingTextStart?: string
     trailingIcon?: JSX.Element
     typeaheadDelay?: number;
+    variant: 'filled' | 'outlined'
 }
 
-export const FilledSelect = (props: FilledSelectProps) => {
+export const Select = (props: FilledSelectProps) => {
     const [componentProps, ,] = splitProps(props, [
         'disabled',
         'error',
@@ -44,13 +46,14 @@ export const FilledSelect = (props: FilledSelectProps) => {
         'supportingTextStart',
         'trailingIcon',
         'typeaheadDelay',
+        'variant',
     ]);
 
     let selectElement: HTMLDivElement | null = null;
     let fieldElement: HTMLDivElement | null = null;
     let menuElement: HTMLDivElement | null = null;
 
-    const [typeaheadActive, ] = createSignal(false);
+    const [typeaheadActive,] = createSignal(false);
     const [typeaheadDelay,] = createSignal(500);
     const typeaheadController = new TypeaheadController({
         active: typeaheadActive,
@@ -79,7 +82,7 @@ export const FilledSelect = (props: FilledSelectProps) => {
 
     const updateValue = () => {
         const selectedOptions = getSelectedOptions() ?? [];
-        // Used to determine whether or not we need to fire an input / change event
+        // Used to determine whether we need to fire an input / change event
         // which fire whenever the option element changes (value or selectedIndex)
         // on user interaction.
         let hasSelectedOptionChanged: boolean;
@@ -211,13 +214,14 @@ export const FilledSelect = (props: FilledSelectProps) => {
     return (
         <span
             ref={selectElement}
-            class="select__container select__container--filled"
+            class="select__container"
             classList={{
+                'select__container--filled': componentProps.variant === 'filled',
                 'select--disabled': componentProps.disabled,
             }}
             onfocusout={handleFocusOut}
         >
-            <FilledField
+            <Field
                 ref={fieldElement}
                 aria-haspopup="listbox"
                 role="combobox"
@@ -235,6 +239,7 @@ export const FilledSelect = (props: FilledSelectProps) => {
                 supportingTextStart={componentProps.supportingTextStart}
                 trailingIcon={componentProps.trailingIcon}
                 value={value}
+                variant={componentProps.variant}
                 onKeyDown={handleKeyDown}
                 onClick={handleClick}
                 onFocus={handleFocus}

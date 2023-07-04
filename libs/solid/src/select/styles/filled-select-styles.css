@@ -1,4 +1,4 @@
-@import '../../styles/shared-select-styles.css';
+@import '../styles/shared-select-styles.css';
 
 .select__container--filled.select__container {
     --_text-field-active-indicator-color: var(--sys-on-surface-variant);

@@ -1,16 +1,17 @@
+/* @refresh reload */
 import type {Meta, StoryObj} from 'storybook-solidjs';
-import {FilledSelect, SelectItem, SelectOptionItem, TypeaheadController} from 'material.resrc.ch';
+import {Select, SelectItem, SelectOptionItem, TypeaheadController} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 import {createStore} from 'solid-js/store';
 import {createSignal} from 'solid-js';
 
-const meta: Meta<typeof FilledSelect> = {
-    title: 'Design System/Components/Select/FilledSelect',
-    component: FilledSelect,
+const meta: Meta<typeof Select> = {
+    title: 'Design System/Components/Select',
+    component: Select,
 };
 
 export default meta;
-type Story = StoryObj<typeof FilledSelect>;
+type Story = StoryObj<typeof Select>;
 
 export const Standalone: Story = {
     render: () => {
@@ -55,7 +56,8 @@ export const Standalone: Story = {
         const [selectOpen, setSelectOpen] = createSignal(false);
 
         return (
-            <FilledSelect
+            <Select
+                variant={'outlined'}
                 positionHelper={{
                     anchorEl: () => selectAnchor,
                     isOpen: selectOpen,
