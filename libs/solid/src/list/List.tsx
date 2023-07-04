@@ -1,6 +1,7 @@
 import {JSX, splitProps} from 'solid-js';
 import {SetStoreFunction, Store} from 'solid-js/store';
 import './styles/list-styles.css'
+import {composeEventHandlers} from '../controller';
 
 export type ListItemData = {
     headline?: string
@@ -128,7 +129,7 @@ export const List = (props: ListProps) => {
     }
 
     let listElement: HTMLUListElement | null = null;
-    const refCallback = (el: HTMLUListElement ) => {
+    const refCallback = (el: HTMLUListElement) => {
         listElement = el;
         if (typeof componentProps.ref === 'function') {
             componentProps.ref(el);
@@ -244,6 +245,7 @@ export const List = (props: ListProps) => {
     }
 
     const handleKeydown = (event: KeyboardEvent) => {
+        console.log('lissssst keydown', event);
         const key = event.key;
         if (!isNavigableKey(key)) {
             return;
@@ -294,7 +296,14 @@ export const List = (props: ListProps) => {
             role={componentProps?.type || undefined}
             {...listProps}
             tabIndex={componentProps.tabIndex || 0}
-            onKeyDown={handleKeydown}
+            onKeyDown={
+                composeEventHandlers(
+                    [
+                        listProps.onKeyDown,
+                        handleKeydown
+                    ]
+                )
+            }
         >
             {items.map(componentProps.itemRenderer)}
         </ul>

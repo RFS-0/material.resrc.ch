@@ -104,7 +104,7 @@ export const Select = (props: FilledSelectProps) => {
     let handleFocusOut = (e: FocusEvent) => {
         // Don't close the menu if we are switching focus between menu,
         // select-option, and field
-        if (e.relatedTarget && isElementInSubtree(e.relatedTarget, this)) {
+        if (e.relatedTarget && isElementInSubtree(e.relatedTarget, selectElement)) {
             return;
         }
         setOpen(false);
@@ -250,7 +250,7 @@ export const Select = (props: FilledSelectProps) => {
                 ref={menuElement}
                 defaultFocus={'NONE'}
                 open={[open, setOpen]}
-                listTabIndex={-1}
+                listTabIndex={0}
                 type={'list'}
                 stayOpenOnFocusout={true}
                 positionHelper={{

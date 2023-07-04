@@ -80,7 +80,7 @@ export type MenuProps = {
     stayOpenOnOutsideClick?: boolean;
     type: 'menu' | 'list';
     typeAheadController?: TypeaheadController;
-};
+} & JSX.HTMLAttributes<HTMLDivElement>
 
 export const Menu = (props: MenuProps) => {
     const dispatch = createEventDispatcher(props);
@@ -501,12 +501,10 @@ export const Menu = (props: MenuProps) => {
 
     onMount(() => {
         window.addEventListener('click', onWindowClick, {capture: true});
-        listElement.addEventListener('keydown', handleListKeydown, {capture: true});
     });
 
     onCleanup(() => {
         window.removeEventListener('click', onWindowClick, {capture: true});
-        listElement.removeEventListener('keydown', handleListKeydown, {capture: true});
     });
 
     return (
@@ -540,7 +538,7 @@ export const Menu = (props: MenuProps) => {
                     on:deactivate-typeahead={handleDeactivateTypeahead}
                     on:stay-open-on-focusout={handleStayOpenOnFocusout}
                     on:close-on-focusout={handleCloseOnFocusout}
-                    tabIndex={0}
+                    tabIndex={componentProps.listTabIndex || 0}
                     type={componentProps.type}
                 />
             </div>
