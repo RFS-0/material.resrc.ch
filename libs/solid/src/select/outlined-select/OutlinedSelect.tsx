@@ -1,5 +1,5 @@
-import './styles/shared-select-styles.css'
-import {FilledField} from '../field';
+import './styles/outlined-select-styles.css';
+import {FilledField} from '../../field';
 import {splitProps} from 'solid-js';
 
 export type SelectProps = {
