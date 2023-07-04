@@ -1,4 +1,3 @@
-/* @refresh reload */
 import type {Meta, StoryObj} from 'storybook-solidjs';
 import {Select, SelectItem, SelectOptionItem, TypeaheadController} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'

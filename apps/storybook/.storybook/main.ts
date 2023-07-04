@@ -1,4 +1,4 @@
-import {StorybookConfig} from 'storybook-solidjs-vite';
+import type {StorybookConfig} from 'storybook-solidjs-vite';
 
 const config: StorybookConfig = {
     addons: [
