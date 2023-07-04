@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.35
+
+### Patch Changes
+
+- 22455d0: Fix
+
 ## 0.0.34
 
 ### Patch Changes
