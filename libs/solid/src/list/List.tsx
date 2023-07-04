@@ -64,7 +64,6 @@ export function deactivateItem(itemToDeactivate: ListItemData, itemStore: [get: 
 }
 
 export function activateItem(itemToActivate: ListItemData, itemStore: [get: Store<ListItemData[]>, set: SetStoreFunction<ListItemData[]>]) {
-    console.log('activateItem', itemToActivate);
     const [items, setItems] = itemStore;
     const indexOfItemToActivate = items.findIndex((item) => item.id === itemToActivate.id);
     const activated = {...itemToActivate, state: {...itemToActivate.state, active: true}}

@@ -3,19 +3,32 @@ import {splitProps} from 'solid-js';
 import {ClickReason, CLOSE_REASON, CloseMenuEvent, isClosableKey, KeydownReason} from '../shared';
 import {MenuItemData} from '../Menu';
 import './styles/menu-item-styles.css'
+import {composeEventHandlers} from '../../controller';
 
 export type MenuItemProps = {
     keepOpen?: boolean;
     data: MenuItemData;
 } & Omit<ListItemProps, "data">
 
+// noinspection JSValidateJSDoc
+/**
+ * @fires close-menu {CloseMenuEvent}
+ */
 export const MenuItem = (props: MenuItemProps) => {
     const [componentProps, menuItemProps] = splitProps(props, [
         'keepOpen',
         'data',
+        'ref',
     ]);
 
     let menuItem: HTMLLIElement | null = null;
+
+    const refCallback = (el: HTMLLIElement) => {
+        menuItem = el;
+        if (typeof componentProps.ref === 'function') {
+            componentProps.ref(el);
+        }
+    }
 
     const handleClick = () => {
         if (componentProps.keepOpen) {
@@ -38,7 +51,8 @@ export const MenuItem = (props: MenuItemProps) => {
         const keyCode = e.code;
 
         if (!e.defaultPrevented && isClosableKey(keyCode)) {
-            menuItem.dispatchEvent(new CloseMenuEvent<KeydownReason>(
+            menuItem.dispatchEvent(
+                new CloseMenuEvent<KeydownReason>(
                     componentProps.data,
                     {kind: CLOSE_REASON.KEYDOWN, key: keyCode}
                 )
@@ -49,16 +63,34 @@ export const MenuItem = (props: MenuItemProps) => {
     return (
         <ListItem
             {...menuItemProps}
-            ref={menuItem}
-            data-menu-item
+            ref={refCallback}
             class={'menu-item-shared'}
             classList={{
                 'menu-item--selected': componentProps.data.state.selected,
             }}
             data={componentProps.data}
-            onClick={handleClick}
-            onKeyDown={handleKeydown}
-            onFocus={componentProps.data.focus}
+            onClick={
+                composeEventHandlers(
+                    [
+                        props.onClick,
+                        handleClick
+                    ]
+                )
+            }
+            onKeyDown={
+                composeEventHandlers([
+                        props.onKeyDown,
+                        handleKeydown
+                    ]
+                )
+            }
+            onFocus={
+                composeEventHandlers([
+                        props.onFocus,
+                        componentProps.data.focus
+                    ]
+                )
+            }
         />
     )
 }

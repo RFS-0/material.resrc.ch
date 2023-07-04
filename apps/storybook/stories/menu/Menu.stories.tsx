@@ -1,5 +1,7 @@
 import type {Meta, StoryObj} from 'storybook-solidjs';
-import {FilledTonalIconButton, handleItemClick, Icon, Menu, MenuItem, MenuItemData} from 'material.resrc.ch';
+import {
+    FilledTonalIconButton, handleItemClick, Icon, Menu, MenuItem, MenuItemData, TypeaheadController
+} from 'material.resrc.ch';
 import 'material.resrc.ch/dist/index.css'
 import {createStore} from 'solid-js/store';
 import {createSignal} from 'solid-js';
@@ -48,7 +50,7 @@ export const Standalone: Story = {
             }
         ]);
 
-        let menuAnchor: HTMLElement | null = null;
+        let menuAnchor: HTMLButtonElement | null = null;
         const [menuOpen, setMenuOpen] = createSignal(false);
 
         return (
@@ -74,7 +76,12 @@ export const Standalone: Story = {
                     }
                     open={[menuOpen, setMenuOpen]}
                     stayOpenOnFocusout={true}
-                    typeaheadActive={true}
+                    type={'menu'}
+                    typeAheadController={new TypeaheadController({
+                        items: items,
+                        active: () => true,
+                        typeaheadBufferTime: () => 500,
+                    })}
                 />
             </div>
         )

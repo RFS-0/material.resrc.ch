@@ -1,4 +1,6 @@
-import {Component, createEffect, createMemo, createSignal, JSX, onMount, splitProps, VoidProps} from "solid-js"
+import {
+    Accessor, Component, createEffect, createMemo, createSignal, JSX, onMount, Show, splitProps, VoidProps
+} from "solid-js"
 import './styles/filled-styles.css'
 import {createAnimationSignal} from "../motion"
 import {getLabelKeyframes} from "./label-animations"
@@ -9,25 +11,23 @@ export type FilledFieldProps = {
     focused?: boolean
     label?: string
     leadingIcon?: JSX.Element
-    populated?: boolean
     resizable?: boolean
     required?: boolean
     supportingTextEnd?: string
     supportingTextStart?: string
     trailingIcon?: JSX.Element
-    value?: string
-} & VoidProps
+    value?: Accessor<string>
+} & JSX.HTMLAttributes<HTMLDivElement> & VoidProps
 
 type StateChange = { wasFocused: boolean, isFocused: boolean, wasPopulated: boolean, isPopulated: boolean }
 
 export const FilledField: Component<FilledFieldProps> = (props) => {
-    const [componentProps,] = splitProps(props, [
+    const [componentProps, fieldProps,] = splitProps(props, [
         'disabled',
         'error',
         'focused',
         'label',
         'leadingIcon',
-        'populated',
         'required',
         'resizable',
         'supportingTextEnd',
@@ -40,20 +40,34 @@ export const FilledField: Component<FilledFieldProps> = (props) => {
     let floatingLabel: HTMLDivElement | null = null;
     let container: HTMLDivElement | null = null;
 
+    const [focused, ] = createSignal(componentProps.focused || false)
+    const [animating, setAnimating] = createSignal(false)
+    const [labelState, setLabelState] = createSignal<'floating' | 'resting' | 'no-label'>('resting');
+
+    createEffect(() => {
+        if (focused() || !!componentProps.value() || animating()) {
+            setLabelState('floating');
+        } else if (!focused() && !componentProps.value() && !animating()) {
+            setLabelState('resting');
+        } else {
+            setLabelState('no-label');
+        }
+    })
+
     const fieldState = createMemo(
         (prev: StateChange) => {
             return {
                 wasFocused: prev.isFocused,
-                isFocused: !!componentProps?.focused,
+                isFocused: focused(),
                 wasPopulated: prev.isPopulated,
-                isPopulated: !!componentProps?.populated
+                isPopulated: !!componentProps.value()
             }
         },
         {
             wasFocused: false,
-            isFocused: !!componentProps?.populated,
+            isFocused: focused(),
             wasPopulated: false,
-            isPopulated: !!componentProps?.populated
+            isPopulated: !!componentProps.value()
         }
     )
     const labelAnimationSignal = createAnimationSignal()
@@ -64,18 +78,6 @@ export const FilledField: Component<FilledFieldProps> = (props) => {
         return labelText + optionalAsterisk;
     }
 
-    const showFloatingLabel = () => {
-        // Floating label is visible when focused/populated or when animating.
-        return componentProps.focused || componentProps.populated || animating();
-
-    }
-    const showRestingLabel = () => {
-        // Resting label is visible when unfocused. It is never visible while
-        // animating.
-        return !componentProps.focused && !componentProps.populated && !animating();
-    }
-
-    const [animating, setAnimating] = createSignal(false)
 
     onMount(() => {
         createEffect(() => {
@@ -110,14 +112,15 @@ export const FilledField: Component<FilledFieldProps> = (props) => {
 
     return (
         <div
+            {...fieldProps}
             class={'field-shared field filled-field'}
             classList={{
                 'field--disabled': componentProps.disabled,
                 'field--error': componentProps.error && !componentProps.disabled,
-                'field--focused': componentProps.focused,
+                'field--focused': focused(),
                 'field--with-start': !!componentProps.leadingIcon,
                 'field--with-end': !!componentProps.trailingIcon,
-                'field--populated': componentProps.populated,
+                'field--populated': !!componentProps.value(),
                 'field--resizable': componentProps.resizable,
                 'field--required': componentProps.required,
                 'field--no-label': !componentProps.label,
@@ -139,7 +142,7 @@ export const FilledField: Component<FilledFieldProps> = (props) => {
                             ref={restingLabel!}
                             class={'field__label field__label--resting'}
                             classList={{
-                                'field__label--hidden': !showRestingLabel(),
+                                'field__label--hidden': labelState() !== 'resting',
                             }}
                         >
                                 {getLabelText()}
@@ -148,16 +151,21 @@ export const FilledField: Component<FilledFieldProps> = (props) => {
                             ref={floatingLabel!}
                             class={'field__label field__label--floating'}
                             classList={{
-                                'field__label--hidden': !showFloatingLabel(),
+                                'field__label--hidden': labelState() !== 'floating',
                             }}
                         >
                                 {getLabelText()}
                         </span>
                         <div class={'field__content'}>
-                            {componentProps.value || 'placeholder'}
+                            <Show
+                                when={!!componentProps.value()}
+                                fallback={<span>&nbsp;</span>}
+                            >
+                                {componentProps.value()}
+                            </Show>
                         </div>
                     </div>
-                    <div class={`field__end`}>
+                    <div class={'field__end'}>
                         {componentProps?.trailingIcon}
                     </div>
                 </div>

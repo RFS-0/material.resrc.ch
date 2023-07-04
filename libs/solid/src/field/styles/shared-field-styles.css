@@ -94,15 +94,15 @@
     transition-delay: 67ms
 }
 
-.field:hover .field__content {
+.select__field:hover .field__content {
     color: var(--_hover-content-color)
 }
 
-.field:hover .field__start {
+.select__field:hover .field__start {
     color: var(--_hover-leading-content-color)
 }
 
-.field:hover .field__end {
+.select__field:hover .field__end {
     color: var(--_hover-trailing-content-color)
 }
 
@@ -205,7 +205,7 @@
     display: none
 }
 
-.field:hover .field__label {
+.select__field:hover .field__label {
     color: var(--_hover-label-text-color)
 }
 
@@ -253,7 +253,7 @@
     padding-inline-start: var(--_supporting-text-padding)
 }
 
-.field:hover .field__supporting-text {
+.select__field:hover .field__supporting-text {
     color: var(--_hover-supporting-text-color)
 }
 
