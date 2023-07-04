@@ -55,16 +55,11 @@ export const Standalone: Story = {
             }
         ]);
 
-        let selectAnchor: HTMLButtonElement | null = null;
         const [selectOpen, setSelectOpen] = createSignal(false);
 
         return (
             <Select
                 {...props}
-                positionHelper={{
-                    anchorEl: () => selectAnchor,
-                    isOpen: selectOpen,
-                }}
                 items={[items[0], items[1]]}
                 itemRenderer={
                     (item) => <SelectItem
