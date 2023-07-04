@@ -127,9 +127,6 @@ export const ListItem = (props: ListItemProps) => {
                         {componentProps.end}
                     </Show>
                 </div>
-                {/*TODO: ensure ripple is visible, currently it is not because z-index is too low.*/}
-                {/*However, increasing it will make it overlay the underlying element.*/}
-                {/*Wait for updated version of ripple to reevaluate if it still is broken.*/}
                 <Ripple
                     listen={listen}
                     disabled={componentProps.nonInteractive || componentProps.data.state.disabled}
