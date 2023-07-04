@@ -8,36 +8,10 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 
 ## Open tasks:
 
-- [x] Setup turbo repo
-- [x] Setup Storybook
-- [x] Setup CI/CD
-- [x] Implement pipeline to release to NPM
-- [x] Add example to Demo and Storybook
-- [ ] Change name of temp-demo back to demo
-- [x] Implement button
-- [x] Implement checkbox
-- [x] Implement chips
-- [x] Implement circular-progress
-- [x] Implement dialog
-- [x] Implement divider
-- [x] Implement elevation
-- [x] Implement fab
-- [x] Implement field
-- [x] Implement focus
-- [x] Implement icon
-- [x] Implement icon-button
-- [x] Implement linear-progress
-- [x] Implement list
-- [x] Implement menu
-- [x] Implement radio
-- [x] Implement ripple
-- [x] Implement select
-- [ ] Implement slider
-- [x] Implement switch
-- [x] Implement tabs
-- [x] Implement textfield
-- [ ] Setup test infrastructure
 - [ ] Test components
+- [ ] Refactor components
+- [ ] Use css modules
+- [ ] Change name of temp-demo back to demo
+- [ ] Setup test infrastructure
 - [ ] Document repo
 - [ ] Animate dialog
-- [ ] Use css modules

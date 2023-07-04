@@ -19,9 +19,11 @@ export * from './menu';
 export * from './radio';
 export * from './ripple';
 export * from './select';
+export * from './slider'
 export * from './switch';
 export * from './tabs';
 export * from './textfield';
+
 
 declare module "solid-js" {
     namespace JSX {
