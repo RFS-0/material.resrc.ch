@@ -14,7 +14,10 @@ export default meta;
 type Story = StoryObj<typeof Select>;
 
 export const Standalone: Story = {
-    render: () => {
+    args: {
+        variant: 'outlined',
+    },
+    render: (props) => {
         const items = createStore<SelectOptionItem []>([
             {
                 id: 'select-item-1',
@@ -57,7 +60,7 @@ export const Standalone: Story = {
 
         return (
             <Select
-                variant={'outlined'}
+                {...props}
                 positionHelper={{
                     anchorEl: () => selectAnchor,
                     isOpen: selectOpen,

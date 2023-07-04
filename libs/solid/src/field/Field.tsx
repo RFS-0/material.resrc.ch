@@ -24,7 +24,7 @@ export type FieldProps = {
 } & JSX.HTMLAttributes<HTMLDivElement> & VoidProps
 
 export const Field: Component<FieldProps> = (props) => {
-    const [componentProps,] = splitProps(props, [
+    const [componentProps, fieldProps,] = splitProps(props, [
         'disabled',
         'error',
         'focused',
@@ -115,6 +115,7 @@ export const Field: Component<FieldProps> = (props) => {
 
     return (
         <div
+            {...fieldProps}
             class={'field-shared field'}
             classList={{
                 'filled-field': componentProps.variant === 'filled',

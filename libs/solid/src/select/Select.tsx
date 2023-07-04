@@ -217,6 +217,7 @@ export const Select = (props: FilledSelectProps) => {
             class="select__container"
             classList={{
                 'select__container--filled': componentProps.variant === 'filled',
+                'select__container--outlined': componentProps.variant === 'outlined',
                 'select--disabled': componentProps.disabled,
             }}
             onfocusout={handleFocusOut}
