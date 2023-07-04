@@ -11,10 +11,10 @@
     --list-container-color: var(--_container-color);
     --elevation-level: var(--_container-elevation);
     --elevation-shadow-color: var(--_container-shadow-color);
-    --focus-ring-shape-start-start: var(--md-focus-ring-shape, var(--_container-shape));
-    --focus-ring-shape-start-end: var(--md-focus-ring-shape, var(--_container-shape));
-    --focus-ring-shape-end-end: var(--md-focus-ring-shape, var(--_container-shape));
-    --focus-ring-shape-end-start: var(--md-focus-ring-shape, var(--_container-shape));
+    --focus-ring-shape-start-start: var(--focus-ring-shape, var(--_container-shape));
+    --focus-ring-shape-start-end: var(--focus-ring-shape, var(--_container-shape));
+    --focus-ring-shape-end-end: var(--focus-ring-shape, var(--_container-shape));
+    --focus-ring-shape-end-start: var(--focus-ring-shape, var(--_container-shape));
 }
 
 .menu-shared.menu {
@@ -55,6 +55,6 @@
 }
 
 .menu li {
-    height: inherit;
-    max-height: inherit;
+    height: max-content;
+    max-height: max-content;
 }

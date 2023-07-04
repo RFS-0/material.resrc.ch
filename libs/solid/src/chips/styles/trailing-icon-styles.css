@@ -15,9 +15,6 @@
     height: calc(1.3333333333 * var(--_icon-size));
     width: calc(1.3333333333 * var(--_icon-size));
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 :has(.chip-trailing.chip-action) .chip-primary.chip-action {

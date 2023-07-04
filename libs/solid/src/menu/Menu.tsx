@@ -55,16 +55,17 @@ export function unselectItem(itemToDeactivate: MenuItemData, itemStore: [get: St
 export function selectItem(itemToSelect: MenuItemData, itemStore: [get: Store<MenuItemData[]>, set: SetStoreFunction<MenuItemData[]>]) {
     const [items, setItems] = itemStore;
     const indexOfItemToSelect = items.findIndex((item) => item.id === itemToSelect.id);
-    const selected = {...itemToSelect, state: {...itemToSelect.state, active: true}}
+    const selected = {...itemToSelect, state: {...itemToSelect.state, selected: true}}
     setItems((items) => [...items.slice(0, indexOfItemToSelect), selected, ...items.slice(indexOfItemToSelect + 1)]);
     activateItem(selected, itemStore);
 }
 
 export type MenuProps = {
     defaultFocus?: DefaultFocusState;
+    fixed?: boolean;
     hasOverflow?: boolean;
-    itemRenderer: (item: MenuItemData) => JSX.Element;
     items: [get: Store<MenuItemData[]>, set: SetStoreFunction<MenuItemData[]>];
+    itemRenderer: (item: MenuItemData) => JSX.Element;
     listTabIndex?: number;
     onClosing?: (evt: CustomEvent<void>) => void;
     onClosed?: (evt: CustomEvent<void>) => void;
@@ -77,8 +78,8 @@ export type MenuProps = {
     skipRestoreFocus?: boolean;
     stayOpenOnFocusout?: boolean;
     stayOpenOnOutsideClick?: boolean;
-    typeaheadActive?: boolean;
-    typeaheadDelay?: number;
+    type: 'menu' | 'list';
+    typeAheadController?: TypeaheadController;
 };
 
 export const Menu = (props: MenuProps) => {
@@ -88,9 +89,10 @@ export const Menu = (props: MenuProps) => {
         props,
         [
             'defaultFocus',
+            'fixed',
             'hasOverflow',
-            'itemRenderer',
             'items',
+            'itemRenderer',
             'listTabIndex',
             'open',
             'quick',
@@ -98,27 +100,25 @@ export const Menu = (props: MenuProps) => {
             'skipRestoreFocus',
             'stayOpenOnFocusout',
             'stayOpenOnOutsideClick',
-            'typeaheadActive',
-            'typeaheadDelay',
+            'type',
+            'typeAheadController',
         ],
     );
 
-    const [items, ] = componentProps.items;
+    const [items,] = componentProps.items;
 
     let menuElement: HTMLDivElement | null = null;
     let listElement: HTMLUListElement | null = null;
     let surfaceElement: HTMLDivElement | null = null;
     let lastFocusedElement: HTMLElement | null = null;
 
-    const fixed = props.positionHelper.isTopLayer || false;
+    const fixed = props.fixed || false;
     const quick = props.quick || false;
     const [open, setOpen] = componentProps.open;
     const [stayOpenOnFocusout, setStayOpenOnFocusout] = createSignal(componentProps.stayOpenOnFocusout || false);
     const hasOverflow = props.hasOverflow
     let skipRestoreFocus = componentProps.skipRestoreFocus || false;
     const defaultFocus = componentProps.defaultFocus || 'NONE';
-    const [typeaheadActive, setTypeaheadActive] = createSignal(componentProps.typeaheadActive || false);
-    const [typeaheadDelay, ]  = createSignal(componentProps.typeaheadDelay || 500);
 
     const onOpened = () => {
         lastFocusedElement = getFocusedElement();
@@ -188,7 +188,7 @@ export const Menu = (props: MenuProps) => {
             surfaceEl: () => surfaceElement,
             anchorEl: null,
             isOpen: open,
-            isTopLayer: false,
+            isTopLayer: fixed,
             xOffset: 0,
             yOffset: 0,
         } as MenuPositionHelperProps,
@@ -196,10 +196,12 @@ export const Menu = (props: MenuProps) => {
     )
     const menuPostionHelper = new MenuPositionHelper(menuPositionHelperProps);
 
-    const typeaheadController = new TypeaheadController({
+    const [typeaheadActive, setTypeaheadActive] = createSignal(false);
+    const [typeaheadDelay,] = createSignal(500);
+    const typeaheadController = componentProps.typeAheadController || new TypeaheadController({
+        active: typeaheadActive,
         items: componentProps.items,
-        typeaheadBufferTime: typeaheadDelay,
-        active: typeaheadActive
+        typeaheadBufferTime: typeaheadDelay
     })
 
     createEffect(
@@ -500,10 +502,6 @@ export const Menu = (props: MenuProps) => {
     onMount(() => {
         window.addEventListener('click', onWindowClick, {capture: true});
         listElement.addEventListener('keydown', handleListKeydown, {capture: true});
-
-        createEffect(() => {
-            console.log('items', componentProps.items[0].find(item => item.state.active))
-        })
     });
 
     onCleanup(() => {
@@ -536,7 +534,6 @@ export const Menu = (props: MenuProps) => {
                     onKeyDown={handleListKeydown}
                     items={componentProps.items}
                     itemRenderer={componentProps.itemRenderer}
-                    type="menu"
                     on:close-menu={onCloseMenu}
                     on:deactivate-items={onDeactivateItems}
                     on:activate-typeahead={handleActivateTypeahead}
@@ -544,6 +541,7 @@ export const Menu = (props: MenuProps) => {
                     on:stay-open-on-focusout={handleStayOpenOnFocusout}
                     on:close-on-focusout={handleCloseOnFocusout}
                     tabIndex={0}
+                    type={componentProps.type}
                 />
             </div>
         </div>

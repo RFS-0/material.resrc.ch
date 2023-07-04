@@ -1,59 +1,76 @@
-import {Component, createEffect, createMemo, createSignal, JSX, onMount, splitProps, VoidProps} from "solid-js"
+import {
+    Accessor, Component, createEffect, createMemo, createSignal, JSX, onMount, Show, splitProps, VoidProps
+} from "solid-js"
+import './styles/outlined-styles.css'
 import './styles/filled-styles.css'
 import {createAnimationSignal} from "../motion"
 import {getLabelKeyframes} from "./label-animations"
 
-export type FilledFieldProps = {
+export type StateChange = { wasFocused: boolean, isFocused: boolean, wasPopulated: boolean, isPopulated: boolean }
+
+export type FieldProps = {
     disabled?: boolean
     error?: boolean
     focused?: boolean
     label?: string
     leadingIcon?: JSX.Element
-    populated?: boolean
     resizable?: boolean
     required?: boolean
     supportingTextEnd?: string
     supportingTextStart?: string
     trailingIcon?: JSX.Element
-    value?: string
-} & VoidProps
+    value?: Accessor<string>
+    variant?: 'filled' | 'outlined'
+} & JSX.HTMLAttributes<HTMLDivElement> & VoidProps
 
-type StateChange = { wasFocused: boolean, isFocused: boolean, wasPopulated: boolean, isPopulated: boolean }
-
-export const FilledField: Component<FilledFieldProps> = (props) => {
-    const [componentProps,] = splitProps(props, [
+export const Field: Component<FieldProps> = (props) => {
+    const [componentProps, fieldProps,] = splitProps(props, [
         'disabled',
         'error',
         'focused',
         'label',
         'leadingIcon',
-        'populated',
         'required',
         'resizable',
         'supportingTextEnd',
         'supportingTextStart',
         'trailingIcon',
         'value',
+        'variant',
     ]);
 
     let restingLabel: HTMLDivElement | null = null;
     let floatingLabel: HTMLDivElement | null = null;
     let container: HTMLDivElement | null = null;
 
-    const fieldState = createMemo(
+    const [focused,] = createSignal(componentProps.focused || false)
+    const [animating, setAnimating] = createSignal(false)
+    const [labelState, setLabelState] = createSignal<'floating' | 'resting' | 'no-label'>('resting');
+
+    createEffect(() => {
+        if (focused() || !!componentProps.value() || animating()) {
+            setLabelState('floating');
+        } else if (!focused() && !componentProps.value() && !animating()) {
+            setLabelState('resting');
+        } else {
+            setLabelState('no-label');
+        }
+    })
+
+    const fieldState: Accessor<StateChange> = createMemo(
         (prev: StateChange) => {
             return {
                 wasFocused: prev.isFocused,
-                isFocused: !!componentProps?.focused,
+                isFocused: focused(),
                 wasPopulated: prev.isPopulated,
-                isPopulated: !!componentProps?.populated
+                isPopulated: !!componentProps.value()
             }
         },
         {
             wasFocused: false,
-            isFocused: !!componentProps?.populated,
+            isFocused: focused(),
             wasPopulated: false,
-            isPopulated: !!componentProps?.populated
+            isPopulated: !!componentProps.value()
         }
     )
     const labelAnimationSignal = createAnimationSignal()
@@ -63,19 +80,6 @@ export const FilledField: Component<FilledFieldProps> = (props) => {
         const optionalAsterisk = componentProps?.required && labelText ? '*' : '';
         return labelText + optionalAsterisk;
     }
-
-    const showFloatingLabel = () => {
-        // Floating label is visible when focused/populated or when animating.
-        return componentProps.focused || componentProps.populated || animating();
-
-    }
-    const showRestingLabel = () => {
-        // Resting label is visible when unfocused. It is never visible while
-        // animating.
-        return !componentProps.focused && !componentProps.populated && !animating();
-    }
-
-    const [animating, setAnimating] = createSignal(false)
 
     onMount(() => {
         createEffect(() => {
@@ -108,53 +112,91 @@ export const FilledField: Component<FilledFieldProps> = (props) => {
         })
     })
 
+
     return (
         <div
-            class={'field-shared field filled-field'}
+            {...fieldProps}
+            class={'field-shared field'}
             classList={{
+                'filled-field': componentProps.variant === 'filled',
+                'outlined-field': componentProps.variant === 'outlined',
                 'field--disabled': componentProps.disabled,
                 'field--error': componentProps.error && !componentProps.disabled,
-                'field--focused': componentProps.focused,
+                'field--focused': focused(),
                 'field--with-start': !!componentProps.leadingIcon,
                 'field--with-end': !!componentProps.trailingIcon,
-                'field--populated': componentProps.populated,
+                'field--populated': !!componentProps.value(),
                 'field--resizable': componentProps.resizable,
                 'field--required': componentProps.required,
                 'field--no-label': !componentProps.label,
             }}
         >
             <div class="field__container-overflow">
-                <div class="filled-field__background"></div>
-                <div class="filled-field__state-layer"></div>
-                <div class="filled-field__active-indicator"></div>
+                <Show
+                    when={componentProps.variant === 'outlined'}
+                    fallback={
+                        <>
+                            <div class="filled-field__background"></div>
+                            <div class="filled-field__state-layer"></div>
+                            <div class="filled-field__active-indicator"></div>
+                        </>
+                    }
+                >
+                    <div class={'field__outline'}>
+                        <div class={"field__outline-start"}></div>
+                        <div class={"field__outline-notch"}>
+                            <div class={"field__outline-panel-inactive"}></div>
+                            <div class={"field__outline-panel-active"}></div>
+                            <div class="field__outline-label">
+                        <span
+                            ref={floatingLabel}
+                            class={'field__label field__label--floating'}
+                            classList={{
+                                'field__label--hidden': labelState() !== 'floating',
+                            }}
+                        >
+                                {getLabelText()}
+                        </span>
+                            </div>
+                        </div>
+                        <div class={"field__outline-end"}></div>
+                    </div>
+                </Show>
                 <div
-                    ref={container!}
+                    ref={container}
                     class={'field__container'}
                 >
                     <div class={'field__start'}>
                         {componentProps?.leadingIcon}
                     </div>
-                    <div class={'field__middle'}>
+                    <div class={`field__middle`}>
                         <span
-                            ref={restingLabel!}
+                            ref={restingLabel}
                             class={'field__label field__label--resting'}
                             classList={{
-                                'field__label--hidden': !showRestingLabel(),
+                                'field__label--hidden': labelState() !== 'resting',
                             }}
                         >
                                 {getLabelText()}
                         </span>
-                        <span
-                            ref={floatingLabel!}
-                            class={'field__label field__label--floating'}
-                            classList={{
-                                'field__label--hidden': !showFloatingLabel(),
-                            }}
-                        >
+                        <Show when={componentProps.variant === 'filled'}>
+                            <span
+                                ref={floatingLabel!}
+                                class={'field__label field__label--floating'}
+                                classList={{
+                                    'field__label--hidden': labelState() !== 'floating',
+                                }}
+                            >
                                 {getLabelText()}
                         </span>
+                        </Show>
                         <div class={'field__content'}>
-                            {componentProps.value || 'placeholder'}
+                            <Show
+                                when={!!componentProps.value()}
+                                fallback={<span>&nbsp;</span>}
+                            >
+                                {componentProps.value()}
+                            </Show>
                         </div>
                     </div>
                     <div class={`field__end`}>

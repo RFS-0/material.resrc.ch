@@ -54,7 +54,6 @@ export class TypeaheadController {
     };
 
     private beginTypeahead(e: KeyboardEvent) {
-        console.log('beginTypeahead', e);
         if (!this.active) {
             return;
         }
@@ -72,7 +71,6 @@ export class TypeaheadController {
         // and a normalized header.
         const items = this.items[0];
         this.typeaheadRecords = items.map((el, index) => [index, el, el.headline.trim().toLowerCase()]);
-        console.log('typeaheadRecords', this.typeaheadRecords);
         this.lastActiveRecord = this.typeaheadRecords.find(record => record[TYPEAHEAD_RECORD.ITEM].state.active) ?? null;
         if (this.lastActiveRecord) {
             deactivateItem(this.lastActiveRecord[TYPEAHEAD_RECORD.ITEM], this.items)
@@ -81,7 +79,6 @@ export class TypeaheadController {
     }
 
     private typeahead(e: KeyboardEvent) {
-        console.log('typeahead', e);
         clearTimeout(this.cancelTypeaheadTimeout);
         // Stop typingahead if one of the navigation or selection keys (except for
         // Space) are pressed
@@ -104,7 +101,6 @@ export class TypeaheadController {
         this.cancelTypeaheadTimeout = window.setTimeout(this.endTypeahead, this.typeaheadBufferTime);
 
         this.typaheadBuffer += e.key.toLowerCase();
-        console.log('typaheadBuffer', this.typaheadBuffer);
 
         const lastActiveIndex = this.lastActiveRecord ? this.lastActiveRecord[TYPEAHEAD_RECORD.INDEX] : -1;
         const numRecords = this.typeaheadRecords.length;
@@ -124,7 +120,6 @@ export class TypeaheadController {
         // Just leave if there's nothing that matches. Native select will just
         // choose the first thing that starts with the next letter in the alphabet
         // but that's out of scope and hard to localize
-        console.log('matchingRecords', matchingRecords);
         if (matchingRecords.length === 0) {
             clearTimeout(this.cancelTypeaheadTimeout);
             if (this.lastActiveRecord) {

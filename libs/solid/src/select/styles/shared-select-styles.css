@@ -1,0 +1,35 @@
+.select__container {
+    display: inline-flex;
+    color: unset;
+    min-width: 210px
+}
+
+.select__container .select__field {
+    cursor: default;
+    outline: none
+}
+
+.select__container .select__container {
+    position: relative
+}
+
+.select__container .select__field,
+.select__container .select__container,
+.select__container .menu__container {
+    min-width: inherit;
+    width: inherit;
+    max-width: inherit
+}
+
+.select__container .filled-field,
+.select__container .select__container {
+    width: 100%
+}
+
+.select__container .field__label {
+    width: 100%
+}
+
+.select__container.select--disabled {
+    pointer-events: none
+}

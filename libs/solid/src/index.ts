@@ -18,6 +18,7 @@ export * from './list'
 export * from './menu'
 export * from './radio'
 export * from './ripple'
+export * from './select'
 
 declare module "solid-js" {
     namespace JSX {

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "declaration": true,
+    "declarationMap": true,
     "esModuleInterop": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
