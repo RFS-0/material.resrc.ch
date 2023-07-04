@@ -3,22 +3,10 @@
   "bugs": {
     "url": "https://github.com/RFS-0/material.resrc.ch/issues"
   },
-  "dependencies": {
-    "@solid-primitives/event-bus": "^1.0.7",
-    "@types/node": "^20.3.3",
-    "solid-js": "^1.7.7"
-  },
   "description": "A SolidJS Port of Material 3",
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
-    "@solid-primitives/event-bus": "^1.0.5",
-    "@types/node": "^20.2.5",
-    "fs-extra": "^11.1.1",
-    "solid-js": "^1.7.2",
-    "turbo": "^1.10.7",
-    "typescript": "^5.1.6",
-    "vite": "^4.3.9",
-    "vite-plugin-solid": "^2.7.0"
+    "turbo": "^1.10.7"
   },
   "exports": {
     ".": {
@@ -30,8 +18,7 @@
   "files": [
     "dist",
     "LICENSE",
-    "README.md",
-    "*.d.ts"
+    "README.md"
   ],
   "homepage": "https://github.com/RFS-0/material.resrc.ch#readme",
   "keywords": [
