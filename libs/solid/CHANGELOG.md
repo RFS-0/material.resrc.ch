@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.36
+
+### Patch Changes
+
+- 933da73: Update deps
+
 ## 0.0.35
 
 ### Patch Changes
