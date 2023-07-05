@@ -17,7 +17,7 @@ importers:
       '@solidjs/meta': ^0.28.5
       '@solidjs/router': ^0.8.2
       autoprefixer: ^10.4.14
-      material.resrc.ch: workspace:0.0.36
+      material.resrc.ch: workspace:0.0.37
       postcss: ^8.4.24
       solid-devtools: ^0.27.3
       solid-js: ^1.7.7
@@ -4598,7 +4598,7 @@ packages:
   /@types/node-fetch/2.6.4:
     resolution: {integrity: sha512-1ZX9fcN4Rvkvgv4E6PAY5WXUFWFcRWxZa3EW83UjycOB9ljJCedb2CupIP4RZMEwF/M3eTcCihbBRgwtGbg5Rg==}
     dependencies:
-      '@types/node': 16.18.38
+      '@types/node': 20.3.3
       form-data: 3.0.1
     dev: true
 
