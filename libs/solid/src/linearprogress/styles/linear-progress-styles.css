@@ -16,7 +16,7 @@
     contain: strict;
 }
 
-.linear-progress, .track, .buffer-bar, .bar, .bar-inner {
+.linear-progress, .switch__track, .buffer-bar, .bar, .bar-inner {
     position: absolute;
 }
 
@@ -56,7 +56,7 @@
     transform-origin: left center;
 }
 
-.track {
+.linear-progress .switch__track {
     inset: 0;
     will-change: transform;
     animation: linear infinite 250ms;
@@ -77,7 +77,7 @@
     display: block;
 }
 
-.indeterminate .track {
+.indeterminate .switch__track {
     display: none;
 }
 

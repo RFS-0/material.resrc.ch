@@ -33,7 +33,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Implement ripple
 - [x] Implement select
 - [ ] Implement slider
-- [ ] Implement switch
+- [x] Implement switch
 - [ ] Implement tabs
 - [ ] Implement textfield
 - [ ] Setup test infrastructure

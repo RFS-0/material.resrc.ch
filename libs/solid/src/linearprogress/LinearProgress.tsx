@@ -69,7 +69,7 @@ export const LinearProgress = (props: LinearProgressProps) => {
             aria-valuemax="1"
             aria-valuenow={componentProps.indeterminate ? '' : componentProps.progress}
         >
-            <div class="track"></div>
+            <div class="switch__track"></div>
             <div class="buffer-bar" style={bufferStyles}></div>
             <div class="bar primary-bar" style={progressStyles}>
                 <div class="bar-inner"></div>
