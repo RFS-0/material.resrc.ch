@@ -1,5 +1,13 @@
 # storybook.material.resrc.ch
 
+## 0.0.37
+
+### Patch Changes
+
+- adf3a6a: Implement switch
+- Updated dependencies [adf3a6a]
+  - material.resrc.ch@0.0.37
+
 ## 0.0.36
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.37
+
+### Patch Changes
+
+- adf3a6a: Implement switch
+
 ## 0.0.36
 
 ### Patch Changes
