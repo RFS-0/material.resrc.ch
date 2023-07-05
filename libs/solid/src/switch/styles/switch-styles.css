@@ -1,0 +1,405 @@
+/*noinspection CssUnresolvedCustomProperty*/
+.switch-shared {
+    --_disabled-selected-handle-color: var(--switch-disabled-selected-handle-color, var(--sys-surface, #fef7ff));
+    --_disabled-selected-handle-opacity: var(--switch-disabled-selected-handle-opacity, 1);
+    --_disabled-selected-icon-color: var(--switch-disabled-selected-icon-color, var(--sys-on-surface, #1d1b20));
+    --_disabled-selected-icon-opacity: var(--switch-disabled-selected-icon-opacity, 0.38);
+    --_disabled-selected-track-color: var(--switch-disabled-selected-track-color, var(--sys-on-surface, #1d1b20));
+    --_disabled-track-opacity: var(--switch-disabled-track-opacity, 0.12);
+    --_disabled-unselected-handle-color: var(--switch-disabled-unselected-handle-color, var(--sys-on-surface, #1d1b20));
+    --_disabled-unselected-handle-opacity: var(--switch-disabled-unselected-handle-opacity, 0.38);
+    --_disabled-unselected-icon-color: var(--switch-disabled-unselected-icon-color, var(--sys-surface-container-highest, #e6e0e9));
+    --_disabled-unselected-icon-opacity: var(--switch-disabled-unselected-icon-opacity, 0.38);
+    --_disabled-unselected-track-color: var(--switch-disabled-unselected-track-color, var(--sys-surface-container-highest, #e6e0e9));
+    --_disabled-unselected-track-outline-color: var(--switch-disabled-unselected-track-outline-color, var(--sys-on-surface, #1d1b20));
+    --_handle-shape: var(--switch-handle-shape, 9999px);
+    --_pressed-handle-height: var(--switch-pressed-handle-height, 28px);
+    --_pressed-handle-width: var(--switch-pressed-handle-width, 28px);
+    --_selected-focus-handle-color: var(--switch-selected-focus-handle-color, var(--sys-primary-container, #eaddff));
+    --_selected-focus-icon-color: var(--switch-selected-focus-icon-color, var(--sys-on-primary-container, #21005d));
+    --_selected-focus-track-color: var(--switch-selected-focus-track-color, var(--sys-primary, #6750a4));
+    --_selected-handle-color: var(--switch-selected-handle-color, var(--sys-on-primary, #fff));
+    --_selected-handle-height: var(--switch-selected-handle-height, 24px);
+    --_selected-handle-width: var(--switch-selected-handle-width, 24px);
+    --_selected-hover-handle-color: var(--switch-selected-hover-handle-color, var(--sys-primary-container, #eaddff));
+    --_selected-hover-icon-color: var(--switch-selected-hover-icon-color, var(--sys-on-primary-container, #21005d));
+    --_selected-hover-state-layer-color: var(--switch-selected-hover-state-layer-color, var(--sys-primary, #6750a4));
+    --_selected-hover-state-layer-opacity: var(--switch-selected-hover-state-layer-opacity, 0.08);
+    --_selected-hover-track-color: var(--switch-selected-hover-track-color, var(--sys-primary, #6750a4));
+    --_selected-icon-color: var(--switch-selected-icon-color, var(--sys-on-primary-container, #21005d));
+    --_selected-icon-size: var(--switch-selected-icon-size, 16px);
+    --_selected-pressed-handle-color: var(--switch-selected-pressed-handle-color, var(--sys-primary-container, #eaddff));
+    --_selected-pressed-icon-color: var(--switch-selected-pressed-icon-color, var(--sys-on-primary-container, #21005d));
+    --_selected-pressed-state-layer-color: var(--switch-selected-pressed-state-layer-color, var(--sys-primary, #6750a4));
+    --_selected-pressed-state-layer-opacity: var(--switch-selected-pressed-state-layer-opacity, 0.12);
+    --_selected-pressed-track-color: var(--switch-selected-pressed-track-color, var(--sys-primary, #6750a4));
+    --_selected-track-color: var(--switch-selected-track-color, var(--sys-primary, #6750a4));
+    --_state-layer-shape: var(--switch-state-layer-shape, 9999px);
+    --_state-layer-size: var(--switch-state-layer-size, 40px);
+    --_track-height: var(--switch-track-height, 32px);
+    --_track-outline-width: var(--switch-track-outline-width, 2px);
+    --_track-shape: var(--switch-track-shape, 9999px);
+    --_track-width: var(--switch-track-width, 52px);
+    --_unselected-focus-handle-color: var(--switch-unselected-focus-handle-color, var(--sys-on-surface-variant, #49454f));
+    --_unselected-focus-icon-color: var(--switch-unselected-focus-icon-color, var(--sys-surface-container-highest, #e6e0e9));
+    --_unselected-focus-track-color: var(--switch-unselected-focus-track-color, var(--sys-surface-container-highest, #e6e0e9));
+    --_unselected-focus-track-outline-color: var(--switch-unselected-focus-track-outline-color, var(--sys-outline, #79747e));
+    --_unselected-handle-color: var(--switch-unselected-handle-color, var(--sys-outline, #79747e));
+    --_unselected-handle-height: var(--switch-unselected-handle-height, 16px);
+    --_unselected-handle-width: var(--switch-unselected-handle-width, 16px);
+    --_unselected-hover-handle-color: var(--switch-unselected-hover-handle-color, var(--sys-on-surface-variant, #49454f));
+    --_unselected-hover-icon-color: var(--switch-unselected-hover-icon-color, var(--sys-surface-container-highest, #e6e0e9));
+    --_unselected-hover-state-layer-color: var(--switch-unselected-hover-state-layer-color, var(--sys-on-surface, #1d1b20));
+    --_unselected-hover-state-layer-opacity: var(--switch-unselected-hover-state-layer-opacity, 0.08);
+    --_unselected-hover-track-color: var(--switch-unselected-hover-track-color, var(--sys-surface-container-highest, #e6e0e9));
+    --_unselected-hover-track-outline-color: var(--switch-unselected-hover-track-outline-color, var(--sys-outline, #79747e));
+    --_unselected-icon-color: var(--switch-unselected-icon-color, var(--sys-surface-container-highest, #e6e0e9));
+    --_unselected-icon-size: var(--switch-unselected-icon-size, 16px);
+    --_unselected-pressed-handle-color: var(--switch-unselected-pressed-handle-color, var(--sys-on-surface-variant, #49454f));
+    --_unselected-pressed-icon-color: var(--switch-unselected-pressed-icon-color, var(--sys-surface-container-highest, #e6e0e9));
+    --_unselected-pressed-state-layer-color: var(--switch-unselected-pressed-state-layer-color, var(--sys-on-surface, #1d1b20));
+    --_unselected-pressed-state-layer-opacity: var(--switch-unselected-pressed-state-layer-opacity, 0.12);
+    --_unselected-pressed-track-color: var(--switch-unselected-pressed-track-color, var(--sys-surface-container-highest, #e6e0e9));
+    --_unselected-pressed-track-outline-color: var(--switch-unselected-pressed-track-outline-color, var(--sys-outline, #79747e));
+    --_unselected-track-color: var(--switch-unselected-track-color, var(--sys-surface-container-highest, #e6e0e9));
+    --_unselected-track-outline-color: var(--switch-unselected-track-outline-color, var(--sys-outline, #79747e));
+    --_with-icon-handle-height: var(--switch-with-icon-handle-height, 24px);
+    --_with-icon-handle-width: var(--switch-with-icon-handle-width, 24px);
+    --_handle-shape-start-start: var(--switch-handle-shape-start-start, var(--_handle-shape));
+    --_handle-shape-start-end: var(--switch-handle-shape-start-end, var(--_handle-shape));
+    --_handle-shape-end-end: var(--switch-handle-shape-end-end, var(--_handle-shape));
+    --_handle-shape-end-start: var(--switch-handle-shape-end-start, var(--_handle-shape));
+    --_track-shape-start-start: var(--switch-track-shape-start-start, var(--_track-shape));
+    --_track-shape-start-end: var(--switch-track-shape-start-end, var(--_track-shape));
+    --_track-shape-end-end: var(--switch-track-shape-end-end, var(--_track-shape));
+    --_track-shape-end-start: var(--switch-track-shape-end-start, var(--_track-shape));
+    display: inline-flex;
+    outline: none;
+    vertical-align: top;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.base-focus-ring {
+    --focus-ring-shape-start-start: var(--_track-shape-start-start);
+    --focus-ring-shape-start-end: var(--_track-shape-start-end);
+    --focus-ring-shape-end-end: var(--_track-shape-end-start);
+    --focus-ring-shape-end-start: var(--_track-shape-end-end)
+}
+
+.switch {
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    flex-shrink: 0;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    position: relative;
+    width: var(--_track-width);
+    height: var(--_track-height);
+    border-start-start-radius: var(--_track-shape-start-start);
+    border-start-end-radius: var(--_track-shape-start-end);
+    border-end-end-radius: var(--_track-shape-end-end);
+    border-end-start-radius: var(--_track-shape-end-start)
+}
+
+.switch__touch {
+    position: absolute;
+    height: 48px;
+    width: 48px
+}
+
+.switch:disabled {
+    cursor: default;
+    pointer-events: none
+}
+
+.switch:disabled .switch__track {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0)
+}
+
+.switch:disabled .switch__track::before {
+    background-clip: content-box
+}
+
+.switch--selected:disabled .switch__track {
+    background-clip: border-box
+}
+
+.switch__track {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.switch__track::before {
+    content: "";
+    display: flex;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    box-sizing: border-box;
+    transition-property: opacity, background-color;
+    transition-timing-function: linear;
+    transition-duration: 67ms
+}
+
+.switch:disabled .switch__track::before, .switch:disabled .switch__track::after {
+    transition: none;
+    opacity: var(--_disabled-track-opacity)
+}
+
+.switch--selected .switch__track::before {
+    background-color: var(--_selected-track-color)
+}
+
+.switch--selected:hover .switch__track::before {
+    background-color: var(--_selected-hover-track-color)
+}
+
+.switch--selected:focus-within .switch__track::before {
+    background-color: var(--_selected-focus-track-color)
+}
+
+.switch--selected:active .switch__track::before {
+    background-color: var(--_selected-pressed-track-color)
+}
+
+.switch--selected:disabled .switch__track::before {
+    background-color: var(--_disabled-selected-track-color)
+}
+
+.switch--unselected .switch__track::before {
+    background-color: var(--_unselected-track-color);
+    border-color: var(--_unselected-track-outline-color);
+    border-style: solid;
+    border-width: var(--_track-outline-width)
+}
+
+.switch--unselected:hover .switch__track::before {
+    background-color: var(--_unselected-hover-track-color);
+    border-color: var(--_unselected-hover-track-outline-color)
+}
+
+.switch--unselected:focus-visible .switch__track::before {
+    background-color: var(--_unselected-focus-track-color);
+    border-color: var(--_unselected-focus-track-outline-color)
+}
+
+.switch--unselected:active .switch__track::before {
+    background-color: var(--_unselected-pressed-track-color);
+    border-color: var(--_unselected-pressed-track-outline-color)
+}
+
+.switch--unselected:disabled .switch__track::before {
+    background-color: var(--_disabled-unselected-track-color);
+    border-color: var(--_disabled-unselected-track-outline-color)
+}
+
+.switch__handle-container {
+    display: grid;
+    place-items: center;
+    position: relative;
+    transition: margin 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275)
+}
+
+.switch--selected .switch__handle-container {
+    margin-inline-start: calc(var(--_track-width) - var(--_track-height))
+}
+
+.switch--unselected .switch__handle-container {
+    margin-inline-end: calc(var(--_track-width) - var(--_track-height))
+}
+
+.switch:disabled .switch__handle-container {
+    transition: none
+}
+
+.switch__handle {
+    border-start-start-radius: var(--_handle-shape-start-start);
+    border-start-end-radius: var(--_handle-shape-start-end);
+    border-end-end-radius: var(--_handle-shape-end-end);
+    border-end-start-radius: var(--_handle-shape-end-start);
+    height: var(--_unselected-handle-height);
+    width: var(--_unselected-handle-width);
+    transform-origin: center;
+    transition-property: height, width;
+    transition-duration: 250ms, 250ms;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1), cubic-bezier(0.2, 0, 0, 1);
+    z-index: 0
+}
+
+.switch__handle::before {
+    content: "";
+    display: flex;
+    inset: 0;
+    position: absolute;
+    border-radius: inherit;
+    box-sizing: border-box;
+    transition: background-color 67ms linear
+}
+
+.switch:disabled .switch__handle, .switch:disabled .switch__handle::before {
+    transition: none
+}
+
+.switch--selected .switch__handle {
+    height: var(--_selected-handle-height);
+    width: var(--_selected-handle-width)
+}
+
+.switch__handle.with-icon {
+    height: var(--_with-icon-handle-height);
+    width: var(--_with-icon-handle-width)
+}
+
+.switch--selected:enabled:active .switch__handle, .switch--unselected:enabled:active .switch__handle {
+    height: var(--_pressed-handle-height);
+    width: var(--_pressed-handle-width);
+    transition-timing-function: linear;
+    transition-duration: 100ms
+}
+
+.switch--selected .switch__handle::before {
+    background-color: var(--_selected-handle-color)
+}
+
+.switch--selected:hover .switch__handle::before {
+    background-color: var(--_selected-hover-handle-color)
+}
+
+.switch--selected:focus-within .switch__handle::before {
+    background-color: var(--_selected-focus-handle-color)
+}
+
+.switch--selected:active .switch__handle::before {
+    background-color: var(--_selected-pressed-handle-color)
+}
+
+.switch--selected:disabled .switch__handle::before {
+    background-color: var(--_disabled-selected-handle-color);
+    opacity: var(--_disabled-selected-handle-opacity)
+}
+
+.switch--unselected .switch__handle::before {
+    background-color: var(--_unselected-handle-color)
+}
+
+.switch--unselected:hover .switch__handle::before {
+    background-color: var(--_unselected-hover-handle-color)
+}
+
+.switch--unselected:focus-within .switch__handle::before {
+    background-color: var(--_unselected-focus-handle-color)
+}
+
+.switch--unselected:active .switch__handle::before {
+    background-color: var(--_unselected-pressed-handle-color)
+}
+
+.switch--unselected:disabled .switch__handle::before {
+    background-color: var(--_disabled-unselected-handle-color);
+    opacity: var(--_disabled-unselected-handle-opacity)
+}
+
+.switch-shared .ripple-shared {
+    border-radius: var(--_state-layer-shape);
+    height: var(--_state-layer-size);
+    inset: unset;
+    width: var(--_state-layer-size)
+}
+
+.switch--selected .ripple-shared {
+    --ripple-hover-color: var(--_selected-hover-state-layer-color);
+    --ripple-pressed-color: var(--_selected-pressed-state-layer-color);
+    --ripple-hover-opacity: var(--_selected-hover-state-layer-opacity);
+    --ripple-pressed-opacity: var(--_selected-pressed-state-layer-opacity)
+}
+
+.switch--unselected .ripple-shared {
+    --ripple-hover-color: var(--_unselected-hover-state-layer-color);
+    --ripple-pressed-color: var(--_unselected-pressed-state-layer-color);
+    --ripple-hover-opacity: var(--_unselected-hover-state-layer-opacity);
+    --ripple-pressed-opacity: var(--_unselected-pressed-state-layer-opacity)
+}
+
+.switch-shared .switch__icons {
+    position: relative;
+    height: 100%;
+    width: 100%
+}
+
+.switch-shared .switch__icon {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    transition: fill 67ms linear, opacity 33ms linear, transform 167ms cubic-bezier(0.2, 0, 0, 1);
+    opacity: 0
+}
+
+.switch:disabled .switch__icon {
+    transition: none
+}
+
+.switch--selected .switch__icon--on, .switch--unselected .icon--off {
+    opacity: 1
+}
+
+.switch--unselected .switch__handle:not(.with-icon) .switch__icon--on {
+    transform: rotate(-45deg)
+}
+
+.switch-shared .icon--off {
+    width: var(--_unselected-icon-size);
+    height: var(--_unselected-icon-size);
+    fill: var(--_unselected-icon-color)
+}
+
+.switch--unselected:hover .icon--off {
+    fill: var(--_unselected-hover-icon-color)
+}
+
+.switch--unselected:focus-within .icon--off {
+    fill: var(--_unselected-focus-icon-color)
+}
+
+.switch--unselected:active .icon--off {
+    fill: var(--_unselected-pressed-icon-color)
+}
+
+.switch--unselected:disabled .icon--off {
+    fill: var(--_disabled-unselected-icon-color);
+    opacity: var(--_disabled-unselected-icon-opacity)
+}
+
+.switch__icon--on {
+    width: var(--_selected-icon-size);
+    height: var(--_selected-icon-size);
+    fill: var(--_selected-icon-color)
+}
+
+.switch--selected:hover .switch__icon--on {
+    fill: var(--_selected-hover-icon-color)
+}
+
+.switch--selected:focus-within .switch__icon--on {
+    fill: var(--_selected-focus-icon-color)
+}
+
+.switch--selected:active .switch__icon--on {
+    fill: var(--_selected-pressed-icon-color)
+}
+
+.switch--selected:disabled .switch__icon--on {
+    fill: var(--_disabled-selected-icon-color);
+    opacity: var(--_disabled-selected-icon-opacity)
+}
