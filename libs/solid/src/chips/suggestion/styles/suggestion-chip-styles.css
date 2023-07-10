@@ -20,7 +20,7 @@
     --_hover-state-layer-color: var(--sys-on-surface-variant);
     --_hover-state-layer-opacity: 0.08;
     --_label-text-color: var(--sys-on-surface-variant);
-    --_label-text-type: var(--sys-label-medium--font-weight) var(--sys-label-medium--font-size) var(--sys-font-family);
+    --_label-text-type: var(--sys-label-small--font-weight) var(--sys-label-small--font-size) var(--sys-font-family);
     --_pressed-label-text-color: var(--sys-on-surface-variant);
     --_pressed-state-layer-color: var(--sys-on-surface-variant);
     --_pressed-state-layer-opacity: 0.12;

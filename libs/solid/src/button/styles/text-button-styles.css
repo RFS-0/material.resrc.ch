@@ -10,7 +10,7 @@
     --_hover-state-layer-color: var(--sys-primary);
     --_hover-state-layer-opacity: 0.08;
     --_label-text-color: var(--sys-primary);
-    --_label-text-type: var(--sys-font-family);
+    --_label-text-type: var(--sys-label-small--font-weight) var(--sys-label-small--font-size) var(--sys-font-family);
     --_pressed-label-text-color: var(--sys-primary);
     --_pressed-state-layer-color: var(--sys-primary);
     --_pressed-state-layer-opacity: 0.12;

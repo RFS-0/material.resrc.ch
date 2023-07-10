@@ -43,7 +43,7 @@
     --_hover-trailing-icon-color: var(--sys-on-surface-variant);
     --_icon-size: 18px;
     --_label-text-color: var(--sys-on-surface);
-    --_label-text-type: var(--sys-label-medium--font-weight) var(--sys-label-medium--font-size) var(--sys-font-family);
+    --_label-text-type: var(--sys-label-small--font-weight) var(--sys-label-small--font-size) var(--sys-font-family);
     --_leading-icon-color: var(--sys-primary);
     --_outline-color: var(--sys-outline);
     --_outline-width: 1px;

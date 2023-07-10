@@ -5,7 +5,7 @@
     --_headline-color: var(--sys-on-surface);
     --_headline-type: var(--sys-headline-small--font-weight) var(--sys-headline-small--font-size) var(--sys-font-family);
     --_supporting-text-color: var(--sys-on-surface-variant);
-    --_supporting-text-type: var(--sys-body-medium--font-weight) var(--sys-body-medium--font-size) var(--sys-font-family);
+    --_supporting-text-type: var(--sys-body-small--font-weight) var(--sys-body-small--font-size) var(--sys-font-family);
     --_with-icon-icon-color: var(--sys-secondary);
     --_with-icon-icon-size: 24px;
     --_container-max-inline-size: min(560px, 100% - 48px);

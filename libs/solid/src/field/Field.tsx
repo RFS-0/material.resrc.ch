@@ -1,41 +1,46 @@
 import {
-    Accessor, Component, createEffect, createMemo, createSignal, JSX, onMount, Show, splitProps, VoidProps
+    Accessor, Component, createEffect, createMemo, createSignal, JSX, onMount, ParentProps, Show, splitProps
 } from "solid-js"
-import './styles/outlined-styles.css'
-import './styles/filled-styles.css'
 import {createAnimationSignal} from "../motion"
 import {getLabelKeyframes} from "./label-animations"
+import './styles/outlined-styles.css'
+import './styles/filled-styles.css'
 
 export type StateChange = { wasFocused: boolean, isFocused: boolean, wasPopulated: boolean, isPopulated: boolean }
 
 export type FieldProps = {
-    disabled?: boolean
-    error?: boolean
-    focused?: boolean
-    label?: string
-    leadingIcon?: JSX.Element
-    resizable?: boolean
-    required?: boolean
-    supportingTextEnd?: string
-    supportingTextStart?: string
-    trailingIcon?: JSX.Element
-    value?: Accessor<string>
-    variant?: 'filled' | 'outlined'
-} & JSX.HTMLAttributes<HTMLDivElement> & VoidProps
+    disabled?: boolean;
+    error?: boolean;
+    focused?: boolean;
+    hasLeadingIcon?: boolean;
+    hasTrailingIcon?: boolean;
+    label?: string;
+    leadingIcon?: JSX.Element;
+    populated?: boolean;
+    resizable?: boolean;
+    required?: boolean;
+    supportingTextEnd?: JSX.Element;
+    supportingTextStart?: JSX.Element;
+    trailingIcon?: JSX.Element;
+    variant?: 'filled' | 'outlined';
+} & JSX.HTMLAttributes<HTMLDivElement> & ParentProps
 
 export const Field: Component<FieldProps> = (props) => {
     const [componentProps, fieldProps,] = splitProps(props, [
+        'children',
         'disabled',
         'error',
         'focused',
+        'hasLeadingIcon',
+        'hasTrailingIcon',
         'label',
         'leadingIcon',
+        'populated',
         'required',
         'resizable',
         'supportingTextEnd',
         'supportingTextStart',
         'trailingIcon',
-        'value',
         'variant',
     ]);
 
@@ -43,14 +48,15 @@ export const Field: Component<FieldProps> = (props) => {
     let floatingLabel: HTMLDivElement | null = null;
     let container: HTMLDivElement | null = null;
 
-    const [focused,] = createSignal(componentProps.focused || false)
+    const populated = createMemo(() => componentProps.populated)
+    const focused = createMemo(() => componentProps.focused || false)
     const [animating, setAnimating] = createSignal(false)
     const [labelState, setLabelState] = createSignal<'floating' | 'resting' | 'no-label'>('resting');
 
     createEffect(() => {
-        if (focused() || !!componentProps.value() || animating()) {
+        if (focused() || populated() || animating()) {
             setLabelState('floating');
-        } else if (!focused() && !componentProps.value() && !animating()) {
+        } else if (!focused() && !populated() && !animating()) {
             setLabelState('resting');
         } else {
             setLabelState('no-label');
@@ -63,14 +69,14 @@ export const Field: Component<FieldProps> = (props) => {
                 wasFocused: prev.isFocused,
                 isFocused: focused(),
                 wasPopulated: prev.isPopulated,
-                isPopulated: !!componentProps.value()
+                isPopulated: populated(),
             }
         },
         {
             wasFocused: false,
             isFocused: focused(),
             wasPopulated: false,
-            isPopulated: !!componentProps.value()
+            isPopulated: !populated(),
         }
     )
     const labelAnimationSignal = createAnimationSignal()
@@ -123,9 +129,9 @@ export const Field: Component<FieldProps> = (props) => {
                 'field--disabled': componentProps.disabled,
                 'field--error': componentProps.error && !componentProps.disabled,
                 'field--focused': focused(),
-                'field--with-start': !!componentProps.leadingIcon,
-                'field--with-end': !!componentProps.trailingIcon,
-                'field--populated': !!componentProps.value(),
+                'field--with-start': componentProps.hasLeadingIcon,
+                'field--with-end': componentProps.hasTrailingIcon,
+                'field--populated': populated(),
                 'field--resizable': componentProps.resizable,
                 'field--required': componentProps.required,
                 'field--no-label': !componentProps.label,
@@ -167,7 +173,9 @@ export const Field: Component<FieldProps> = (props) => {
                     class={'field__container'}
                 >
                     <div class={'field__start'}>
-                        {componentProps?.leadingIcon}
+                        <Show when={componentProps.hasLeadingIcon}>
+                            {componentProps?.leadingIcon}
+                        </Show>
                     </div>
                     <div class={`field__middle`}>
                         <span
@@ -192,15 +200,17 @@ export const Field: Component<FieldProps> = (props) => {
                         </Show>
                         <div class={'field__content'}>
                             <Show
-                                when={!!componentProps.value()}
+                                when={populated()}
                                 fallback={<span>&nbsp;</span>}
                             >
-                                {componentProps.value()}
+                                {componentProps.children}
                             </Show>
                         </div>
                     </div>
                     <div class={`field__end`}>
-                        {componentProps?.trailingIcon}
+                        <Show when={componentProps.hasTrailingIcon}>
+                            {componentProps?.trailingIcon}
+                        </Show>
                     </div>
                 </div>
             </div>
