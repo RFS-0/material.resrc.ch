@@ -20,7 +20,7 @@
     pointer-events: none;
 }
 
-.button {
+.button-shared.button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -108,7 +108,8 @@
     border-end-end-radius: var(--_container-shape-end-end);
 }
 
-.button::after, .button::before, .elevation, .button__ripple {
+.button::after, .button::before,
+.elevation, .button__ripple {
     z-index: -1;
 }
 

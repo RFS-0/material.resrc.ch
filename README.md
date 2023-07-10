@@ -34,7 +34,7 @@ Navigate to www.storybook.material.resrc.ch to see the Storybook for the compone
 - [x] Implement select
 - [ ] Implement slider
 - [x] Implement switch
-- [ ] Implement tabs
+- [x] Implement tabs
 - [x] Implement textfield
 - [ ] Setup test infrastructure
 - [ ] Test components

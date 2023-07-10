@@ -51,11 +51,11 @@
     border-radius: var(--_container-shape)
 }
 
-.button:active .button__outline {
+.button-shared.button:active .button__outline {
     border-color: var(--_pressed-outline-color)
 }
 
-.button:disabled .button__outline {
+.button-shared.button:disabled .button__outline {
     border-color: var(--_disabled-outline-color)
 }
 

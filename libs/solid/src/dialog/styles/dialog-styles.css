@@ -45,7 +45,7 @@
     }
 }
 
-.dialog {
+.base-dialog.dialog {
     position: fixed;
     align-items: center;
     justify-content: center;
@@ -62,16 +62,16 @@
     overflow: clip;
 }
 
-.dialog {
+.base-dialog.dialog {
     z-index: 10000;
     pointer-events: none;
 }
 
-.dialog.showing-open {
+.base-dialog.dialog.showing-open {
     display: flex;
 }
 
-.dialog::before {
+.base-dialog.dialog::before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -85,7 +85,7 @@
     display: none;
 }
 
-.container {
+.base-dialog .container {
     position: absolute;
     inset-inline-start: var(--_container-drag-inline-start, var(--_container-inset-inline-start));
     inset-inline-end: var(--_container-inset-inline-end);
@@ -105,13 +105,13 @@
     padding-block-end: var(--_container-block-padding);
 }
 
-.container > * {
+.base-dialog .container > * {
     box-sizing: border-box;
     padding-inline-start: var(--_container-inline-padding);
     padding-inline-end: var(--_container-inline-padding);
 }
 
-.header {
+.base-dialog .header {
     align-self: stretch;
     display: flex;
     flex-direction: column;
@@ -121,14 +121,14 @@
     font: var(--_headline-type);
 }
 
-.header.has-headline-prefix {
+.base-dialog .header.has-headline-prefix {
     align-self: center;
     flex: 1;
     display: flex;
     align-items: center;
 }
 
-.content {
+.base-dialog .content {
     flex: 1;
     overflow: auto;
     margin-block-start: var(--_content-block-start-spacing);
@@ -138,7 +138,7 @@
     font: var(--_supporting-text-type);
 }
 
-.footer {
+.base-dialog .footer {
     display: flex;
     position: relative;
     flex-wrap: wrap;
@@ -148,7 +148,7 @@
     gap: var(--_action-spacing);
 }
 
-.headline-prefix > *, .headline-suffix > * {
+.base-dialog .headline-prefix > *, .headline-suffix > * {
     color: var(--_with-icon-icon-color);
     font-size: var(--_with-icon-icon-size);
 }
