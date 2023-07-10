@@ -1,5 +1,12 @@
 # storybook.material.resrc.ch
 
+## 0.0.38
+
+### Patch Changes
+
+- Updated dependencies [b2db76c]
+  - material.resrc.ch@0.0.38
+
 ## 0.0.37
 
 ### Patch Changes

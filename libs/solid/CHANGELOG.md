@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.38
+
+### Patch Changes
+
+- b2db76c: Implement text field
+
 ## 0.0.37
 
 ### Patch Changes
