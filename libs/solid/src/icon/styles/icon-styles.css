@@ -23,11 +23,11 @@
     -moz-osx-font-smoothing: grayscale
 }
 
-span > * {
+.base-icon span > * {
     fill: currentColor
 }
 
-span > * {
+.base-icon span > * {
     height: var(--_size);
     width: var(--_size)
 }

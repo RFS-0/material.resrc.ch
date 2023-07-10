@@ -16,19 +16,23 @@ export const Standalone: Story = {
         error: false,
         focused: false,
         label: 'My Label',
+        populated: true,
         resizable: false,
         required: false,
         supportingTextEnd: '8/10',
         supportingTextStart: 'Supporting Text',
-        value: () => 'My Value',
         variant: 'outlined'
     },
     render: (args) => {
         return (
             <Field
-                data-testid="outlined-field"
                 {...args}
-            />
+            >
+                <span>foo</span>
+                My Value
+                <input style={{display: 'none'}} type="text"/>
+                <span>bar</span>
+            </Field>
         )
     }
 };
@@ -39,21 +43,22 @@ export const Disabled: Story = {
         error: false,
         focused: false,
         label: 'My Label',
+        populated: true,
         leadingIcon: <Icon name={'favorite'}/>,
         resizable: false,
         required: false,
         supportingTextEnd: '8/10',
         supportingTextStart: 'Supporting Text',
         trailingIcon: <Icon name={'cancel'}/>,
-        value: () => 'My Value',
         variant: 'outlined'
     },
     render: (args) => {
         return (
             <Field
-                data-testid="outlined-field"
                 {...args}
-            />
+            >
+                My Value
+            </Field>
         )
     }
 };
@@ -64,20 +69,21 @@ export const WithLeadingIcon: Story = {
         error: false,
         focused: false,
         label: 'My Label',
+        populated: true,
         leadingIcon: <Icon name={'favorite'}/>,
         resizable: false,
         required: false,
         supportingTextEnd: '8/10',
         supportingTextStart: 'Supporting Text',
-        value: () => 'My Value',
         variant: 'outlined'
     },
     render: (args) => {
         return (
             <Field
-                data-testid="outlined-field"
                 {...args}
-            />
+            >
+                My Value
+            </Field>
         )
     }
 };
@@ -88,20 +94,21 @@ export const WithTrailingIcon: Story = {
         error: false,
         focused: false,
         label: 'My Label',
+        populated: true,
         resizable: false,
         required: false,
         supportingTextEnd: '8/10',
         supportingTextStart: 'Supporting Text',
         trailingIcon: <Icon name={'cancel'}/>,
-        value: () => 'My Value',
         variant: 'outlined'
     },
     render: (args) => {
         return (
             <Field
-                data-testid="outlined-field"
                 {...args}
-            />
+            >
+                My Value
+            </Field>
         )
     }
 };
@@ -112,21 +119,22 @@ export const WithLeadingAndTrailingIcon: Story = {
         error: false,
         focused: false,
         label: 'My Label',
+        populated: true,
         leadingIcon: <Icon name={'favorite'}/>,
         resizable: false,
         required: false,
         supportingTextEnd: '8/10',
         supportingTextStart: 'Supporting Text',
         trailingIcon: <Icon name={'cancel'}/>,
-        value: () => 'My Value',
         variant: 'outlined'
     },
     render: (args) => {
         return (
             <Field
-                data-testid="outlined-field"
                 {...args}
-            />
+            >
+                My Value
+            </Field>
         )
     }
 };
@@ -137,19 +145,20 @@ export const Resizable: Story = {
         error: false,
         focused: false,
         label: 'My Label',
+        populated: true,
         resizable: true,
         required: false,
         supportingTextEnd: '8/10',
         supportingTextStart: 'Supporting Text',
-        value: () =>  'My Value',
         variant: 'outlined',
     },
     render: (args) => {
         return (
             <Field
-                data-testid="outlined-field"
                 {...args}
-            />
+            >
+                My Value
+            </Field>
         )
     }
 };

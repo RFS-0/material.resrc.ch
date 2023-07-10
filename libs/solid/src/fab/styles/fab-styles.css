@@ -27,7 +27,7 @@
     --_focus-label-text-color: var(--sys-primary);
     --_hover-label-text-color: var(--sys-primary);
     --_label-text-color: var(--sys-primary);
-    --_label-text-type: var(--sys-label-medium--font-weight) var(--sys-label-medium--font-size) var(--sys-font-family);
+    --_label-text-type: var(--sys-label-small--font-weight) var(--sys-label-small--font-size) var(--sys-font-family);
     --_large-container-height: 96px;
     --_large-container-shape: 28px;
     --_large-container-width: 96px;

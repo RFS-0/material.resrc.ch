@@ -1,0 +1,103 @@
+.text-field__wrapper {
+    display: inline-flex;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    width: 100%;
+}
+
+.text-field {
+    display: inline-flex;
+    flex: 1;
+}
+
+.text-field .field {
+    cursor: text;
+    flex: 1;
+}
+
+.text-field.disabled .field {
+    cursor: default;
+}
+
+.counter {
+    white-space: nowrap;
+}
+
+.text-field .icon {
+    color: currentColor;
+    display: flex;
+    fill: currentColor;
+}
+
+.text-field .icon *:not(:empty) {
+    display: flex;
+}
+
+.text-field .field--with-start .icon.leading {
+    font-size: var(--_leading-icon-size);
+    height: var(--_leading-icon-size);
+    width: var(--_leading-icon-size);
+}
+
+.text-field .field--with-end .icon.trailing {
+    font-size: var(--_trailing-icon-size);
+    height: var(--_trailing-icon-size);
+    width: var(--_trailing-icon-size);
+}
+
+.text-field input {
+    appearance: none;
+    background: none;
+    border: none;
+    caret-color: var(--_caret-color);
+    color: currentColor;
+    font: inherit;
+    outline: none;
+    padding: 0;
+    text-align: inherit;
+    width: 100%;
+}
+
+.text-field input::placeholder {
+    color: currentColor;
+    opacity: 1;
+}
+
+.text-field input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+@media (forced-colors: active) {
+    .text-field__wrapper input {
+        /*noinspection CssInvalidPropertyValue*/
+        background-color: Field;
+    }
+}
+
+.text-field :focus-within input {
+    caret-color: var(--_focus-caret-color);
+}
+
+.text-field .field--error:focus-within input {
+    caret-color: var(--_error-focus-caret-color);
+}
+
+.text-field:not(.disabled) .prefix {
+    color: var(--_input-text-prefix-color);
+}
+
+.text-field:not(.disabled) .suffix {
+    color: var(--_input-text-suffix-color);
+}
+
+.text-field:not(.disabled) input::placeholder {
+    color: var(--_input-text-placeholder-color);
+}
+
+.text-field .prefix {
+    padding-inline-end: var(--_input-text-prefix-padding);
+}
+
+.text-field .suffix {
+    padding-inline-start: var(--_input-text-suffix-padding);
+}

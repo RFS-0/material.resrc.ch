@@ -21,9 +21,9 @@
     --_label-text-color: var(--sys-primary);
     --_label-text-font: var(--sys-font-family);
     --_label-text-line-height: 1.25rem;
-    --_label-text-size: 0.875rem;
+    --_label-text-size: var(--sys-label-medium--font-size);
     --_label-text-tracking: 0.006rem;
-    --_label-text-type: var(--sys-font-family);
+    --_label-text-type: var(--sys-label-small--font-weight) var(--sys-label-small--font-size) var(--sys-font-family);
     --_label-text-weight: 500;
     --_pressed-container-elevation: 1;
     --_pressed-label-text-color: var(--sys-primary);
