@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.39
+
+### Patch Changes
+
+- fa40a0c: Implement tabs
+
 ## 0.0.38
 
 ### Patch Changes
