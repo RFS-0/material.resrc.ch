@@ -136,7 +136,7 @@ export const TextField: Component<TextFieldProps> = (props) => {
     });
 
     const focus = () => {
-        if (fieldState().disabled || inputElement.matches(':focus-within')) {
+        if (fieldState().disabled || inputElement && inputElement.matches(':focus-within')) {
             return;
         }
         setFieldState({
@@ -154,7 +154,7 @@ export const TextField: Component<TextFieldProps> = (props) => {
     }
 
     const handleFocusOut = () => {
-        if (inputElement.matches(':focus-within')) {
+        if (inputElement && inputElement.matches(':focus-within')) {
             return;
         }
         setFieldState({

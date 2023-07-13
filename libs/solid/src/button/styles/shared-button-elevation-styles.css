@@ -1,24 +1,24 @@
-.elevation {
+.button-shared .button--elevated {
     transition-duration: 280ms
 }
 
-.button {
+.button-shared.button {
     --md-elevation-level: var(--_container-elevation);
     --md-elevation-shadow-color: var(--_container-shadow-color)
 }
 
-.button:focus {
+.button-shared.button:focus {
     --md-elevation-level: var(--_focus-container-elevation)
 }
 
-.button:hover {
+.button-shared.button:hover {
     --md-elevation-level: var(--_hover-container-elevation)
 }
 
-.button:active {
+.button-shared.button:active {
     --md-elevation-level: var(--_pressed-container-elevation)
 }
 
-.button:disabled {
+.button-shared.button:disabled {
     --md-elevation-level: var(--_disabled-container-elevation)
 }

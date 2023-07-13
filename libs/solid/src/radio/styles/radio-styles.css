@@ -55,12 +55,11 @@
     outline: none;
 }
 
-/*TODO: ripple - maybe uncomment after final version of ripple is implemented*/
-/*.radio-shared .ripple-container {*/
-/*    border-radius: 50%;*/
-/*    height: var(--_state-layer-size);*/
-/*    width: var(--_state-layer-size);*/
-/*}*/
+.radio-shared .ripple-shared {
+    border-radius: 50%;
+    height: var(--_state-layer-size);
+    width: var(--_state-layer-size);
+}
 
 .radio-shared .radio__icon {
     fill: var(--_unselected-icon-color);
