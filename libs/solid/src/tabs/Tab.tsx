@@ -1,27 +1,27 @@
-import {Component, createEffect, createMemo, JSX, on, onMount, splitProps} from 'solid-js';
+import {Component, createEffect, createMemo, JSX, onMount, splitProps} from 'solid-js';
 import './styles/tab-styles.css'
 import {focusController as fc} from '../focus';
 import {Elevation} from '../elevation';
 import {createHandlers, createRippleEventEmitter, Ripple} from '../ripple';
 import {SetStoreFunction, Store} from 'solid-js/store';
-import {addTab, TabItemData, Tabs} from './shared';
-
-type Style = '' | 'primary' | 'secondary';
-type Orientation = '' | 'vertical';
-
-export type Variant = Style | `${Style} ${Orientation}` | `${Orientation} ${Style}`;
+import {addTab, TabItemData,  Variant} from './shared';
+import {createEventDispatcher} from '@solid-primitives/event-dispatcher';
 
 export type TabProps = {
+    id: string;
     ariaLabel?: string;
     disabled?: boolean;
     focusable?: boolean;
     icon?: JSX.Element;
     inlineIcon?: boolean;
     label?: string;
+    onSelected?: (evt: CustomEvent<TabItemData>) => void;
+    onDeselected?: (evt: CustomEvent<TabItemData>) => void;
     selected: boolean;
-    tabs: [get: Store<Tabs>, set: SetStoreFunction<Tabs>];
+    showFocusRing?: boolean;
+    tabStore: [get: Store<TabItemData[]>, set: SetStoreFunction<TabItemData[]>];
     variant?: Variant;
-}
+} & JSX.HTMLAttributes<HTMLDivElement>
 
 function shouldReduceMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -30,24 +30,24 @@ function shouldReduceMotion() {
 export const Tab: Component<TabProps> = (props) => {
     //noinspection JSUnusedLocalSymbols
     const focusController = fc;
-    const [componentProps, ] = splitProps(props, [
+    const dispatch = createEventDispatcher(props);
+    const [componentProps, tabProps] = splitProps(props, [
         'ariaLabel',
         'disabled',
         'focusable',
         'icon',
+        'id',
         'inlineIcon',
         'label',
         'selected',
-        'tabs',
+        'showFocusRing',
+        'tabStore',
         'variant'
     ]);
 
-    const tabs = componentProps.tabs[0];
-    const variant = createMemo(() => props.variant || 'primary');
-    const inlineIcon = createMemo(() => props.inlineIcon || false);
-    const selected = createMemo(() => props.selected || false);
-
-    let tab: TabItemData | null = null;
+    const tabs = componentProps.tabStore[0];
+    const variant = createMemo(() => componentProps.variant || 'primary');
+    const inlineIcon = createMemo(() => componentProps.inlineIcon || false);
 
     let buttonElement: HTMLButtonElement | null = null;
     let indicatorElement: HTMLDivElement | null = null;
@@ -55,21 +55,38 @@ export const Tab: Component<TabProps> = (props) => {
     const {listen, emit} = createRippleEventEmitter();
     const rippleHandlers = createHandlers(emit);
 
+    const item = createMemo(
+        () => tabs.find((item: TabItemData) => item.id === props.id)
+    );
+
     onMount(() => {
-        tab = {
-            indicator: createMemo(() => indicatorElement),
-        }
-        addTab(tab, componentProps.tabs);
+        addTab(
+            {
+                id: componentProps.id,
+                indicator: createMemo(() => indicatorElement),
+                disabled: componentProps.disabled,
+                focusable: componentProps.focusable,
+                selected: componentProps.selected,
+                previouslySelected: false,
+            },
+            componentProps.tabStore
+        );
+
+        createEffect(() => {
+            if (item()?.selected) {
+                animateSelected();
+            }
+        });
     });
 
     const getKeyframes = () => {
         const reduceMotion = shouldReduceMotion();
-        if (!selected()) {
+        if (!item()?.selected) {
             return reduceMotion ? [{'opacity': 1}, {'transform': 'none'}] : null;
         }
         const from: Keyframe = {};
         const isVertical = variant().includes('vertical');
-        const fromRect = (tabs?.previousSelectedItem?.indicator().getBoundingClientRect() ?? ({} as DOMRect));
+        const fromRect = (tabs.find(item => item.previouslySelected)?.indicator().getBoundingClientRect() ?? ({} as DOMRect));
         const fromPos = isVertical ? fromRect.top : fromRect.left;
         const fromExtent = isVertical ? fromRect.height : fromRect.width;
         const toRect = indicatorElement.getBoundingClientRect();
@@ -101,29 +118,32 @@ export const Tab: Component<TabProps> = (props) => {
         }
     }
 
-    createEffect(() => {
-        on([selected], () => {
-            animateSelected();
-        });
-        console.log('tabs', tabs.allItems.map(item => JSON.stringify(item.indicator)));
-    });
+
+    const handleClick = () => {
+        if (componentProps.disabled || item()?.selected) {
+            return;
+        }
+        dispatch('selected', item());
+    }
 
     return (
         <div
+            {...tabProps}
             class={'tab-wrapper'}
             classList={{
-                'tab--selected': componentProps.selected,
-                'tab--disabled': componentProps.disabled,
+                'tab--selected': item() && item().selected,
+                'tab--disabled': item() && item().disabled,
                 'tab--primary': variant().includes('primary'),
                 'tab--secondary': variant().includes('secondary'),
                 'tab--vertical': variant().includes('vertical'),
             }}
+            onClick={handleClick}
         >
             <button
                 ref={buttonElement}
                 {...rippleHandlers}
                 use:focusController={{
-                    disabled: !componentProps.focusable || componentProps.disabled,
+                    disabled: !componentProps.focusable || componentProps.disabled || !componentProps.showFocusRing,
                     inward: true,
                 }}
                 class={'button'}
