@@ -3,6 +3,7 @@ import {createHandlers, createRippleEventEmitter, Ripple} from '../ripple'
 import './styles/checkbox-styles.css'
 import {composeEventHandlers} from '../controller';
 import {createStore} from 'solid-js/store';
+import {focusController as fc} from '../focus';
 
 export type CheckboxProps = {
     ariaHasPopup?: boolean
@@ -32,6 +33,8 @@ type StateChange = {
 }
 
 export const Checkbox = (props: CheckboxProps) => {
+    // noinspection JSUnusedLocalSymbols
+    const focusController = fc;
     const [componentProps, checkBoxProps] = splitProps(props, [
         'checked',
         'disabled',
@@ -99,11 +102,17 @@ export const Checkbox = (props: CheckboxProps) => {
     });
 
     return (
-        <div class='base-checkbox'>
+        <div
+            use:focusController={{
+                disabled: !componentProps.showFocusRing || state.checkBox.isDisabled,
+            }}
+            class='base-checkbox'
+        >
             <div
                 tabIndex={0}
                 class={'checkbox-container'}
                 classList={{
+                    'checkbox-disabled': state.checkBox.isDisabled,
                     'checkbox-selected': state.checkBox.isChecked || state.checkBox.isIndeterminate,
                     'checkbox-unselected': !state.checkBox.isChecked && !state.checkBox.isIndeterminate,
                     'checkbox-checked': state.checkBox.isChecked,
@@ -118,11 +127,11 @@ export const Checkbox = (props: CheckboxProps) => {
                 <div class="checkbox-outline"></div>
                 <div class="checkbox-background"></div>
                 <svg class="checkbox-icon" viewBox="0 0 18 18">
-                    <Ripple listen={listen}></Ripple>
                     <rect class="checkbox-mark checkbox-short"/>
                     <rect class="checkbox-mark checkbox-long"/>
                 </svg>
             </div>
+            <Ripple listen={listen}></Ripple>
             <input
                 {...checkBoxProps}
                 {...rippleHandlers}
