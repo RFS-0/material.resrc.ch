@@ -1,5 +1,11 @@
 # material.resrc.ch
 
+## 0.0.40
+
+### Patch Changes
+
+- e543252: Implement slider
+
 ## 0.0.39
 
 ### Patch Changes
