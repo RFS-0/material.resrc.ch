@@ -1,5 +1,5 @@
 import {createEventBus, Emit, EventBus, Listen} from '@solid-primitives/event-bus';
-import {createSignal, JSX, ParentComponent, VoidProps} from 'solid-js';
+import {createSignal, JSX, ParentComponent, splitProps, VoidProps} from 'solid-js';
 import {createAnimationSignal, EASING} from "../motion";
 import './styles/ripple-styles.css';
 
@@ -52,16 +52,21 @@ export function createHandlers(emit: Emit<RippleEvent>): RippleHandlers {
 }
 
 export type RippleProps = {
-    listen: Listen<RippleEvent>
-    disabled?: boolean
+    disabled?: boolean;
+    listen: Listen<RippleEvent>;
+    rippleClass?: string;
 } & JSX.HTMLAttributes<HTMLDivElement> & VoidProps
 
 
 export const Ripple: ParentComponent<RippleProps> = (props) => {
+    const [componentProps, rippleProps] = splitProps(props, [
+        'disabled',
+        'listen',
+        'rippleClass',
+    ]);
     let rippleElement: HTMLDivElement | null = null;
 
-
-    const [disabled, __] = createSignal(props?.disabled || false);
+    const [disabled, __] = createSignal(componentProps?.disabled || false);
     const [hovered, setHovered] = createSignal(false);
     const [pressed, setPressed] = createSignal(false);
 
@@ -87,7 +92,7 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
         const maxDim = Math.max(height, width);
         const softEdgeSize = Math.max(SOFT_EDGE_CONTAINER_RATIO * maxDim, SOFT_EDGE_MINIMUM_SIZE);
 
-        const initialSize =  Math.floor(maxDim * INITIAL_ORIGIN_SCALE);
+        const initialSize = Math.floor(maxDim * INITIAL_ORIGIN_SCALE);
         const hypotenuse = Math.sqrt(width ** 2 + height ** 2);
         const maxRadius = hypotenuse + PADDING;
 
@@ -331,7 +336,7 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
         }
     };
 
-    props.listen(rippleEvent => {
+    componentProps.listen(rippleEvent => {
         switch (rippleEvent.type) {
             case 'click':
                 click(rippleEvent.pointerEvent as PointerEvent);
@@ -363,7 +368,7 @@ export const Ripple: ParentComponent<RippleProps> = (props) => {
     // noinspection JSUnusedAssignment
     return (
         <div
-            class='ripple-shared ripple__container'
+            class={['ripple-shared ripple__container', componentProps.rippleClass].join(' ')}
             classList={{
                 'ripple--disabled': disabled(),
             }}
